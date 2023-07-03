@@ -34061,7 +34061,11 @@ Output Discharge: 100Ω Typ</text>
 <text x="355.346" y="233.934" size="1.778" layer="97" font="vector">Vin Min: 9V
 Vin Max: 36V
 Vout: 5.0V
-Iout Max: 1.0A</text>
+Iout Max: 3.0A</text>
+<text x="246.126" y="127.254" size="1.778" layer="97" font="vector">Vin Min: 36V
+Vin Max: 57V
+Vout: 5.0V
+Iout Max: 1.8A</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0" smashed="yes"/>
@@ -34397,7 +34401,7 @@ Iout Max: 1.0A</text>
 <instance part="PWREN" gate="G$1" x="414.02" y="127" smashed="yes"/>
 <instance part="5V" gate="G$1" x="165.1" y="149.86" smashed="yes" rot="R90"/>
 <instance part="H4" gate="G$1" x="426.72" y="30.48" smashed="yes"/>
-<instance part="LOGO4" gate="G$1" x="193.04" y="15.24" smashed="yes"/>
+<instance part="LOGO4" gate="G$1" x="236.22" y="17.78" smashed="yes"/>
 <instance part="SUPPLY7" gate="G$1" x="165.1" y="218.44" smashed="yes">
 <attribute name="VALUE" x="165.1" y="221.234" size="1.778" layer="96" align="bottom-center"/>
 </instance>
