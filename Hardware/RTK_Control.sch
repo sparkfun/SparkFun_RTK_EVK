@@ -33915,6 +33915,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="SCL" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 <part name="SDA" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 <part name="SUPPLY63" library="SparkFun-PowerSymbols" deviceset="3.3V_SW" device=""/>
+<part name="ESP5" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
+<part name="GND49" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -34328,15 +34330,15 @@ Pin 35 floats at 0.18V approx.
 <instance part="GND37" gate="1" x="20.32" y="152.4" smashed="yes">
 <attribute name="VALUE" x="20.32" y="152.146" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="C19" gate="G$1" x="7.62" y="137.16" smashed="yes">
-<attribute name="NAME" x="9.144" y="140.081" size="1.778" layer="95" font="vector"/>
-<attribute name="VALUE" x="9.144" y="135.001" size="1.778" layer="96" font="vector"/>
+<instance part="C19" gate="G$1" x="7.62" y="134.62" smashed="yes">
+<attribute name="NAME" x="9.144" y="137.541" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="9.144" y="132.461" size="1.778" layer="96" font="vector"/>
 </instance>
 <instance part="GND38" gate="1" x="7.62" y="127" smashed="yes">
 <attribute name="VALUE" x="7.62" y="126.746" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="SUPPLY27" gate="G$1" x="7.62" y="144.78" smashed="yes">
-<attribute name="VALUE" x="7.62" y="147.574" size="1.778" layer="96" align="bottom-center"/>
+<instance part="SUPPLY27" gate="G$1" x="7.62" y="142.24" smashed="yes">
+<attribute name="VALUE" x="7.62" y="145.034" size="1.778" layer="96" align="bottom-center"/>
 </instance>
 <instance part="SUPPLY28" gate="G$1" x="7.62" y="167.64" smashed="yes">
 <attribute name="VALUE" x="7.62" y="170.434" size="1.778" layer="96" align="bottom-center"/>
@@ -34868,7 +34870,7 @@ Pin 35 floats at 0.18V approx.
 <instance part="POCI" gate="G$1" x="48.26" y="144.78" smashed="yes" rot="R90"/>
 <instance part="SD_CS" gate="G$1" x="55.88" y="152.4" smashed="yes" rot="R90"/>
 <instance part="SCK" gate="G$1" x="53.34" y="144.78" smashed="yes" rot="R90"/>
-<instance part="GND" gate="G$1" x="10.16" y="132.08" smashed="yes"/>
+<instance part="GND" gate="G$1" x="134.62" y="137.16" smashed="yes" rot="R90"/>
 <instance part="RESET_SW" gate="G$1" x="365.76" y="81.28" smashed="yes" rot="MR0">
 <attribute name="NAME" x="365.76" y="84.328" size="1.778" layer="95" font="vector" rot="MR0" align="center"/>
 </instance>
@@ -35025,6 +35027,12 @@ Pin 35 floats at 0.18V approx.
 <attribute name="NAME" x="355.6" y="264.16" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="355.6" y="246.38" size="1.778" layer="96" font="vector"/>
 </instance>
+<instance part="ESP5" gate="G$1" x="411.48" y="134.62" smashed="yes">
+<attribute name="NAME" x="416.56" y="134.62" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="GND49" gate="1" x="134.62" y="132.08" smashed="yes">
+<attribute name="VALUE" x="134.62" y="131.826" size="1.778" layer="96" align="top-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -35154,10 +35162,6 @@ Pin 35 floats at 0.18V approx.
 <pinref part="GND38" gate="1" pin="GND"/>
 <pinref part="C19" gate="G$1" pin="2"/>
 <wire x1="7.62" y1="129.54" x2="7.62" y2="132.08" width="0.1524" layer="91"/>
-<pinref part="GND" gate="G$1" pin="1"/>
-<wire x1="7.62" y1="132.08" x2="7.62" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="132.08" x2="7.62" y2="132.08" width="0.1524" layer="91"/>
-<junction x="7.62" y="132.08"/>
 </segment>
 <segment>
 <pinref part="GND39" gate="1" pin="GND"/>
@@ -35456,6 +35460,11 @@ Pin 35 floats at 0.18V approx.
 <pinref part="C85" gate="G$1" pin="2"/>
 <pinref part="GND128" gate="1" pin="GND"/>
 <wire x1="419.1" y1="248.92" x2="419.1" y2="251.46" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND49" gate="1" pin="GND"/>
+<pinref part="GND" gate="G$1" pin="1"/>
+<wire x1="134.62" y1="134.62" x2="134.62" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
@@ -35798,7 +35807,7 @@ Pin 35 floats at 0.18V approx.
 <segment>
 <pinref part="C19" gate="G$1" pin="1"/>
 <pinref part="SUPPLY27" gate="G$1" pin="3.3V_SW"/>
-<wire x1="7.62" y1="142.24" x2="7.62" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="139.7" x2="7.62" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY28" gate="G$1" pin="3.3V_SW"/>
@@ -37053,6 +37062,13 @@ Pin 35 floats at 0.18V approx.
 <junction x="345.44" y="261.62"/>
 </segment>
 </net>
+<net name="N$37" class="0">
+<segment>
+<pinref part="U9" gate="G$1" pin="3Z"/>
+<pinref part="ESP5" gate="G$1" pin="1"/>
+<wire x1="408.94" y1="134.62" x2="411.48" y2="134.62" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
@@ -37085,7 +37101,7 @@ Pin 35 floats at 0.18V approx.
 <wire x1="144.78" y1="81.28" x2="144.78" y2="157.48" width="0.1524" layer="97" style="longdash"/>
 <wire x1="254" y1="157.48" x2="254" y2="279.4" width="0.1524" layer="97" style="longdash"/>
 <text x="326.39" y="187.96" size="1.778" layer="97" font="vector">90Ω</text>
-<text x="279.4" y="81.28" size="1.778" layer="97" align="center">7-bit unshifted I²C address: 0x2C</text>
+<text x="279.4" y="81.28" size="1.778" layer="97" font="vector" align="center">7-bit unshifted I²C address: 0x2C</text>
 <text x="279.4" y="76.2" size="1.27" layer="97" font="vector" align="center">Any USB2512*, USB2513, or USB2514 can be used
 USB2513 or higher required for NEO variant</text>
 <text x="149.86" y="152.4" size="2.54" layer="94" font="vector" align="top-left">USB Hub</text>
@@ -38045,10 +38061,6 @@ enable pull-ups</text>
 <wire x1="309.88" y1="236.22" x2="309.88" y2="231.14" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="236.22" x2="309.88" y2="236.22" width="0.1524" layer="91"/>
 <junction x="309.88" y="236.22"/>
-<pinref part="U16" gate="G$1" pin="B4"/>
-<wire x1="307.34" y1="241.3" x2="309.88" y2="241.3" width="0.1524" layer="91"/>
-<wire x1="309.88" y1="241.3" x2="309.88" y2="238.76" width="0.1524" layer="91"/>
-<junction x="309.88" y="238.76"/>
 </segment>
 <segment>
 <pinref part="GND109" gate="1" pin="GND"/>
@@ -38861,26 +38873,26 @@ enable pull-ups</text>
 </net>
 <net name="D+_LARA" class="0">
 <segment>
-<pinref part="R9" gate="G$1" pin="1"/>
-<wire x1="332.74" y1="190.5" x2="325.12" y2="190.5" width="0.1524" layer="91"/>
-<label x="325.12" y="190.5" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="U15" gate="U1" pin="USBDP_DN1"/>
 <wire x1="299.72" y1="142.24" x2="302.26" y2="142.24" width="0.1524" layer="91"/>
 <label x="302.26" y="142.24" size="1.27" layer="95" xref="yes"/>
 </segment>
-</net>
-<net name="D-_LARA" class="0">
 <segment>
 <pinref part="R10" gate="G$1" pin="1"/>
 <wire x1="332.74" y1="187.96" x2="325.12" y2="187.96" width="0.1524" layer="91"/>
 <label x="325.12" y="187.96" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
+</net>
+<net name="D-_LARA" class="0">
 <segment>
 <pinref part="U15" gate="U1" pin="USBDM_DN1"/>
 <wire x1="299.72" y1="144.78" x2="302.26" y2="144.78" width="0.1524" layer="91"/>
 <label x="302.26" y="144.78" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R9" gate="G$1" pin="1"/>
+<wire x1="332.74" y1="190.5" x2="325.12" y2="190.5" width="0.1524" layer="91"/>
+<label x="325.12" y="190.5" size="1.27" layer="95" font="vector" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="USB_!RESET" class="0">
@@ -39075,12 +39087,16 @@ enable pull-ups</text>
 <wire x1="279.4" y1="251.46" x2="279.4" y2="256.54" width="0.1524" layer="91"/>
 <pinref part="U16" gate="G$1" pin="DIR3"/>
 <wire x1="284.48" y1="238.76" x2="279.4" y2="238.76" width="0.1524" layer="91"/>
-<wire x1="279.4" y1="238.76" x2="279.4" y2="251.46" width="0.1524" layer="91"/>
+<wire x1="279.4" y1="238.76" x2="279.4" y2="241.3" width="0.1524" layer="91"/>
 <junction x="279.4" y="251.46"/>
 <pinref part="U16" gate="G$1" pin="DIR4"/>
+<wire x1="279.4" y1="241.3" x2="279.4" y2="251.46" width="0.1524" layer="91"/>
 <wire x1="284.48" y1="236.22" x2="279.4" y2="236.22" width="0.1524" layer="91"/>
 <wire x1="279.4" y1="236.22" x2="279.4" y2="238.76" width="0.1524" layer="91"/>
 <junction x="279.4" y="238.76"/>
+<pinref part="U16" gate="G$1" pin="A4"/>
+<wire x1="284.48" y1="241.3" x2="279.4" y2="241.3" width="0.1524" layer="91"/>
+<junction x="279.4" y="241.3"/>
 </segment>
 </net>
 <net name="LARA_18_TXDI" class="0">
@@ -39444,18 +39460,48 @@ enable pull-ups</text>
 <errors>
 <approved hash="104,1,314.96,99.06,J4,1,GND,,,"/>
 <approved hash="104,1,314.96,101.6,J4,2,3.3V_SW,,,"/>
+<approved hash="104,2,345.44,254,U8,VCC,3.3V_SW2,,,"/>
+<approved hash="202,2,375.92,208.28,U8,I2S_RXD,,,,"/>
+<approved hash="202,2,375.92,246.38,U8,ANT_DET,,,,"/>
+<approved hash="104,2,187.96,254,U5,VCC,3.3V_SW,,,"/>
+<approved hash="202,2,218.44,251.46,U5,EXT_INT,,,,"/>
+<approved hash="104,2,187.96,251.46,U5,V_BKCP,3.3V_SW,,,"/>
+<approved hash="104,2,187.96,228.6,U5,V_USB,3.3V_SW,,,"/>
+<approved hash="202,2,218.44,223.52,U5,D_SEL,,,,"/>
+<approved hash="202,2,218.44,236.22,U5,RXD2,,,,"/>
+<approved hash="202,2,187.96,236.22,U5,ANT_DETECT,,,,"/>
+<approved hash="104,2,307.34,254,U16,VCCA,VCCIO,,,"/>
+<approved hash="104,2,307.34,251.46,U16,VCCB,3.3V_SW2,,,"/>
 <approved hash="104,2,401.32,66.04,J2,VCC,VSIM,,,"/>
 <approved hash="202,2,401.32,68.58,J2,VPP,,,,"/>
+<approved hash="104,1,353.06,261.62,U17,VIN+,N$67,,,"/>
+<approved hash="202,1,353.06,256.54,U17,CTRL,,,,"/>
+<approved hash="104,1,353.06,251.46,U17,VIN-,N$66,,,"/>
+<approved hash="104,1,378.46,261.62,U17,VOUT,5V_RAW1,,,"/>
+<approved hash="202,1,378.46,256.54,U17,TRIM,,,,"/>
 <approved hash="208,1,284.48,203.2,3.3V_SW2,out,,,,"/>
 <approved hash="208,1,287.02,205.74,3.3V_SW2,sup,,,,"/>
 <approved hash="208,1,299.72,205.74,3.3V_SW2,sup,,,,"/>
+<approved hash="208,2,276.86,185.42,3.3V_SW2,sup,,,,"/>
+<approved hash="208,2,342.9,256.54,3.3V_SW2,sup,,,,"/>
+<approved hash="208,2,314.96,259.08,3.3V_SW2,sup,,,,"/>
+<approved hash="208,2,373.38,147.32,3.3V_SW2,sup,,,,"/>
+<approved hash="208,2,373.38,116.84,3.3V_SW2,sup,,,,"/>
+<approved hash="208,2,345.44,248.92,VCCIO,out,,,,"/>
+<approved hash="208,2,337.82,251.46,VCCIO,sup,,,,"/>
+<approved hash="208,2,309.88,256.54,VCCIO,sup,,,,"/>
+<approved hash="208,2,289.56,218.44,VCCIO,sup,,,,"/>
+<approved hash="208,2,302.26,218.44,VCCIO,sup,,,,"/>
+<approved hash="208,2,279.4,256.54,VCCIO,sup,,,,"/>
 <approved hash="113,1,106.003,204.544,J1,,,,,"/>
 <approved hash="113,1,387.574,91.44,Q1,,,,,"/>
 <approved hash="113,2,45.0427,125.804,J6,,,,,"/>
-<approved hash="113,1,186.097,255.715,J8,,,,,"/>
+<approved hash="113,1,172.043,255.715,J8,,,,,"/>
 <approved hash="113,2,107.726,50.8,Q2,,,,,"/>
 <approved hash="113,1,367.623,180.503,J13,,,,,"/>
 <approved hash="113,2,404.305,63.7007,J2,,,,,"/>
+<approved hash="113,2,387.126,137.16,Q3,,,,,"/>
+<approved hash="113,2,387.126,106.68,Q4,,,,,"/>
 </errors>
 </schematic>
 </drawing>
