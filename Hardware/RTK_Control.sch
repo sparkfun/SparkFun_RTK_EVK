@@ -38161,12 +38161,6 @@ enable pull-ups</text>
 <wire x1="386.08" y1="238.76" x2="386.08" y2="241.3" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U16" gate="G$1" pin="DIR1"/>
-<wire x1="284.48" y1="254" x2="281.94" y2="254" width="0.1524" layer="91"/>
-<pinref part="GND108" gate="1" pin="GND"/>
-<wire x1="281.94" y1="254" x2="281.94" y2="231.14" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="GND120" gate="1" pin="GND"/>
 <pinref part="LARA_RF2" gate="G$1" pin="GND"/>
 <wire x1="416.56" y1="228.6" x2="416.56" y2="231.14" width="0.1524" layer="91"/>
@@ -38200,6 +38194,12 @@ enable pull-ups</text>
 <pinref part="GND126" gate="1" pin="GND"/>
 <pinref part="Q4" gate="G1" pin="E"/>
 <wire x1="388.62" y1="99.06" x2="388.62" y2="101.6" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U16" gate="G$1" pin="DIR3"/>
+<wire x1="284.48" y1="238.76" x2="281.94" y2="238.76" width="0.1524" layer="91"/>
+<pinref part="GND108" gate="1" pin="GND"/>
+<wire x1="281.94" y1="238.76" x2="281.94" y2="231.14" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -39081,20 +39081,20 @@ enable pull-ups</text>
 <wire x1="302.26" y1="218.44" x2="302.26" y2="215.9" width="0.1524" layer="91"/>
 </segment>
 <segment>
+<pinref part="U16" gate="G$1" pin="DIR1"/>
+<wire x1="284.48" y1="254" x2="279.4" y2="254" width="0.1524" layer="91"/>
+<pinref part="SUPPLY75" gate="G$1" pin="VCCIO"/>
+<wire x1="279.4" y1="254" x2="279.4" y2="256.54" width="0.1524" layer="91"/>
 <pinref part="U16" gate="G$1" pin="DIR2"/>
 <wire x1="284.48" y1="251.46" x2="279.4" y2="251.46" width="0.1524" layer="91"/>
-<pinref part="SUPPLY75" gate="G$1" pin="VCCIO"/>
-<wire x1="279.4" y1="251.46" x2="279.4" y2="256.54" width="0.1524" layer="91"/>
-<pinref part="U16" gate="G$1" pin="DIR3"/>
-<wire x1="284.48" y1="238.76" x2="279.4" y2="238.76" width="0.1524" layer="91"/>
-<wire x1="279.4" y1="238.76" x2="279.4" y2="241.3" width="0.1524" layer="91"/>
-<junction x="279.4" y="251.46"/>
+<wire x1="279.4" y1="251.46" x2="279.4" y2="254" width="0.1524" layer="91"/>
+<junction x="279.4" y="254"/>
 <pinref part="U16" gate="G$1" pin="DIR4"/>
-<wire x1="279.4" y1="241.3" x2="279.4" y2="251.46" width="0.1524" layer="91"/>
 <wire x1="284.48" y1="236.22" x2="279.4" y2="236.22" width="0.1524" layer="91"/>
-<wire x1="279.4" y1="236.22" x2="279.4" y2="238.76" width="0.1524" layer="91"/>
-<junction x="279.4" y="238.76"/>
+<wire x1="279.4" y1="236.22" x2="279.4" y2="241.3" width="0.1524" layer="91"/>
+<junction x="279.4" y="251.46"/>
 <pinref part="U16" gate="G$1" pin="A4"/>
+<wire x1="279.4" y1="241.3" x2="279.4" y2="251.46" width="0.1524" layer="91"/>
 <wire x1="284.48" y1="241.3" x2="279.4" y2="241.3" width="0.1524" layer="91"/>
 <junction x="279.4" y="241.3"/>
 </segment>
@@ -39106,9 +39106,9 @@ enable pull-ups</text>
 <label x="342.9" y="228.6" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U16" gate="G$1" pin="A1"/>
-<wire x1="284.48" y1="248.92" x2="276.86" y2="248.92" width="0.1524" layer="91"/>
-<label x="276.86" y="248.92" size="1.27" layer="95" rot="R180" xref="yes"/>
+<label x="276.86" y="243.84" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="U16" gate="G$1" pin="A3"/>
+<wire x1="284.48" y1="243.84" x2="276.86" y2="243.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="LARA_18_RXDO" class="0">
@@ -39118,16 +39118,16 @@ enable pull-ups</text>
 <label x="342.9" y="226.06" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U16" gate="G$1" pin="A2"/>
-<wire x1="284.48" y1="246.38" x2="276.86" y2="246.38" width="0.1524" layer="91"/>
 <label x="276.86" y="246.38" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="U16" gate="G$1" pin="A2"/>
+<wire x1="276.86" y1="246.38" x2="284.48" y2="246.38" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ESP13/LARA_TXDI" class="0">
 <segment>
-<pinref part="U16" gate="G$1" pin="B1"/>
-<wire x1="307.34" y1="248.92" x2="309.88" y2="248.92" width="0.1524" layer="91"/>
-<label x="309.88" y="248.92" size="1.27" layer="95" xref="yes"/>
+<label x="309.88" y="243.84" size="1.27" layer="95" xref="yes"/>
+<pinref part="U16" gate="G$1" pin="B3"/>
+<wire x1="307.34" y1="243.84" x2="309.88" y2="243.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ESP14/LARA_RXDO" class="0">
@@ -39306,16 +39306,16 @@ enable pull-ups</text>
 <label x="342.9" y="218.44" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U16" gate="G$1" pin="A3"/>
-<wire x1="284.48" y1="243.84" x2="276.86" y2="243.84" width="0.1524" layer="91"/>
-<label x="276.86" y="243.84" size="1.27" layer="95" rot="R180" xref="yes"/>
+<label x="276.86" y="248.92" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="U16" gate="G$1" pin="A1"/>
+<wire x1="284.48" y1="248.92" x2="276.86" y2="248.92" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ESP34/LARA_NI" class="0">
 <segment>
-<pinref part="U16" gate="G$1" pin="B3"/>
-<wire x1="307.34" y1="243.84" x2="309.88" y2="243.84" width="0.1524" layer="91"/>
-<label x="309.88" y="243.84" size="1.27" layer="95" xref="yes"/>
+<label x="309.88" y="248.92" size="1.27" layer="95" xref="yes"/>
+<pinref part="U16" gate="G$1" pin="B1"/>
+<wire x1="307.34" y1="248.92" x2="309.88" y2="248.92" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="3.3V_SW2" class="0">
