@@ -36904,7 +36904,7 @@ Pin 35 floats at 0.18V approx.
 <label x="375.92" y="170.18" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$22" class="0">
+<net name="VIN1+" class="0">
 <segment>
 <pinref part="VIN+" gate="JP1" pin="1"/>
 <pinref part="D14" gate="G$1" pin="A"/>
@@ -37038,7 +37038,7 @@ Pin 35 floats at 0.18V approx.
 <label x="375.92" y="134.62" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N$66" class="0">
+<net name="VIN1-" class="0">
 <segment>
 <pinref part="U17" gate="U1" pin="VIN-"/>
 <wire x1="353.06" y1="251.46" x2="350.52" y2="251.46" width="0.1524" layer="91"/>
