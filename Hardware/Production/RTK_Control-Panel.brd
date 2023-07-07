@@ -640,22 +640,20 @@
 <vertex x="46.7995" y="60.071"/>
 <vertex x="38.9255" y="60.071"/>
 </polygon>
-<wire x1="-0.254" y1="-6.858" x2="-0.254" y2="108.966" width="0.381" layer="46"/>
-<text x="-0.254" y="111.252" size="1.778" layer="46" ratio="15" align="center">v-score</text>
-<wire x1="152.019" y1="-6.858" x2="152.019" y2="108.966" width="0.381" layer="46"/>
-<text x="152.019" y="111.252" size="1.778" layer="46" ratio="15" align="center">v-score</text>
-<wire x1="-6.858" y1="-0.254" x2="164.973" y2="-0.254" width="0.381" layer="46"/>
-<text x="172.593" y="-0.254" size="1.778" layer="46" ratio="15" align="center">v-score</text>
-<wire x1="-6.858" y1="101.854" x2="164.973" y2="101.854" width="0.381" layer="46"/>
-<text x="172.593" y="101.854" size="1.778" layer="46" ratio="15" align="center">v-score</text>
-<wire x1="-0.508" y1="-0.508" x2="152.273" y2="-0.508" width="0.254" layer="20"/>
-<wire x1="158.623" y1="-6.858" x2="-6.858" y2="-6.858" width="0.254" layer="20"/>
-<wire x1="158.623" y1="108.458" x2="158.623" y2="-6.858" width="0.254" layer="20"/>
-<wire x1="152.273" y1="-0.508" x2="152.273" y2="102.108" width="0.254" layer="20"/>
-<wire x1="-6.858" y1="108.458" x2="158.623" y2="108.458" width="0.254" layer="20"/>
-<wire x1="152.273" y1="102.108" x2="-0.508" y2="102.108" width="0.254" layer="20"/>
-<wire x1="-0.508" y1="102.108" x2="-0.508" y2="-0.508" width="0.254" layer="20"/>
-<wire x1="-6.858" y1="-6.858" x2="-6.858" y2="108.458" width="0.254" layer="20"/>
+<text x="75.8825" y="-2.794" size="1.778" layer="20" ratio="15" align="center">Route Out</text>
+<text x="75.8825" y="104.394" size="1.778" layer="20" ratio="15" align="center">Route Out</text>
+<wire x1="-0.254" y1="-11.938" x2="-0.254" y2="119.126" width="0.381" layer="46"/>
+<text x="-0.254" y="121.412" size="1.778" layer="46" ratio="15" align="center">v-score</text>
+<wire x1="152.019" y1="-11.938" x2="152.019" y2="119.126" width="0.381" layer="46"/>
+<text x="152.019" y="121.412" size="1.778" layer="46" ratio="15" align="center">v-score</text>
+<wire x1="-0.508" y1="-5.588" x2="152.273" y2="-5.588" width="0.254" layer="20"/>
+<wire x1="158.623" y1="-11.938" x2="-6.858" y2="-11.938" width="0.254" layer="20"/>
+<wire x1="158.623" y1="113.538" x2="158.623" y2="-11.938" width="0.254" layer="20"/>
+<wire x1="152.273" y1="-5.588" x2="152.273" y2="107.188" width="0.254" layer="20"/>
+<wire x1="-6.858" y1="113.538" x2="158.623" y2="113.538" width="0.254" layer="20"/>
+<wire x1="152.273" y1="107.188" x2="-0.508" y2="107.188" width="0.254" layer="20"/>
+<wire x1="-0.508" y1="107.188" x2="-0.508" y2="-5.588" width="0.254" layer="20"/>
+<wire x1="-6.858" y1="-11.938" x2="-6.858" y2="113.538" width="0.254" layer="20"/>
 </plain>
 <libraries>
 <library name="SparkFun-Capacitors">
@@ -21674,12 +21672,12 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <element name="U$15" library="output" package="NEO_RX3" value="" x="79.6925" y="68.58" smashed="yes" rot="MR0"/>
 <element name="U$79" library="output" package="UART14" value="" x="74.6125" y="72.898" smashed="yes" rot="MR0"/>
 <element name="U$89" library="output" package="4_#_#SD_CS#15" value="" x="50.4825" y="10.922" smashed="yes" rot="MR270"/>
-<element name="E$1" library="SparkFun-Aesthetics" package="FIDUCIAL-1X2" value="" x="6.858" y="103.6955" smashed="yes"/>
-<element name="E$2" library="SparkFun-Aesthetics" package="FIDUCIAL-1X2" value="" x="6.858" y="103.6955" smashed="yes" rot="MR0"/>
-<element name="E$3" library="SparkFun-Aesthetics" package="FIDUCIAL-1X2" value="" x="144.8435" y="103.6955" smashed="yes"/>
-<element name="E$4" library="SparkFun-Aesthetics" package="FIDUCIAL-1X2" value="" x="144.8435" y="103.6955" smashed="yes" rot="MR0"/>
-<element name="E$5" library="SparkFun-Retired" package="FIDUCIAL-1.5X3" value="" x="6.858" y="-2.0955" smashed="yes"/>
-<element name="E$6" library="SparkFun-Retired" package="FIDUCIAL-1.5X3" value="" x="6.858" y="-2.0955" smashed="yes" rot="MR0"/>
+<element name="E$1" library="SparkFun-Aesthetics" package="FIDUCIAL-1X2" value="" x="6.858" y="108.7755" smashed="yes"/>
+<element name="E$2" library="SparkFun-Aesthetics" package="FIDUCIAL-1X2" value="" x="6.858" y="108.7755" smashed="yes" rot="MR0"/>
+<element name="E$3" library="SparkFun-Aesthetics" package="FIDUCIAL-1X2" value="" x="144.8435" y="108.7755" smashed="yes"/>
+<element name="E$4" library="SparkFun-Aesthetics" package="FIDUCIAL-1X2" value="" x="144.8435" y="108.7755" smashed="yes" rot="MR0"/>
+<element name="E$5" library="SparkFun-Retired" package="FIDUCIAL-1.5X3" value="" x="6.858" y="-7.1755" smashed="yes"/>
+<element name="E$6" library="SparkFun-Retired" package="FIDUCIAL-1.5X3" value="" x="6.858" y="-7.1755" smashed="yes" rot="MR0"/>
 </elements>
 <signals>
 <signal name="GND">

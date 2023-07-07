@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
@@ -207,10 +207,12 @@
 <wire x1="0.3175" y1="101.6" x2="0.3175" y2="0" width="0.2032" layer="20"/>
 <dimension x1="0" y1="101.6" x2="0" y2="0" x3="-8.89" y3="50.8" textsize="1.778" textratio="15" layer="47" dtype="vertical" unit="inch"/>
 <text x="213.36" y="0" size="1.778" layer="51" font="vector" ratio="15">Paul Clark</text>
-<text x="160.02" y="49.53" size="1.778" layer="51" font="vector" ratio="15" align="top-left">JLCPCB JLC-7628 Impedance Control
+<text x="160.02" y="49.53" size="1.778" layer="51" font="vector" ratio="15" align="top-left">Controlled Impedance: JLC7628
+Material: TG155
 4-Layers
 Thickness: 1.6mm
 Outer Copper: 1oz
+Inner Copper: 0.5oz
 Finish: HASL Lead Free
 Red Solder Resist
 White Silkscreen
