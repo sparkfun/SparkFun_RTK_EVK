@@ -37051,7 +37051,7 @@ Pin 35 floats at 0.18V approx.
 <junction x="345.44" y="248.92"/>
 </segment>
 </net>
-<net name="N$67" class="0">
+<net name="VIN2+" class="0">
 <segment>
 <pinref part="U17" gate="U1" pin="VIN+"/>
 <pinref part="D14" gate="G$1" pin="C"/>
@@ -38843,14 +38843,14 @@ enable pull-ups</text>
 <label x="289.56" y="43.18" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$26" class="0">
+<net name="NEO_TXO" class="0">
 <segment>
 <pinref part="U5" gate="U1" pin="TXD1/POCI"/>
 <pinref part="RX-TX" gate="JP1" pin="1"/>
 <wire x1="218.44" y1="231.14" x2="220.98" y2="231.14" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$31" class="0">
+<net name="NEO_RXI" class="0">
 <segment>
 <pinref part="U5" gate="U1" pin="RXD1/PICO"/>
 <pinref part="TX-RX" gate="JP1" pin="2"/>
@@ -39474,9 +39474,9 @@ enable pull-ups</text>
 <approved hash="104,2,307.34,251.46,U16,VCCB,3.3V_SW2,,,"/>
 <approved hash="104,2,401.32,66.04,J2,VCC,VSIM,,,"/>
 <approved hash="202,2,401.32,68.58,J2,VPP,,,,"/>
-<approved hash="104,1,353.06,261.62,U17,VIN+,N$67,,,"/>
+<approved hash="104,1,353.06,261.62,U17,VIN+,VIN2+,,,"/>
 <approved hash="202,1,353.06,256.54,U17,CTRL,,,,"/>
-<approved hash="104,1,353.06,251.46,U17,VIN-,N$66,,,"/>
+<approved hash="104,1,353.06,251.46,U17,VIN-,VIN1-,,,"/>
 <approved hash="104,1,378.46,261.62,U17,VOUT,5V_RAW1,,,"/>
 <approved hash="202,1,378.46,256.54,U17,TRIM,,,,"/>
 <approved hash="208,1,284.48,203.2,3.3V_SW2,out,,,,"/>
