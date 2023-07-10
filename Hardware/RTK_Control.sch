@@ -22147,12 +22147,16 @@ Control</text>
 
 ESP32-WROVER-E uses the onboard antenna.
 &lt;br&gt;
-ESP32-WROVER-IE has a u.FL antenna connector, but is otherwise the same as the -E.</description>
+&lt;br&gt;
+ESP32-WROVER-IE has a u.FL antenna connector, but is otherwise the same as the -E.
+&lt;br&gt;
+&lt;br&gt;
+N16R8 has 16M Flash, 8M PSRAM</description>
 <gates>
 <gate name="U1" symbol="ESP32-WROVER-E" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="ESP32-WROVER-E/IE">
+<device name="_IE-N16R8" package="ESP32-WROVER-E/IE">
 <connects>
 <connect gate="U1" pin="3V3" pad="2"/>
 <connect gate="U1" pin="CS2/IOA15" pad="23"/>
@@ -22183,10 +22187,12 @@ ESP32-WROVER-IE has a u.FL antenna connector, but is otherwise the same as the -
 <connect gate="U1" pin="XTAL_P/IOA32" pad="8"/>
 </connects>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="PROD_ID" value="IC-19265" constant="no"/>
+</technology>
 </technologies>
 </device>
-<device name="-NARROW" package="ESP32-WROVER-E/IE-NARROW">
+<device name="_IE-N16R8_NARROW" package="ESP32-WROVER-E/IE-NARROW">
 <connects>
 <connect gate="U1" pin="3V3" pad="2"/>
 <connect gate="U1" pin="CS2/IOA15" pad="23"/>
@@ -22217,7 +22223,9 @@ ESP32-WROVER-IE has a u.FL antenna connector, but is otherwise the same as the -
 <connect gate="U1" pin="XTAL_P/IOA32" pad="8"/>
 </connects>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="PROD_ID" value="IC-19265" constant="no"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -22295,13 +22303,13 @@ Why hasn't anyone added the cutout polygons directly to the connector footprint?
 </device>
 </devices>
 </deviceset>
-<deviceset name="LARA-R6001" prefix="U">
+<deviceset name="LARA-R6" prefix="U">
 <description>u-blox LARA-R6 single or multi-mode LTE Cat 1 modules</description>
 <gates>
 <gate name="U1" symbol="LARA-R6" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="LARA-LGA">
+<device name="_R6001D_GLOBAL_DATA-ONLY" package="LARA-LGA">
 <connects>
 <connect gate="U1" pin="ANT" pad="56"/>
 <connect gate="U1" pin="ANT2" pad="62"/>
@@ -22341,7 +22349,98 @@ Why hasn't anyone added the cutout polygons directly to the connector footprint?
 </connects>
 <technologies>
 <technology name="">
+<attribute name="PROD_ID" value="IC-16661" constant="no"/>
+<attribute name="VALUE" value="LARA-R6001D" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="_R6001_GLOBAL" package="LARA-LGA">
+<connects>
+<connect gate="U1" pin="ANT" pad="56"/>
+<connect gate="U1" pin="ANT2" pad="62"/>
+<connect gate="U1" pin="ANT_DET" pad="59"/>
+<connect gate="U1" pin="CTS_O" pad="11"/>
+<connect gate="U1" pin="DCD_O" pad="8"/>
+<connect gate="U1" pin="DSR_O" pad="6"/>
+<connect gate="U1" pin="DTR_I" pad="9"/>
+<connect gate="U1" pin="GND" pad="1 3 5 14 20 21 22 30 32 43 50 54 55 57 58 60 61 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96" route="any"/>
+<connect gate="U1" pin="GPIO1" pad="16"/>
+<connect gate="U1" pin="GPIO2" pad="23"/>
+<connect gate="U1" pin="GPIO3" pad="24"/>
+<connect gate="U1" pin="GPIO4" pad="25"/>
+<connect gate="U1" pin="GPIO5" pad="42"/>
+<connect gate="U1" pin="GPIO6" pad="19"/>
+<connect gate="U1" pin="I2S_CLK" pad="36"/>
+<connect gate="U1" pin="I2S_RXD" pad="37"/>
+<connect gate="U1" pin="I2S_TXD" pad="35"/>
+<connect gate="U1" pin="I2S_WA" pad="34"/>
+<connect gate="U1" pin="PWR_ON" pad="15"/>
+<connect gate="U1" pin="RESET_N" pad="18"/>
+<connect gate="U1" pin="RI_O" pad="7"/>
+<connect gate="U1" pin="RTS_I" pad="10"/>
+<connect gate="U1" pin="RXD_O" pad="13"/>
+<connect gate="U1" pin="SCL" pad="27"/>
+<connect gate="U1" pin="SDA" pad="26"/>
+<connect gate="U1" pin="SIM_CLK" pad="38"/>
+<connect gate="U1" pin="SIM_IO" pad="39"/>
+<connect gate="U1" pin="SIM_RST" pad="40"/>
+<connect gate="U1" pin="TXD_I" pad="12"/>
+<connect gate="U1" pin="USB_D+" pad="29"/>
+<connect gate="U1" pin="USB_D-" pad="28"/>
+<connect gate="U1" pin="VCC" pad="51 52 53"/>
+<connect gate="U1" pin="VSIM" pad="41"/>
+<connect gate="U1" pin="VUSB_DET" pad="17"/>
+<connect gate="U1" pin="V_INT" pad="4"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="IC-17186" constant="no"/>
 <attribute name="VALUE" value="LARA-R6001" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="_R6401_USA" package="LARA-LGA">
+<connects>
+<connect gate="U1" pin="ANT" pad="56"/>
+<connect gate="U1" pin="ANT2" pad="62"/>
+<connect gate="U1" pin="ANT_DET" pad="59"/>
+<connect gate="U1" pin="CTS_O" pad="11"/>
+<connect gate="U1" pin="DCD_O" pad="8"/>
+<connect gate="U1" pin="DSR_O" pad="6"/>
+<connect gate="U1" pin="DTR_I" pad="9"/>
+<connect gate="U1" pin="GND" pad="1 3 5 14 20 21 22 30 32 43 50 54 55 57 58 60 61 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96" route="any"/>
+<connect gate="U1" pin="GPIO1" pad="16"/>
+<connect gate="U1" pin="GPIO2" pad="23"/>
+<connect gate="U1" pin="GPIO3" pad="24"/>
+<connect gate="U1" pin="GPIO4" pad="25"/>
+<connect gate="U1" pin="GPIO5" pad="42"/>
+<connect gate="U1" pin="GPIO6" pad="19"/>
+<connect gate="U1" pin="I2S_CLK" pad="36"/>
+<connect gate="U1" pin="I2S_RXD" pad="37"/>
+<connect gate="U1" pin="I2S_TXD" pad="35"/>
+<connect gate="U1" pin="I2S_WA" pad="34"/>
+<connect gate="U1" pin="PWR_ON" pad="15"/>
+<connect gate="U1" pin="RESET_N" pad="18"/>
+<connect gate="U1" pin="RI_O" pad="7"/>
+<connect gate="U1" pin="RTS_I" pad="10"/>
+<connect gate="U1" pin="RXD_O" pad="13"/>
+<connect gate="U1" pin="SCL" pad="27"/>
+<connect gate="U1" pin="SDA" pad="26"/>
+<connect gate="U1" pin="SIM_CLK" pad="38"/>
+<connect gate="U1" pin="SIM_IO" pad="39"/>
+<connect gate="U1" pin="SIM_RST" pad="40"/>
+<connect gate="U1" pin="TXD_I" pad="12"/>
+<connect gate="U1" pin="USB_D+" pad="29"/>
+<connect gate="U1" pin="USB_D-" pad="28"/>
+<connect gate="U1" pin="VCC" pad="51 52 53"/>
+<connect gate="U1" pin="VSIM" pad="41"/>
+<connect gate="U1" pin="VUSB_DET" pad="17"/>
+<connect gate="U1" pin="V_INT" pad="4"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="PROD_ID" value="IC-16756" constant="no"/>
+<attribute name="VALUE" value="LARA-R6401" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -22826,7 +22925,7 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <text x="0" y="-5.715" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
 </package>
 <package name="PANASONIC_D">
-<description>&lt;b&gt;Panasonic Aluminium Electrolytic Capacitor VS-Serie Package E&lt;/b&gt;</description>
+<description>&lt;b&gt;Panasonic Aluminium Electrolytic Capacitor VS-Series Package D8&lt;/b&gt;</description>
 <wire x1="-3.25" y1="3.25" x2="1.55" y2="3.25" width="0.1016" layer="51"/>
 <wire x1="1.55" y1="3.25" x2="3.25" y2="1.55" width="0.1016" layer="51"/>
 <wire x1="3.25" y1="1.55" x2="3.25" y2="-1.55" width="0.1016" layer="51"/>
@@ -23991,7 +24090,9 @@ CAP-09321</description>
 <connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="PROD_ID" value="CAP-10547" constant="no"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -31087,7 +31188,8 @@ URB2405YMD-15WR3: Input 24V (9V-36V), Output 5.0V 3.0A</description>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="" constant="no"/>
+<attribute name="PROD_ID" value="COMP-19263" constant="no"/>
+<attribute name="VALUE" value="URB2405YMD" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -33186,7 +33288,26 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </deviceset>
 </devicesets>
 </library>
-<library name="USB251xB">
+<library name="SparkFun-IC-Special-Function">
+<description>&lt;h3&gt;SparkFun Special Function ICs&lt;/h3&gt;
+This library contains ICs that do not really fit into the other, more generic categories.  Basically, anything that serves some function but has a bunch of brains or special bias circuitry that prevents it from being used as a general part qualifies for this category.
+&lt;p&gt;Contents:
+&lt;ul&gt;&lt;li&gt;555 timers&lt;/li&gt;
+&lt;li&gt;LED drivers&lt;/li&gt;
+&lt;li&gt;H-Bridge drivers&lt;/li&gt;
+&lt;li&gt;Motor drivers&lt;/li&gt;
+&lt;li&gt;Waveform generators&lt;/li&gt;
+&lt;li&gt;Crypto&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
+&lt;br&gt;
+&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
+&lt;br&gt;
+&lt;br&gt;
+You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
 <packages>
 <package name="QFN-36">
 <wire x1="-3" y1="3" x2="-3" y2="-3" width="0.127" layer="51"/>
@@ -33327,11 +33448,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </symbols>
 <devicesets>
 <deviceset name="USB251XB" prefix="U">
+<description>&lt;h2&gt;USB 2.0 Hi-Speed Hub Controller&lt;/h2&gt;
+&lt;br&gt;
+USB2514B is four-port</description>
 <gates>
 <gate name="U1" symbol="USB251XB" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="QFN-36">
+<device name="_USB2514B" package="QFN-36">
 <connects>
 <connect gate="U1" pin="!OCS1" pad="13"/>
 <connect gate="U1" pin="!OCS2" pad="17"/>
@@ -33414,7 +33538,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="FD2" library="SparkFun-Aesthetics" deviceset="FIDUCIAL" device="1X2"/>
 <part name="FD3" library="SparkFun-Aesthetics" deviceset="FIDUCIAL" device="1X2"/>
 <part name="FD4" library="SparkFun-Aesthetics" deviceset="FIDUCIAL" device="1X2"/>
-<part name="U1" library="SparkFun-RF" deviceset="ESP32-WROVER-E/IE" device="" value="ESP32-WROVER-IE"/>
+<part name="U1" library="SparkFun-RF" deviceset="ESP32-WROVER-E/IE" device="_IE-N16R8" value="ESP32-WROVER-IE"/>
 <part name="GND1" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="SUPPLY1" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 <part name="SUPPLY2" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
@@ -33748,7 +33872,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="DESIGNER" value="Paul Clark"/>
 <attribute name="REV" value="V01"/>
 </part>
-<part name="U8" library="SparkFun-RF" deviceset="LARA-R6001" device="" value="LARA-R6001"/>
+<part name="U8" library="SparkFun-RF" deviceset="LARA-R6" device="_R6001D_GLOBAL_DATA-ONLY" value="LARA-R6001D"/>
 <part name="GND25" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="C22" library="SparkFun-Capacitors" deviceset="2.2UF" device="-0603-10V-20%" value="2.2uF"/>
 <part name="C23" library="SparkFun-Capacitors" deviceset="2.2UF" device="-0603-10V-20%" value="2.2uF"/>
@@ -33799,7 +33923,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="R10" library="SparkFun-Resistors" deviceset="27OHM" device="-0603-1/10W-1%" value="27"/>
 <part name="R12" library="SparkFun-Resistors" deviceset="12KOHM" device="-0603-1/10W-1%" value="12k"/>
 <part name="Y2" library="SparkFun-Clocks" deviceset="CRYSTAL-24MHZ" device="-SMD-2.0X1.6MM" value="24MHz"/>
-<part name="U15" library="USB251xB" deviceset="USB251XB" device=""/>
+<part name="U15" library="SparkFun-IC-Special-Function" deviceset="USB251XB" device="_USB2514B"/>
 <part name="R13" library="SparkFun-Resistors" deviceset="1MOHM" device="-0603-1/4W-5%" value="1M"/>
 <part name="C63" library="SparkFun-Capacitors" deviceset="18PF" device="-0603-50V-5%" value="18pF"/>
 <part name="C64" library="SparkFun-Capacitors" deviceset="18PF" device="-0603-50V-5%" value="18pF"/>
@@ -33908,7 +34032,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="GND127" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND128" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="C86" library="SparkFun-Capacitors" deviceset="47UF-POLAR" device="-PANASONIC_D-50V-20%" value="47UF"/>
-<part name="U17" library="SparkFun-IC-Power" deviceset="URB_YMD-15WR3" device="__URB2405YMD-15WR3" value="URB2405YMD-15WR3"/>
+<part name="U17" library="SparkFun-IC-Power" deviceset="URB_YMD-15WR3" device="__URB2405YMD-15WR3" value="URB2405YMD"/>
 <part name="I2C1" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_3_NO" device="_SILK" package3d_urn="urn:adsk.eagle:package:39285/1"/>
 <part name="R71" library="SparkFun-Resistors" deviceset="2.2KOHM" device="-0603-1/10W-1%" value="2.2k"/>
 <part name="R72" library="SparkFun-Resistors" deviceset="2.2KOHM" device="-0603-1/10W-1%" value="2.2k"/>
@@ -37102,8 +37226,7 @@ Pin 35 floats at 0.18V approx.
 <wire x1="254" y1="157.48" x2="254" y2="279.4" width="0.1524" layer="97" style="longdash"/>
 <text x="326.39" y="187.96" size="1.778" layer="97" font="vector">90Ω</text>
 <text x="279.4" y="81.28" size="1.778" layer="97" font="vector" align="center">7-bit unshifted I²C address: 0x2C</text>
-<text x="279.4" y="76.2" size="1.27" layer="97" font="vector" align="center">Any USB2512*, USB2513, or USB2514 can be used
-USB2513 or higher required for NEO variant</text>
+<text x="279.4" y="78.74" size="1.27" layer="97" font="vector" align="center">USB2513, or USB2514 can be used</text>
 <text x="149.86" y="152.4" size="2.54" layer="94" font="vector" align="top-left">USB Hub</text>
 <wire x1="180.34" y1="60.96" x2="330.2" y2="60.96" width="0.1524" layer="97" style="longdash"/>
 <wire x1="330.2" y1="35.56" x2="330.2" y2="60.96" width="0.1524" layer="97" style="longdash"/>
