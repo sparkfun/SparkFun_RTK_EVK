@@ -20485,7 +20485,7 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 </element>
 <element name="U1" library="SparkFun-RF" package="ESP32-WROVER-E/IE" value="ESP32-WROVER-IE" x="92.3925" y="43.18" smashed="yes" rot="R180">
 <attribute name="NAME" x="100.1525" y="43.18" size="0.8128" layer="25" rot="R270" align="center"/>
-<attribute name="PROD_ID" value="IC-19265" x="92.71" y="43.18" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PROD_ID" value="IC-19265" x="92.3925" y="43.18" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="98.8825" y="43.18" size="0.8128" layer="27" rot="R270" align="center"/>
 </element>
 <element name="U2" library="SparkFun-IC-Comms" package="SO016" value="CH340C" x="112.7125" y="20.32" smashed="yes">
@@ -21235,8 +21235,8 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 </element>
 <element name="U8" library="SparkFun-RF" package="LARA-LGA" value="LARA-R6001D" x="131.7625" y="72.39" smashed="yes" rot="R270">
 <attribute name="NAME" x="131.7625" y="85.79" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
-<attribute name="PROD_ID" value="IC-16661" x="132.08" y="72.39" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" value="LARA-R6001D" x="132.08" y="58.99" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="bottom-center"/>
+<attribute name="PROD_ID" value="IC-16661" x="131.7625" y="72.39" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" value="LARA-R6001D" x="131.7625" y="58.99" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="bottom-center"/>
 </element>
 <element name="C22" library="SparkFun-Capacitors" package="0603" value="2.2uF" x="61.9125" y="36.195" smashed="yes">
 <attribute name="NAME" x="61.9125" y="36.957" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
@@ -21621,10 +21621,10 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 </element>
 <element name="C86" library="SparkFun-Capacitors" package="PANASONIC_D" value="47UF" x="8.9535" y="36.83" smashed="yes" rot="R270">
 <attribute name="NAME" x="12.3825" y="36.83" size="0.6096" layer="25" font="vector" ratio="20" rot="R270" align="bottom-center"/>
-<attribute name="PROD_ID" value="CAP-10547" x="9.271" y="36.83" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PROD_ID" value="CAP-10547" x="8.9535" y="36.83" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="5.5245" y="36.83" size="0.6096" layer="27" font="vector" ratio="20" rot="R270" align="top-center"/>
 </element>
-<element name="U17" library="SparkFun-IC-Power" package="URB_YMD-15WR3" value="URB2405YMD" x="26.67" y="36.83" smashed="yes">
+<element name="U17" library="SparkFun-IC-Power" package="URB_YMD-15WR3" value="URB2405YMD" x="26.3525" y="36.83" smashed="yes">
 <attribute name="NAME" x="13.6525" y="49.53" size="1.27" layer="25" font="vector"/>
 <attribute name="PROD_ID" value="COMP-19263" x="26.3525" y="36.83" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" value="URB2405YMD" x="13.6525" y="22.86" size="1.27" layer="27" font="vector"/>
