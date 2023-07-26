@@ -21948,14 +21948,8 @@ ESP32-WROVER-IE has a u.FL antenna connector, but is otherwise the same size as 
 &lt;li&gt;Package Size: 5.33mm x 4.14mm  &lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=”https://www.minicircuits.com/pdfs/BP2G1+.pdf”&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;</description>
-<wire x1="2.3" y1="1.97" x2="-2.3" y2="1.97" width="0.2032" layer="21"/>
-<wire x1="2.3" y1="-1.97" x2="2.665" y2="-1.605" width="0.2032" layer="21" curve="90"/>
-<wire x1="-2.665" y1="1.605" x2="-2.3" y2="1.97" width="0.2032" layer="21" curve="-90.023829"/>
-<wire x1="2.3" y1="1.97" x2="2.665" y2="1.605" width="0.2032" layer="21" curve="-90.030084"/>
-<wire x1="-2.665" y1="-1.605" x2="-2.3" y2="-1.97" width="0.2032" layer="21" curve="90.060185"/>
-<wire x1="-2.3" y1="-1.97" x2="2.3" y2="-1.97" width="0.2032" layer="21"/>
-<wire x1="2.665" y1="-1.605" x2="2.665" y2="1.605" width="0.2032" layer="21"/>
-<wire x1="-2.665" y1="-1.605" x2="-2.665" y2="1.605" width="0.2032" layer="21"/>
+<wire x1="2.665" y1="-2.07" x2="2.665" y2="2.07" width="0.2032" layer="21"/>
+<wire x1="-2.665" y1="-2.07" x2="-2.665" y2="2.07" width="0.2032" layer="21"/>
 <rectangle x1="-2.159" y1="-3.302" x2="-1.651" y2="-2.2733" layer="51"/>
 <rectangle x1="-0.889" y1="-3.302" x2="-0.381" y2="-2.2733" layer="51"/>
 <rectangle x1="0.381" y1="-3.302" x2="0.889" y2="-2.2733" layer="51"/>
@@ -26086,6 +26080,34 @@ for card insertion</text>
 <rectangle x1="-0.8" y1="-0.8" x2="0.8" y2="0.8" layer="41"/>
 <rectangle x1="-0.8" y1="-0.8" x2="0.8" y2="0.8" layer="42"/>
 </package>
+<package name="U.FL_REDUCED_FOOTPRINT__NO_CREAM">
+<description>&lt;h3&gt;U.FL SMD Antenna Connector&lt;/h3&gt;
+&lt;p&gt;Specifications:
+&lt;li&gt;Area: 3.0mm x 2.5mm&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=”http://cdn.sparkfun.com/datasheets/Wireless/Antennas/RF-001001.pdf”&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;U.FL&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<smd name="1" x="-0.1" y="1.375" dx="2" dy="0.85" layer="1" cream="no"/>
+<smd name="2" x="-0.1" y="-1.375" dx="2" dy="0.85" layer="1" cream="no"/>
+<smd name="FEED" x="1.575" y="0" dx="1.05" dy="1" layer="1" cream="no"/>
+<text x="-1.27" y="2.54" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
+<text x="-1.27" y="-2.54" size="0.6096" layer="27" font="vector" ratio="20" align="top-left">&gt;VALUE</text>
+<wire x1="-1.524" y1="1.016" x2="-1.524" y2="1.778" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.778" x2="-1.016" y2="2.286" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="2.286" x2="-0.254" y2="2.286" width="0.1524" layer="21"/>
+<rectangle x1="-1.143" y1="-0.762" x2="0.762" y2="0.762" layer="41"/>
+<wire x1="-1.3" y1="1.3" x2="1.3" y2="1.3" width="0.1524" layer="51"/>
+<wire x1="-1.3" y1="-1.3" x2="1.3" y2="-1.3" width="0.1524" layer="51"/>
+<wire x1="-1.3" y1="-1.3" x2="-1.3" y2="1.3" width="0.1524" layer="51"/>
+<wire x1="1.3" y1="-1.3" x2="1.3" y2="1.3" width="0.1524" layer="51"/>
+<rectangle x1="-0.9" y1="1.1" x2="0.9" y2="1.5" layer="51"/>
+<rectangle x1="-0.9" y1="-1.5" x2="0.9" y2="-1.1" layer="51"/>
+<circle x="0" y="0" radius="0.15" width="0.3" layer="51"/>
+<rectangle x1="0" y1="-0.3" x2="1.55" y2="0.3" layer="51"/>
+<rectangle x1="-1.55" y1="-0.3" x2="-1.3" y2="0.3" layer="51"/>
+</package>
 </packages>
 <symbols>
 <symbol name="USB-C-MINIMUM">
@@ -26691,13 +26713,13 @@ We carry &lt;a href=”https://www.sparkfun.com/products/14204”&gt;200mm&lt;/a
 &lt;li&gt;&lt;a href=”https://www.sparkfun.com/products/11420”&gt;SparkFun MiniGen - Pro Mini Signal Generator Shield&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;</description>
 <gates>
-<gate name="G$1" symbol="U.FL-1" x="0" y="0"/>
+<gate name="J1" symbol="U.FL-1" x="0" y="0"/>
 </gates>
 <devices>
 <device name="" package="U.FL">
 <connects>
-<connect gate="G$1" pin="GND" pad="1 2"/>
-<connect gate="G$1" pin="SIGNAL" pad="FEED"/>
+<connect gate="J1" pin="GND" pad="1 2"/>
+<connect gate="J1" pin="SIGNAL" pad="FEED"/>
 </connects>
 <technologies>
 <technology name="">
@@ -26709,8 +26731,8 @@ We carry &lt;a href=”https://www.sparkfun.com/products/14204”&gt;200mm&lt;/a
 </device>
 <device name="-TE_1909763-1" package="U.FL-TE_1909763-1">
 <connects>
-<connect gate="G$1" pin="GND" pad="2 3"/>
-<connect gate="G$1" pin="SIGNAL" pad="1"/>
+<connect gate="J1" pin="GND" pad="2 3"/>
+<connect gate="J1" pin="SIGNAL" pad="1"/>
 </connects>
 <technologies>
 <technology name="">
@@ -26721,12 +26743,34 @@ We carry &lt;a href=”https://www.sparkfun.com/products/14204”&gt;200mm&lt;/a
 </device>
 <device name="-REDUCED-FOOTPRINT" package="U.FL_REDUCED_FOOTPRINT">
 <connects>
-<connect gate="G$1" pin="GND" pad="1 2"/>
-<connect gate="G$1" pin="SIGNAL" pad="FEED"/>
+<connect gate="J1" pin="GND" pad="1 2"/>
+<connect gate="J1" pin="SIGNAL" pad="FEED"/>
 </connects>
 <technologies>
 <technology name="">
 <attribute name="PROD_ID" value="CONN-09193" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="-REDUCED__DNP_NO_CREAM" package="U.FL_REDUCED_FOOTPRINT__NO_CREAM">
+<connects>
+<connect gate="J1" pin="GND" pad="1 2"/>
+<connect gate="J1" pin="SIGNAL" pad="FEED"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="VALUE" value="DNP" constant="no"/>
+</technology>
+</technologies>
+</device>
+<device name="-REDUCED__DNP" package="U.FL_REDUCED_FOOTPRINT">
+<connects>
+<connect gate="J1" pin="GND" pad="1 2"/>
+<connect gate="J1" pin="SIGNAL" pad="FEED"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="VALUE" value="DNP" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -30525,6 +30569,19 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="2" x="0" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
 <smd name="3" x="0.8128" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
 </package>
+<package name="SMT-JUMPER_2_SOIC-PAD_NO-PASTE">
+<smd name="1" x="0" y="0" dx="0.6" dy="1.2" layer="1" roundness="30" rot="R90" stop="no" cream="no"/>
+<polygon width="0.01" layer="29">
+<vertex x="-0.7125" y="-0.2"/>
+<vertex x="-0.7125" y="0.2" curve="-90"/>
+<vertex x="-0.5125" y="0.4"/>
+<vertex x="1.8875" y="0.4" curve="-90"/>
+<vertex x="2.0875" y="0.2"/>
+<vertex x="2.0875" y="-0.2" curve="-90"/>
+<vertex x="1.8875" y="-0.4"/>
+<vertex x="-0.5125" y="-0.4" curve="-90"/>
+</polygon>
+</package>
 </packages>
 <packages3d>
 <package3d name="SMT-JUMPER_2_NC_TRACE_SILK" urn="urn:adsk.eagle:package:39281/1" type="box">
@@ -30646,6 +30703,29 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="0" y="-2.794" size="1.778" layer="96" font="vector" align="center">&gt;VALUE</text>
 <pin name="2" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+</symbol>
+<symbol name="SMT-JUMPER_2_SOIC-PAD_NO-PASTE">
+<wire x1="1.27" y1="-0.635" x2="-1.27" y2="-0.635" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="-0.635" x2="-1.27" y2="0" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="0" x2="-1.27" y2="0.635" width="0.1524" layer="94"/>
+<wire x1="-1.27" y1="0.635" x2="1.27" y2="0.635" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="0.635" x2="1.27" y2="-0.635" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="0" x2="-1.27" y2="0" width="0.1524" layer="94"/>
+<text x="1.27" y="2.794" size="1.778" layer="95" font="vector" align="center">&gt;NAME</text>
+<text x="1.27" y="-2.794" size="1.778" layer="96" font="vector" align="center">&gt;VALUE</text>
+<rectangle x1="-1.27" y1="-0.635" x2="1.27" y2="0.635" layer="94"/>
+<pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
+<wire x1="1.778" y1="0.635" x2="4.318" y2="0.635" width="0.1524" layer="94"/>
+<wire x1="4.318" y1="0.635" x2="4.318" y2="-0.635" width="0.1524" layer="94"/>
+<wire x1="4.318" y1="-0.635" x2="1.778" y2="-0.635" width="0.1524" layer="94"/>
+<wire x1="1.778" y1="-0.635" x2="1.778" y2="0.635" width="0.1524" layer="94"/>
+<rectangle x1="1.778" y1="-0.635" x2="4.318" y2="0.635" layer="94" rot="R180"/>
+<wire x1="-2.032" y1="0" x2="-0.508" y2="1.524" width="0.127" layer="95" style="shortdash" curve="-90"/>
+<wire x1="-0.508" y1="1.524" x2="3.556" y2="1.524" width="0.127" layer="95" style="shortdash"/>
+<wire x1="3.556" y1="1.524" x2="5.08" y2="0" width="0.127" layer="95" style="shortdash" curve="-90"/>
+<wire x1="5.08" y1="0" x2="3.556" y2="-1.524" width="0.127" layer="95" style="shortdash" curve="-90"/>
+<wire x1="3.556" y1="-1.524" x2="-0.508" y2="-1.524" width="0.127" layer="95" style="shortdash"/>
+<wire x1="-0.508" y1="-1.524" x2="-2.032" y2="0" width="0.127" layer="95" style="shortdash" curve="-90"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -30854,6 +30934,23 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </connects>
 <technologies>
 <technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="JUMPER-SMT_2_SOIC-PAD_NO-PASTE">
+<gates>
+<gate name="J1" symbol="SMT-JUMPER_2_SOIC-PAD_NO-PASTE" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SMT-JUMPER_2_SOIC-PAD_NO-PASTE">
+<connects>
+<connect gate="J1" pin="1" pad="1"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="VALUE" value="NO PASTE" constant="no"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -34041,6 +34138,8 @@ USB2514B is four-port</description>
 <part name="SUPPLY63" library="SparkFun-PowerSymbols" deviceset="3.3V_SW" device=""/>
 <part name="ESP5" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 <part name="GND49" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
+<part name="JPP1" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_2_SOIC-PAD_NO-PASTE" device="" value="NO PASTE"/>
+<part name="JPP2" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_2_SOIC-PAD_NO-PASTE" device="" value="NO PASTE"/>
 </parts>
 <sheets>
 <sheet>
@@ -34152,8 +34251,8 @@ Vdo: 120mV @ 330mA
 Output Discharge: 530Ω Typ</text>
 <text x="5.842" y="5.588" size="1.778" layer="97" font="vector">RF Track Impedance: Coplanar Waveguide with Ground Calculations
 Ground is on layer 2. Prepreg thickness: 0.2mm. Er = 4.6
-12.5 mil track with 5 mil gap = 50 Ohms
-https://chemandy.com/calculators/coplanar-waveguide-with-ground-calculator.htm</text>
+13.74 mil track with 8 mil gap = 50 Ohms
+https://saturnpcb.com/saturn-pcb-toolkit/</text>
 <text x="5.842" y="30.988" size="1.778" layer="97" font="vector" align="top-left">USB Track Impedance: Differential Pair
 https://saturnpcb.com/saturn-pcb-toolkit/
 Prepreg thickness: 0.2mm (7.87 mil). Er = 4.6
@@ -34203,7 +34302,7 @@ Reference Station:
 Facet:
 Facet L-Band:
 Express Plus:
-Control:</text>
+Everywhere:</text>
 <text x="176.022" y="28.448" size="1.778" layer="97" font="vector" align="top-left">
 
 Pin 35 floats at 0.18V approx.
@@ -34598,7 +34697,7 @@ Pin 35 floats at 0.18V approx.
 <instance part="ESP32_RF" gate="G$1" x="185.42" y="264.16" smashed="yes">
 <attribute name="NAME" x="188.468" y="265.43" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="J8" gate="G$1" x="170.18" y="259.08" smashed="yes">
+<instance part="J8" gate="J1" x="170.18" y="259.08" smashed="yes">
 <attribute name="NAME" x="165.1" y="254" size="1.778" layer="95"/>
 <attribute name="VALUE" x="172.72" y="251.46" size="1.778" layer="96"/>
 </instance>
@@ -35330,7 +35429,7 @@ Pin 35 floats at 0.18V approx.
 <wire x1="187.96" y1="261.62" x2="187.96" y2="259.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="J8" gate="G$1" pin="GND"/>
+<pinref part="J8" gate="J1" pin="GND"/>
 <pinref part="GND59" gate="1" pin="GND"/>
 <wire x1="170.18" y1="254" x2="170.18" y2="251.46" width="0.1524" layer="91"/>
 </segment>
@@ -36327,7 +36426,7 @@ Pin 35 floats at 0.18V approx.
 </net>
 <net name="N$13" class="0">
 <segment>
-<pinref part="J8" gate="G$1" pin="SIGNAL"/>
+<pinref part="J8" gate="J1" pin="SIGNAL"/>
 <pinref part="ESP32_RF" gate="G$1" pin="SIGNAL"/>
 <wire x1="175.26" y1="259.08" x2="177.8" y2="259.08" width="0.1524" layer="91"/>
 <wire x1="177.8" y1="259.08" x2="185.42" y2="259.08" width="0.1524" layer="91"/>
@@ -37238,10 +37337,17 @@ Outputs</text>
 <wire x1="330.2" y1="60.96" x2="330.2" y2="88.9" width="0.1524" layer="97" style="longdash"/>
 <wire x1="330.2" y1="88.9" x2="330.2" y2="157.48" width="0.1524" layer="97" style="longdash"/>
 <wire x1="330.2" y1="88.9" x2="431.8" y2="88.9" width="0.1524" layer="97" style="longdash"/>
-<text x="284.48" y="43.18" size="1.778" layer="97" font="vector">50Ω</text>
-<text x="284.48" y="38.1" size="1.778" layer="97" font="vector">50Ω</text>
+<text x="292.1" y="43.18" size="1.778" layer="97" font="vector">50Ω</text>
+<text x="292.1" y="38.1" size="1.778" layer="97" font="vector">50Ω</text>
 <text x="111.76" y="194.31" size="1.27" layer="97" font="vector" rot="R180" align="bottom-center">Close jumpers to
 enable pull-ups</text>
+<text x="276.86" y="22.86" size="1.778" layer="97" font="vector">50Ω</text>
+<text x="279.4" y="10.16" size="1.778" layer="97" font="vector" align="center">For non-L-Band products:
+Do Not Populate U14
+Change JPP1 &amp; JPP2 to PASTE
+(Or solder closed manually)</text>
+<text x="260.35" y="22.86" size="1.778" layer="97" font="vector" align="center">ANT</text>
+<text x="300.99" y="22.86" size="1.778" layer="97" font="vector" align="center">ANT_ZED</text>
 </plain>
 <instances>
 <instance part="FRAME2" gate="G$1" x="0" y="0" smashed="yes">
@@ -37540,12 +37646,12 @@ enable pull-ups</text>
 <instance part="SUPPLY48" gate="G$1" x="45.72" y="259.08" smashed="yes">
 <attribute name="VALUE" x="45.72" y="261.874" size="1.778" layer="96" font="vector" align="bottom-center"/>
 </instance>
-<instance part="U14" gate="U1" x="271.78" y="40.64" smashed="yes">
-<attribute name="NAME" x="264.16" y="45.974" size="1.778" layer="95" font="vector"/>
-<attribute name="VALUE" x="264.16" y="33.02" size="1.778" layer="96" font="vector"/>
+<instance part="U14" gate="U1" x="279.4" y="40.64" smashed="yes">
+<attribute name="NAME" x="271.78" y="45.974" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="271.78" y="33.02" size="1.778" layer="96" font="vector"/>
 </instance>
-<instance part="GND87" gate="1" x="259.08" y="33.02" smashed="yes">
-<attribute name="VALUE" x="259.08" y="32.766" size="1.778" layer="96" align="top-center"/>
+<instance part="GND87" gate="1" x="266.7" y="33.02" smashed="yes">
+<attribute name="VALUE" x="266.7" y="32.766" size="1.778" layer="96" align="top-center"/>
 </instance>
 <instance part="SUPPLY16" gate="G$1" x="25.4" y="200.66" smashed="yes">
 <attribute name="VALUE" x="25.4" y="203.454" size="1.778" layer="96" font="vector" align="bottom-center"/>
@@ -37969,6 +38075,14 @@ enable pull-ups</text>
 <instance part="SUPPLY63" gate="G$1" x="121.92" y="195.58" smashed="yes">
 <attribute name="VALUE" x="121.92" y="198.374" size="1.778" layer="96" font="vector" align="bottom-center"/>
 </instance>
+<instance part="JPP1" gate="J1" x="269.24" y="22.86" smashed="yes" rot="R180">
+<attribute name="NAME" x="267.97" y="20.066" size="1.778" layer="95" font="vector" rot="R180" align="center"/>
+<attribute name="VALUE" x="267.97" y="25.654" size="1.778" layer="96" font="vector" rot="R180" align="center"/>
+</instance>
+<instance part="JPP2" gate="J1" x="289.56" y="22.86" smashed="yes" rot="MR180">
+<attribute name="NAME" x="290.83" y="20.066" size="1.778" layer="95" font="vector" rot="MR180" align="center"/>
+<attribute name="VALUE" x="290.83" y="25.654" size="1.778" layer="96" font="vector" rot="MR180" align="center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -38096,9 +38210,9 @@ enable pull-ups</text>
 </segment>
 <segment>
 <pinref part="U14" gate="U1" pin="GND"/>
-<wire x1="261.62" y1="38.1" x2="259.08" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="38.1" x2="266.7" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="GND87" gate="1" pin="GND"/>
-<wire x1="259.08" y1="38.1" x2="259.08" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="38.1" x2="266.7" y2="35.56" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND61" gate="1" pin="GND"/>
@@ -38884,8 +38998,8 @@ enable pull-ups</text>
 </segment>
 <segment>
 <pinref part="U14" gate="U1" pin="2"/>
-<wire x1="281.94" y1="38.1" x2="289.56" y2="38.1" width="0.1524" layer="91"/>
-<label x="289.56" y="38.1" size="1.27" layer="95" xref="yes"/>
+<wire x1="289.56" y1="38.1" x2="297.18" y2="38.1" width="0.1524" layer="91"/>
+<label x="297.18" y="38.1" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="!SAFEBOOT_NEO!" class="0">
@@ -38947,11 +39061,16 @@ enable pull-ups</text>
 <pinref part="SHLD2" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="N$42" class="0">
+<net name="ANT" class="0">
 <segment>
 <pinref part="U14" gate="U1" pin="S"/>
 <pinref part="C13" gate="G$1" pin="2"/>
-<wire x1="261.62" y1="43.18" x2="259.08" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="269.24" y1="43.18" x2="266.7" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="43.18" x2="259.08" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="266.7" y1="43.18" x2="266.7" y2="50.8" width="0.1524" layer="91"/>
+<junction x="266.7" y="43.18"/>
+<wire x1="266.7" y1="50.8" x2="269.24" y2="50.8" width="0.1524" layer="91"/>
+<label x="269.24" y="50.8" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ANT_ZED" class="0">
@@ -38962,8 +39081,8 @@ enable pull-ups</text>
 </segment>
 <segment>
 <pinref part="U14" gate="U1" pin="1"/>
-<wire x1="281.94" y1="43.18" x2="289.56" y2="43.18" width="0.1524" layer="91"/>
-<label x="289.56" y="43.18" size="1.27" layer="95" xref="yes"/>
+<wire x1="289.56" y1="43.18" x2="297.18" y2="43.18" width="0.1524" layer="91"/>
+<label x="297.18" y="43.18" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="NEO_TXO" class="0">
@@ -39575,6 +39694,13 @@ enable pull-ups</text>
 <pinref part="I2C1" gate="G$1" pin="1"/>
 <wire x1="129.54" y1="185.42" x2="129.54" y2="187.96" width="0.1524" layer="91"/>
 <wire x1="129.54" y1="187.96" x2="127" y2="187.96" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="BYPASS" class="0">
+<segment>
+<pinref part="JPP1" gate="J1" pin="1"/>
+<pinref part="JPP2" gate="J1" pin="1"/>
+<wire x1="274.32" y1="22.86" x2="284.48" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
