@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
@@ -926,16 +926,28 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="0.508" y1="0.889" x2="-0.508" y2="0.889" width="0.2032" layer="21"/>
 </package>
 <package name="SMT-JUMPER_2_SOIC-PAD_NO-PASTE">
-<smd name="1" x="0" y="0" dx="0.6" dy="1.2" layer="1" roundness="30" rot="R90" stop="no" cream="no"/>
+<smd name="1" x="1.75" y="0" dx="0.55" dy="0.55" layer="1" roundness="100" rot="R90" stop="no" cream="no"/>
 <polygon width="0.01" layer="29">
-<vertex x="-0.7125" y="-0.2"/>
-<vertex x="-0.7125" y="0.2" curve="-90"/>
-<vertex x="-0.5125" y="0.4"/>
-<vertex x="1.8875" y="0.4" curve="-90"/>
-<vertex x="2.0875" y="0.2"/>
-<vertex x="2.0875" y="-0.2" curve="-90"/>
-<vertex x="1.8875" y="-0.4"/>
-<vertex x="-0.5125" y="-0.4" curve="-90"/>
+<vertex x="1.35" y="0" curve="-90"/>
+<vertex x="1.75" y="0.4"/>
+<vertex x="3.3" y="0.4" curve="-90"/>
+<vertex x="3.5" y="0.2"/>
+<vertex x="3.5" y="-0.2" curve="-90"/>
+<vertex x="3.3" y="-0.4"/>
+<vertex x="1.75" y="-0.4" curve="-90"/>
+</polygon>
+<rectangle x1="2.3" y1="-0.2" x2="3.3" y2="0.2" layer="51"/>
+<wire x1="2.3" y1="-0.2" x2="2.3" y2="0.2" width="0.2" layer="51"/>
+<wire x1="2.3" y1="0.2" x2="3.3" y2="0.2" width="0.2" layer="51"/>
+<wire x1="3.3" y1="0.2" x2="3.3" y2="-0.2" width="0.2" layer="51"/>
+<wire x1="3.3" y1="-0.2" x2="2.3" y2="-0.2" width="0.2" layer="51"/>
+<polygon width="0.2" layer="1">
+<vertex x="1.55" y="0" curve="-90"/>
+<vertex x="1.75" y="0.2"/>
+<vertex x="1.95" y="0.2"/>
+<vertex x="1.95" y="-0.2"/>
+<vertex x="1.8" y="-0.2"/>
+<vertex x="1.75" y="-0.2" curve="-90"/>
 </polygon>
 </package>
 </packages>
@@ -4013,13 +4025,13 @@ This is a footprint for an edge mount RF antenna. Works pretty well with SMA typ
 <rectangle x1="0.381" y1="2.286" x2="0.889" y2="3.302" layer="51"/>
 <rectangle x1="1.651" y1="2.286" x2="2.159" y2="3.302" layer="51"/>
 <smd name="1" x="-1.905" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
-<smd name="2" x="-0.635" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30"/>
+<smd name="2" x="-0.635" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30" cream="no"/>
 <smd name="3" x="0.635" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
 <smd name="4" x="1.905" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
-<smd name="5" x="1.905" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30"/>
+<smd name="5" x="1.905" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30" cream="no"/>
 <smd name="6" x="0.635" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
 <smd name="7" x="-0.635" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
-<smd name="8" x="-1.905" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30"/>
+<smd name="8" x="-1.905" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30" cream="no"/>
 <text x="-3.175" y="0" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center">&gt;NAME</text>
 <text x="3.81" y="0" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="bottom-center">&gt;VALUE</text>
 <rectangle x1="-2.159" y1="2.286" x2="-1.651" y2="3.302" layer="51"/>
@@ -4043,6 +4055,9 @@ This is a footprint for an edge mount RF antenna. Works pretty well with SMA typ
 <wire x1="-2.3" y1="-2.07" x2="2.3" y2="-2.07" width="0.2032" layer="51"/>
 <wire x1="2.665" y1="-1.705" x2="2.665" y2="1.705" width="0.2032" layer="51"/>
 <wire x1="-2.665" y1="-1.705" x2="-2.665" y2="1.705" width="0.2032" layer="51"/>
+<rectangle x1="-2.2" y1="2.4" x2="-1.6" y2="3.4" layer="31"/>
+<rectangle x1="1.6" y1="2.4" x2="2.2" y2="3.4" layer="31"/>
+<rectangle x1="-0.935" y1="-3.4" x2="-0.335" y2="-2.4" layer="31"/>
 </package>
 </packages>
 </library>
@@ -22859,8 +22874,12 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <element name="U$15" library="output" package="NEO_RX3" value="" x="80.01" y="68.58" smashed="yes" rot="MR0"/>
 <element name="U$79" library="output" package="UART14" value="" x="74.93" y="72.898" smashed="yes" rot="MR0"/>
 <element name="U$89" library="output" package="4_#_#SD_CS#15" value="" x="50.8" y="10.922" smashed="yes" rot="MR270"/>
-<element name="JPP1" library="SparkFun-Jumpers" package="SMT-JUMPER_2_SOIC-PAD_NO-PASTE" value="NO PASTE" x="97.79" y="86.487" smashed="yes" rot="R90"/>
-<element name="JPP2" library="SparkFun-Jumpers" package="SMT-JUMPER_2_SOIC-PAD_NO-PASTE" value="NO PASTE" x="99.06" y="83.693" smashed="yes" rot="R270"/>
+<element name="BYPASS1" library="SparkFun-Jumpers" package="SMT-JUMPER_2_SOIC-PAD_NO-PASTE" value="NO PASTE" x="97.79" y="85.09" smashed="yes" rot="R90">
+<attribute name="VALUE" value="NO PASTE" x="97.79" y="85.09" size="1.778" layer="27" rot="R90" display="off"/>
+</element>
+<element name="BYPASS2" library="SparkFun-Jumpers" package="SMT-JUMPER_2_SOIC-PAD_NO-PASTE" value="NO PASTE" x="99.06" y="85.09" smashed="yes" rot="R270">
+<attribute name="VALUE" value="NO PASTE" x="99.06" y="85.09" size="1.778" layer="27" rot="R270" display="off"/>
+</element>
 <element name="U$2" library="output" package="RTK_EVERYWHERE0" value="" x="127" y="35.56" smashed="yes"/>
 <element name="U$90" library="output" package="RTK_EVERYWHERE0" value="" x="119.38" y="45.72" smashed="yes" rot="MR0"/>
 <element name="U$91" library="output" package="NO0" value="" x="86.36" y="74.93" smashed="yes"/>
@@ -26856,13 +26875,12 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <wire x1="79.375" y1="26.035" x2="81.28" y2="27.94" width="0.1524" layer="1"/>
 </signal>
 <signal name="BYPASS">
-<contactref element="JPP1" pad="1"/>
-<contactref element="JPP2" pad="1"/>
-<wire x1="97.79" y1="86.487" x2="97.79" y2="85.598" width="0.348996875" layer="1"/>
-<wire x1="97.79" y1="85.598" x2="98.298" y2="85.09" width="0.348996875" layer="1" curve="90"/>
-<wire x1="98.298" y1="85.09" x2="98.552" y2="85.09" width="0.348996875" layer="1"/>
-<wire x1="98.552" y1="85.09" x2="99.06" y2="84.582" width="0.348996875" layer="1" curve="-90"/>
-<wire x1="99.06" y1="84.582" x2="99.06" y2="83.693" width="0.348996875" layer="1"/>
+<contactref element="BYPASS1" pad="1"/>
+<contactref element="BYPASS2" pad="1"/>
+<wire x1="97.79" y1="86.84" x2="97.79" y2="85.725" width="0.348996875" layer="1"/>
+<wire x1="97.79" y1="85.725" x2="98.425" y2="85.09" width="0.348996875" layer="1" curve="90"/>
+<wire x1="98.425" y1="85.09" x2="99.06" y2="84.455" width="0.348996875" layer="1" curve="-90"/>
+<wire x1="99.06" y1="84.455" x2="99.06" y2="83.34" width="0.348996875" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

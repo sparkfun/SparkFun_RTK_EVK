@@ -21958,13 +21958,13 @@ ESP32-WROVER-IE has a u.FL antenna connector, but is otherwise the same size as 
 <rectangle x1="0.381" y1="2.286" x2="0.889" y2="3.302" layer="51"/>
 <rectangle x1="1.651" y1="2.286" x2="2.159" y2="3.302" layer="51"/>
 <smd name="1" x="-1.905" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
-<smd name="2" x="-0.635" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30"/>
+<smd name="2" x="-0.635" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30" cream="no"/>
 <smd name="3" x="0.635" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
 <smd name="4" x="1.905" y="-2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
-<smd name="5" x="1.905" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30"/>
+<smd name="5" x="1.905" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30" cream="no"/>
 <smd name="6" x="0.635" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
 <smd name="7" x="-0.635" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30" thermals="no"/>
-<smd name="8" x="-1.905" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30"/>
+<smd name="8" x="-1.905" y="2.8" dx="0.6" dy="1.2" layer="1" roundness="30" cream="no"/>
 <text x="-3.175" y="0" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center">&gt;NAME</text>
 <text x="3.81" y="0" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="bottom-center">&gt;VALUE</text>
 <rectangle x1="-2.159" y1="2.286" x2="-1.651" y2="3.302" layer="51"/>
@@ -21988,6 +21988,9 @@ ESP32-WROVER-IE has a u.FL antenna connector, but is otherwise the same size as 
 <wire x1="-2.3" y1="-2.07" x2="2.3" y2="-2.07" width="0.2032" layer="51"/>
 <wire x1="2.665" y1="-1.705" x2="2.665" y2="1.705" width="0.2032" layer="51"/>
 <wire x1="-2.665" y1="-1.705" x2="-2.665" y2="1.705" width="0.2032" layer="51"/>
+<rectangle x1="-2.2" y1="2.4" x2="-1.6" y2="3.4" layer="31"/>
+<rectangle x1="1.6" y1="2.4" x2="2.2" y2="3.4" layer="31"/>
+<rectangle x1="-0.935" y1="-3.4" x2="-0.335" y2="-2.4" layer="31"/>
 </package>
 </packages>
 <symbols>
@@ -30570,16 +30573,28 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="3" x="0.8128" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
 </package>
 <package name="SMT-JUMPER_2_SOIC-PAD_NO-PASTE">
-<smd name="1" x="0" y="0" dx="0.6" dy="1.2" layer="1" roundness="30" rot="R90" stop="no" cream="no"/>
+<smd name="1" x="1.75" y="0" dx="0.55" dy="0.55" layer="1" roundness="100" rot="R90" stop="no" cream="no"/>
 <polygon width="0.01" layer="29">
-<vertex x="-0.7125" y="-0.2"/>
-<vertex x="-0.7125" y="0.2" curve="-90"/>
-<vertex x="-0.5125" y="0.4"/>
-<vertex x="1.8875" y="0.4" curve="-90"/>
-<vertex x="2.0875" y="0.2"/>
-<vertex x="2.0875" y="-0.2" curve="-90"/>
-<vertex x="1.8875" y="-0.4"/>
-<vertex x="-0.5125" y="-0.4" curve="-90"/>
+<vertex x="1.35" y="0" curve="-90"/>
+<vertex x="1.75" y="0.4"/>
+<vertex x="3.3" y="0.4" curve="-90"/>
+<vertex x="3.5" y="0.2"/>
+<vertex x="3.5" y="-0.2" curve="-90"/>
+<vertex x="3.3" y="-0.4"/>
+<vertex x="1.75" y="-0.4" curve="-90"/>
+</polygon>
+<rectangle x1="2.3" y1="-0.2" x2="3.3" y2="0.2" layer="51"/>
+<wire x1="2.3" y1="-0.2" x2="2.3" y2="0.2" width="0.2" layer="51"/>
+<wire x1="2.3" y1="0.2" x2="3.3" y2="0.2" width="0.2" layer="51"/>
+<wire x1="3.3" y1="0.2" x2="3.3" y2="-0.2" width="0.2" layer="51"/>
+<wire x1="3.3" y1="-0.2" x2="2.3" y2="-0.2" width="0.2" layer="51"/>
+<polygon width="0.2" layer="1">
+<vertex x="1.55" y="0" curve="-90"/>
+<vertex x="1.75" y="0.2"/>
+<vertex x="1.95" y="0.2"/>
+<vertex x="1.95" y="-0.2"/>
+<vertex x="1.8" y="-0.2"/>
+<vertex x="1.75" y="-0.2" curve="-90"/>
 </polygon>
 </package>
 </packages>
@@ -30705,26 +30720,21 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
 </symbol>
 <symbol name="SMT-JUMPER_2_SOIC-PAD_NO-PASTE">
-<wire x1="1.27" y1="-0.635" x2="-1.27" y2="-0.635" width="0.1524" layer="94"/>
-<wire x1="-1.27" y1="-0.635" x2="-1.27" y2="0" width="0.1524" layer="94"/>
-<wire x1="-1.27" y1="0" x2="-1.27" y2="0.635" width="0.1524" layer="94"/>
-<wire x1="-1.27" y1="0.635" x2="1.27" y2="0.635" width="0.1524" layer="94"/>
-<wire x1="1.27" y1="0.635" x2="1.27" y2="-0.635" width="0.1524" layer="94"/>
+<wire x1="-0.762" y1="0.3556" x2="-0.762" y2="-0.3556" width="0.7112" layer="94" curve="180" cap="flat"/>
 <wire x1="-2.54" y1="0" x2="-1.27" y2="0" width="0.1524" layer="94"/>
-<text x="1.27" y="2.794" size="1.778" layer="95" font="vector" align="center">&gt;NAME</text>
-<text x="1.27" y="-2.794" size="1.778" layer="96" font="vector" align="center">&gt;VALUE</text>
-<rectangle x1="-1.27" y1="-0.635" x2="1.27" y2="0.635" layer="94"/>
+<text x="0" y="2.794" size="1.778" layer="95" font="vector" align="center">&gt;NAME</text>
+<text x="0" y="-2.794" size="1.778" layer="96" font="vector" align="center">&gt;VALUE</text>
 <pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas"/>
-<wire x1="1.778" y1="0.635" x2="4.318" y2="0.635" width="0.1524" layer="94"/>
-<wire x1="4.318" y1="0.635" x2="4.318" y2="-0.635" width="0.1524" layer="94"/>
-<wire x1="4.318" y1="-0.635" x2="1.778" y2="-0.635" width="0.1524" layer="94"/>
-<wire x1="1.778" y1="-0.635" x2="1.778" y2="0.635" width="0.1524" layer="94"/>
-<rectangle x1="1.778" y1="-0.635" x2="4.318" y2="0.635" layer="94" rot="R180"/>
+<wire x1="-0.254" y1="0.635" x2="2.286" y2="0.635" width="0.1524" layer="94"/>
+<wire x1="2.286" y1="0.635" x2="2.286" y2="-0.635" width="0.1524" layer="94"/>
+<wire x1="2.286" y1="-0.635" x2="-0.254" y2="-0.635" width="0.1524" layer="94"/>
+<wire x1="-0.254" y1="-0.635" x2="-0.254" y2="0.635" width="0.1524" layer="94"/>
+<rectangle x1="-0.254" y1="-0.635" x2="2.286" y2="0.635" layer="94" rot="R180"/>
 <wire x1="-2.032" y1="0" x2="-0.508" y2="1.524" width="0.127" layer="95" style="shortdash" curve="-90"/>
-<wire x1="-0.508" y1="1.524" x2="3.556" y2="1.524" width="0.127" layer="95" style="shortdash"/>
-<wire x1="3.556" y1="1.524" x2="5.08" y2="0" width="0.127" layer="95" style="shortdash" curve="-90"/>
-<wire x1="5.08" y1="0" x2="3.556" y2="-1.524" width="0.127" layer="95" style="shortdash" curve="-90"/>
-<wire x1="3.556" y1="-1.524" x2="-0.508" y2="-1.524" width="0.127" layer="95" style="shortdash"/>
+<wire x1="-0.508" y1="1.524" x2="1.524" y2="1.524" width="0.127" layer="95" style="shortdash"/>
+<wire x1="1.524" y1="1.524" x2="3.048" y2="0" width="0.127" layer="95" style="shortdash" curve="-90"/>
+<wire x1="3.048" y1="0" x2="1.524" y2="-1.524" width="0.127" layer="95" style="shortdash" curve="-90"/>
+<wire x1="1.524" y1="-1.524" x2="-0.508" y2="-1.524" width="0.127" layer="95" style="shortdash"/>
 <wire x1="-0.508" y1="-1.524" x2="-2.032" y2="0" width="0.127" layer="95" style="shortdash" curve="-90"/>
 </symbol>
 </symbols>
@@ -34138,8 +34148,8 @@ USB2514B is four-port</description>
 <part name="SUPPLY63" library="SparkFun-PowerSymbols" deviceset="3.3V_SW" device=""/>
 <part name="ESP5" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 <part name="GND49" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
-<part name="JPP1" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_2_SOIC-PAD_NO-PASTE" device="" value="NO PASTE"/>
-<part name="JPP2" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_2_SOIC-PAD_NO-PASTE" device="" value="NO PASTE"/>
+<part name="BYPASS1" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_2_SOIC-PAD_NO-PASTE" device="" value="NO PASTE"/>
+<part name="BYPASS2" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_2_SOIC-PAD_NO-PASTE" device="" value="NO PASTE"/>
 </parts>
 <sheets>
 <sheet>
@@ -37344,10 +37354,10 @@ enable pull-ups</text>
 <text x="276.86" y="22.86" size="1.778" layer="97" font="vector">50Ω</text>
 <text x="279.4" y="10.16" size="1.778" layer="97" font="vector" align="center">For non-L-Band products:
 Do Not Populate U14
-Change JPP1 &amp; JPP2 to PASTE
+Change BYPASS1 &amp; BYPASS2 to PASTE
 (Or solder closed manually)</text>
-<text x="260.35" y="22.86" size="1.778" layer="97" font="vector" align="center">ANT</text>
-<text x="300.99" y="22.86" size="1.778" layer="97" font="vector" align="center">ANT_ZED</text>
+<text x="262.89" y="22.86" size="1.778" layer="97" font="vector" align="center">ANT</text>
+<text x="298.45" y="22.86" size="1.778" layer="97" font="vector" align="center">ANT_ZED</text>
 </plain>
 <instances>
 <instance part="FRAME2" gate="G$1" x="0" y="0" smashed="yes">
@@ -38075,13 +38085,13 @@ Change JPP1 &amp; JPP2 to PASTE
 <instance part="SUPPLY63" gate="G$1" x="121.92" y="195.58" smashed="yes">
 <attribute name="VALUE" x="121.92" y="198.374" size="1.778" layer="96" font="vector" align="bottom-center"/>
 </instance>
-<instance part="JPP1" gate="J1" x="269.24" y="22.86" smashed="yes" rot="R180">
-<attribute name="NAME" x="267.97" y="20.066" size="1.778" layer="95" font="vector" rot="R180" align="center"/>
-<attribute name="VALUE" x="267.97" y="25.654" size="1.778" layer="96" font="vector" rot="R180" align="center"/>
+<instance part="BYPASS1" gate="J1" x="269.24" y="22.86" smashed="yes" rot="R180">
+<attribute name="NAME" x="269.24" y="20.066" size="1.778" layer="95" font="vector" rot="R180" align="center"/>
+<attribute name="VALUE" x="269.24" y="25.654" size="1.778" layer="96" font="vector" rot="R180" align="center"/>
 </instance>
-<instance part="JPP2" gate="J1" x="289.56" y="22.86" smashed="yes" rot="MR180">
-<attribute name="NAME" x="290.83" y="20.066" size="1.778" layer="95" font="vector" rot="MR180" align="center"/>
-<attribute name="VALUE" x="290.83" y="25.654" size="1.778" layer="96" font="vector" rot="MR180" align="center"/>
+<instance part="BYPASS2" gate="J1" x="289.56" y="22.86" smashed="yes" rot="MR180">
+<attribute name="NAME" x="289.56" y="20.066" size="1.778" layer="95" font="vector" rot="MR180" align="center"/>
+<attribute name="VALUE" x="289.56" y="25.654" size="1.778" layer="96" font="vector" rot="MR180" align="center"/>
 </instance>
 </instances>
 <busses>
@@ -39698,8 +39708,8 @@ Change JPP1 &amp; JPP2 to PASTE
 </net>
 <net name="BYPASS" class="0">
 <segment>
-<pinref part="JPP1" gate="J1" pin="1"/>
-<pinref part="JPP2" gate="J1" pin="1"/>
+<pinref part="BYPASS1" gate="J1" pin="1"/>
+<pinref part="BYPASS2" gate="J1" pin="1"/>
 <wire x1="274.32" y1="22.86" x2="284.48" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
