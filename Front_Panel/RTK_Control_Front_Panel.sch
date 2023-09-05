@@ -135,6 +135,12 @@
 <layer number="153" name="FabDoc1" color="7" fill="1" visible="no" active="no"/>
 <layer number="154" name="FabDoc2" color="7" fill="1" visible="no" active="no"/>
 <layer number="155" name="FabDoc3" color="7" fill="1" visible="no" active="no"/>
+<layer number="156" name="gesam-Maß" color="1" fill="7" visible="no" active="no"/>
+<layer number="157" name="FaceMchng" color="3" fill="1" visible="no" active="no"/>
+<layer number="158" name="FaceMMeas" color="3" fill="1" visible="no" active="no"/>
+<layer number="159" name="Geh-Bear2" color="1" fill="7" visible="no" active="no"/>
+<layer number="160" name="Topologie" color="9" fill="1" visible="no" active="no"/>
+<layer number="161" name="tomplace2" color="7" fill="1" visible="no" active="no"/>
 <layer number="166" name="AntennaArea" color="7" fill="1" visible="no" active="no"/>
 <layer number="168" name="4mmHeightArea" color="7" fill="1" visible="no" active="no"/>
 <layer number="191" name="mNets" color="7" fill="1" visible="no" active="no"/>
@@ -182,6 +188,7 @@
 <layer number="249" name="Edge" color="7" fill="1" visible="no" active="no"/>
 <layer number="250" name="Descript" color="3" fill="1" visible="no" active="no"/>
 <layer number="251" name="SMDround" color="12" fill="11" visible="no" active="no"/>
+<layer number="252" name="BR-BS" color="7" fill="1" visible="no" active="no"/>
 <layer number="253" name="Extra" color="7" fill="1" visible="no" active="no"/>
 <layer number="254" name="cooling" color="7" fill="1" visible="no" active="no"/>
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="no"/>
@@ -14258,36 +14265,36 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <dimension x1="75.4" y1="-4.25" x2="75.4" y2="29.25" x3="83" y3="12.5" textsize="1.27" layer="47" dtype="vertical"/>
 <text x="0" y="-20" size="1.27" layer="47" font="vector" align="bottom-center">Dimensions in mm</text>
 </package>
-<package name="OLED">
-<wire x1="-6.7" y1="5" x2="6.7" y2="5" width="0.2" layer="51"/>
-<wire x1="6.7" y1="5" x2="6.7" y2="-5" width="0.2" layer="51"/>
-<wire x1="6.7" y1="-5" x2="-6.7" y2="-5" width="0.2" layer="51"/>
-<wire x1="-6.7" y1="-5" x2="-6.7" y2="5" width="0.2" layer="51"/>
-<wire x1="-7.7" y1="-5" x2="-7.7" y2="5" width="0.2" layer="51"/>
-<wire x1="-7.7" y1="5" x2="-6.7" y2="6" width="0.2" layer="51" curve="-90"/>
-<wire x1="-6.7" y1="6" x2="6.7" y2="6" width="0.2" layer="51"/>
-<wire x1="6.7" y1="6" x2="7.7" y2="5" width="0.2" layer="51" curve="-90"/>
-<wire x1="7.7" y1="5" x2="7.7" y2="-5" width="0.2" layer="51"/>
-<wire x1="7.7" y1="-5" x2="6.7" y2="-6" width="0.2" layer="51" curve="-90"/>
-<wire x1="6.7" y1="-6" x2="-6.7" y2="-6" width="0.2" layer="51"/>
-<wire x1="-6.7" y1="-6" x2="-7.7" y2="-5" width="0.2" layer="51" curve="-90"/>
+<package name="OLED-1.3-128X64">
+<wire x1="-14.71" y1="7.35" x2="14.71" y2="7.35" width="0.2" layer="51"/>
+<wire x1="14.71" y1="7.35" x2="14.71" y2="-7.35" width="0.2" layer="51"/>
+<wire x1="14.71" y1="-7.35" x2="-14.71" y2="-7.35" width="0.2" layer="51"/>
+<wire x1="-14.71" y1="-7.35" x2="-14.71" y2="7.35" width="0.2" layer="51"/>
+<wire x1="-15.71" y1="-7.35" x2="-15.71" y2="7.35" width="0.2" layer="51"/>
+<wire x1="-15.71" y1="7.35" x2="-14.71" y2="8.35" width="0.2" layer="51" curve="-90"/>
+<wire x1="-14.71" y1="8.35" x2="14.71" y2="8.35" width="0.2" layer="51"/>
+<wire x1="14.71" y1="8.35" x2="15.71" y2="7.35" width="0.2" layer="51" curve="-90"/>
+<wire x1="15.71" y1="7.35" x2="15.71" y2="-7.35" width="0.2" layer="51"/>
+<wire x1="15.71" y1="-7.35" x2="14.71" y2="-8.35" width="0.2" layer="51" curve="-90"/>
+<wire x1="14.71" y1="-8.35" x2="-14.71" y2="-8.35" width="0.2" layer="51"/>
+<wire x1="-14.71" y1="-8.35" x2="-15.71" y2="-7.35" width="0.2" layer="51" curve="-90"/>
 <text x="0" y="0" size="1.27" layer="20" align="center">Route Out</text>
-<wire x1="-9.4" y1="7.35" x2="9.4" y2="7.35" width="0.2" layer="20"/>
-<wire x1="-9.4" y1="7.35" x2="-9.4" y2="4.35" width="0.2" layer="20" curve="180"/>
-<wire x1="9.4" y1="4.35" x2="9.4" y2="7.35" width="0.2" layer="20" curve="180"/>
-<wire x1="-9.4" y1="-8.05" x2="-9.4" y2="-11.05" width="0.2" layer="20" curve="180"/>
-<wire x1="9.4" y1="-11.05" x2="9.4" y2="-8.05" width="0.2" layer="20" curve="180"/>
-<text x="-6" y="4" size="0.5" layer="51">13.42 x 10.06 A/A</text>
-<text x="-6" y="6.3" size="0.5" layer="51">15.42 x 12.06 V/A</text>
-<wire x1="-9.4" y1="4.35" x2="-9.4" y2="-8.05" width="0.2" layer="20"/>
-<wire x1="9.4" y1="4.35" x2="9.4" y2="-8.05" width="0.2" layer="20"/>
-<wire x1="-9.4" y1="-11.05" x2="-7" y2="-11.05" width="0.2" layer="20"/>
-<wire x1="7" y1="-11.05" x2="9.4" y2="-11.05" width="0.2" layer="20"/>
-<wire x1="-7" y1="-11.05" x2="-7" y2="-12.7" width="0.2" layer="20"/>
-<wire x1="7" y1="-11.05" x2="7" y2="-12.7" width="0.2" layer="20"/>
-<wire x1="-7" y1="-12.7" x2="-5.5" y2="-14.2" width="0.2" layer="20" curve="90"/>
-<wire x1="5.5" y1="-14.2" x2="7" y2="-12.7" width="0.2" layer="20" curve="90"/>
-<wire x1="-5.5" y1="-14.2" x2="5.5" y2="-14.2" width="0.2" layer="20"/>
+<wire x1="-17.4" y1="9.6" x2="17.4" y2="9.6" width="0.2" layer="20"/>
+<wire x1="-17.4" y1="9.6" x2="-17.4" y2="5.6" width="0.2" layer="20" curve="180"/>
+<wire x1="17.4" y1="5.6" x2="17.4" y2="9.6" width="0.2" layer="20" curve="180"/>
+<wire x1="-17.4" y1="-9.7" x2="-17.4" y2="-13.7" width="0.2" layer="20" curve="180"/>
+<wire x1="17.4" y1="-13.7" x2="17.4" y2="-9.7" width="0.2" layer="20" curve="180"/>
+<text x="-14.2" y="6.6" size="0.5" layer="51">29.42 x 14.7 A/A</text>
+<text x="-14.2" y="8.7" size="0.5" layer="51">31.42 x 16.7 V/A</text>
+<wire x1="-17.4" y1="5.6" x2="-17.4" y2="-9.7" width="0.2" layer="20"/>
+<wire x1="17.4" y1="5.6" x2="17.4" y2="-9.7" width="0.2" layer="20"/>
+<wire x1="-17.4" y1="-13.7" x2="-7.5" y2="-13.7" width="0.2" layer="20"/>
+<wire x1="7.5" y1="-13.7" x2="17.4" y2="-13.7" width="0.2" layer="20"/>
+<wire x1="-7.5" y1="-13.7" x2="-7.5" y2="-14.7" width="0.2" layer="20"/>
+<wire x1="7.5" y1="-13.7" x2="7.5" y2="-14.7" width="0.2" layer="20"/>
+<wire x1="-7.5" y1="-14.7" x2="-5.5" y2="-16.7" width="0.2" layer="20" curve="90"/>
+<wire x1="5.5" y1="-16.7" x2="7.5" y2="-14.7" width="0.2" layer="20" curve="90"/>
+<wire x1="-5.5" y1="-16.7" x2="5.5" y2="-16.7" width="0.2" layer="20"/>
 </package>
 <package name="BUTTON">
 <hole x="0" y="4.05" drill="3.75"/>
@@ -14350,15 +14357,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <circle x="-75.55" y="-4.25" radius="1.5" width="0.2" layer="94"/>
 <circle x="75.55" y="-4.25" radius="1.5" width="0.2" layer="94"/>
 </symbol>
-<symbol name="OLED">
-<wire x1="-6.5" y1="7" x2="6.5" y2="7" width="0.2" layer="94"/>
-<wire x1="6.5" y1="7" x2="8.5" y2="5" width="0.2" layer="94" curve="-90"/>
-<wire x1="8.5" y1="5" x2="8.5" y2="-5" width="0.2" layer="94"/>
-<wire x1="8.5" y1="-5" x2="6.5" y2="-7" width="0.2" layer="94" curve="-90"/>
-<wire x1="6.5" y1="-7" x2="-6.5" y2="-7" width="0.2" layer="94"/>
-<wire x1="-6.5" y1="-7" x2="-8.5" y2="-5" width="0.2" layer="94" curve="-90"/>
-<wire x1="-8.5" y1="-5" x2="-8.5" y2="5" width="0.2" layer="94"/>
-<wire x1="-8.5" y1="5" x2="-6.5" y2="7" width="0.2" layer="94" curve="-90"/>
+<symbol name="OLED-1.3-128X64">
+<wire x1="-14.71" y1="8.35" x2="14.71" y2="8.35" width="0.2" layer="94"/>
+<wire x1="14.71" y1="8.35" x2="15.71" y2="7.35" width="0.2" layer="94" curve="-90"/>
+<wire x1="15.71" y1="7.35" x2="15.71" y2="-7.35" width="0.2" layer="94"/>
+<wire x1="15.71" y1="-7.35" x2="14.71" y2="-8.35" width="0.2" layer="94" curve="-90"/>
+<wire x1="14.71" y1="-8.35" x2="-14.71" y2="-8.35" width="0.2" layer="94"/>
+<wire x1="-14.71" y1="-8.35" x2="-15.71" y2="-7.35" width="0.2" layer="94" curve="-90"/>
+<wire x1="-15.71" y1="-7.35" x2="-15.71" y2="7.35" width="0.2" layer="94"/>
+<wire x1="-15.71" y1="7.35" x2="-14.71" y2="8.35" width="0.2" layer="94" curve="-90"/>
 </symbol>
 <symbol name="BUTTON">
 <circle x="0" y="4.05" radius="1.7" width="0.2" layer="94"/>
@@ -14433,13 +14440,13 @@ The origin is centered on the top surface of the PCB</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="OLED_14532">
-<description>This is the enclosure panel cut-out for the &lt;a href="https://www.sparkfun.com/products/14532"&gt;micro OLED breakout&lt;/a&gt;</description>
+<deviceset name="OLED_1.3_128X64">
+<description>This is the enclosure panel cut-out for the new 1.3" 128x64 OLED display.</description>
 <gates>
-<gate name="G$1" symbol="OLED" x="0" y="0"/>
+<gate name="G$1" symbol="OLED-1.3-128X64" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="OLED">
+<device name="" package="OLED-1.3-128X64">
 <technologies>
 <technology name=""/>
 </technologies>
@@ -14493,14 +14500,14 @@ The origin is centered on the top surface of the PCB</description>
 <part name="MICRO_SD" library="SparkFun-Enclosure-Panel" deviceset="MICRO_SD_CONN-16110" device=""/>
 <part name="ESP32_USB" library="SparkFun-Enclosure-Panel" deviceset="USB-C_CONN-14122" device=""/>
 <part name="GNSS_USB" library="SparkFun-Enclosure-Panel" deviceset="USB-C_CONN-14122" device=""/>
-<part name="OLED" library="SparkFun-Enclosure-Panel" deviceset="OLED_14532" device=""/>
+<part name="OLED" library="SparkFun-Enclosure-Panel" deviceset="OLED_1.3_128X64" device=""/>
 <part name="LOGO1" library="SparkFun-Aesthetics" deviceset="SFE_LOGO_NAME_FLAME" device=".3_INCH" value="SFE_LOGO_NAME_FLAME.3_INCH"/>
 <part name="U$3" library="SparkFun-Enclosure-Panel" deviceset="NANO_SIM_CONN-16272" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="241.3" y="7.62" size="2.54" layer="94" font="vector">v01</text>
+<text x="241.3" y="7.62" size="2.54" layer="94" font="vector">v10</text>
 <text x="167.64" y="10.16" size="2.54" layer="94" font="vector">Paul Clark</text>
 </plain>
 <instances>
