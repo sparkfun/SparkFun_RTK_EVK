@@ -41,10 +41,14 @@ const int PWREN = 32; // 3V3_SW and SDIO Enable
 const int STAT_LED = 2;
 const int SERIAL1_TX = 13;
 const int SERIAL1_RX = 14;
+const int SCL_1 = 22;
+const int SDA_1 = 21;
 const int SCL_2 = 15;
 const int SDA_2 = 12;
 const int ETHERNET_INT = 33;
 const int GNSS_INT = 25;
+
+TwoWire I2C_1 = TwoWire(0);
 
 void setup()
 {
@@ -64,7 +68,9 @@ void setup()
 
   //theGNSS.enableDebugging(Serial); // Uncomment this line to enable debug messages on Serial
 
-  while (!theGNSS.begin(Wire)) // Start the GNSS on Wire
+  I2C_1.begin((int)SDA_1, (int)SCL_1);
+
+  while (!theGNSS.begin(I2C_1)) // Start the GNSS on Wire
   {
     Serial.println("GNSS not detected. Retrying...");
   }
