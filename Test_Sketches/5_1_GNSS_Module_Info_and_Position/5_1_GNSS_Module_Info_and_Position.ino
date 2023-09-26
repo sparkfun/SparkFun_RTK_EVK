@@ -48,6 +48,8 @@ const int SDA_2 = 12;
 const int ETHERNET_INT = 33;
 const int GNSS_INT = 25;
 
+TwoWire I2C_1 = TwoWire(0);
+
 void setup()
 {
   pinMode(SD_CS, OUTPUT);
@@ -64,7 +66,9 @@ void setup()
 
   //theGNSS.enableDebugging(Serial); // Uncomment this line to enable debug messages on Serial
 
-  while (!theGNSS.begin(Wire)) // Start the GNSS on Wire
+  I2C_1.begin((int)21, (int)22);
+
+  while (!theGNSS.begin(I2C_1)) // Start the GNSS on Wire
   {
     Serial.println("GNSS not detected. Retrying...");
   }
