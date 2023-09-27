@@ -3,6 +3,10 @@
 
   License: MIT. Please see LICENSE.md for more details
 
+  GNSS RAWX and SFRBX Logging to microSD card
+  Works best with the latest ESP32 core (2.0.13)
+  Write speed is limited with 2.0.2
+
   ESP32-WROVER-IE Pin Allocations:
   D0  : Boot + Boot Button
   D1  : Serial TX (CH340 RX)
@@ -47,7 +51,7 @@ const int SDA_2 = 12;
 const int ETHERNET_INT = 33;
 const int GNSS_INT = 25;
 
-#include <Wire.h>
+#include "Wire.h"
 TwoWire I2C_1 = TwoWire(0);
 
 #include "FS.h"
@@ -63,7 +67,7 @@ SFE_UBLOX_GNSS myGNSS;
 
 #define fileBufferSize 65535 // Allocate RAM for UBX/RTCM/NMEA message storage
 #define rtcmBufferSize 4096  // Allocate RAM for intermediate RTCM message storage
-#define navRate 1            // Set the Nav Rate (Frequency) to 1Hz
+#define navRate 5            // Set the Nav Rate (Frequency) to 5Hz
 
 unsigned long lastPrint; // Record when the last Serial print took place
 
