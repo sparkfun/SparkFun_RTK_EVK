@@ -40,10 +40,15 @@ const int PWREN = 32; // 3V3_SW and SDIO Enable
 const int STAT_LED = 2;
 const int SERIAL1_TX = 13;
 const int SERIAL1_RX = 14;
+const int SCL_1 = 22;
+const int SDA_1 = 21;
 const int SCL_2 = 15;
 const int SDA_2 = 12;
 const int ETHERNET_INT = 33;
 const int GNSS_INT = 25;
+
+#include <Wire.h>
+TwoWire I2C_1 = TwoWire(0);
 
 #include "FS.h"
 #include "SD.h"
@@ -58,7 +63,7 @@ SFE_UBLOX_GNSS myGNSS;
 
 #define fileBufferSize 65535 // Allocate RAM for UBX/RTCM/NMEA message storage
 #define rtcmBufferSize 4096  // Allocate RAM for intermediate RTCM message storage
-#define navRate 5            // Set the Nav Rate (Frequency) to 5Hz
+#define navRate 1            // Set the Nav Rate (Frequency) to 1Hz
 
 unsigned long lastPrint; // Record when the last Serial print took place
 
@@ -109,6 +114,8 @@ void setup()
   Serial.begin(115200);
   Serial.println("SparkFun RTK - Test Sketch");
 
+  I2C_1.begin((int)SDA_1, (int)SCL_1, (uint32_t)400000);
+
   // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   // Initialize the GNSS
 
@@ -121,7 +128,7 @@ void setup()
   myGNSS.setRTCMBufferSize(rtcmBufferSize); // setRTCMBufferSize must be called _before_ .begin
 #endif
 
-  while (!myGNSS.begin(Wire)) // Start the GNSS on Wire
+  while (!myGNSS.begin(I2C_1)) // Start the GNSS on Wire
   {
     Serial.println("GNSS not detected. Retrying...");
   }
