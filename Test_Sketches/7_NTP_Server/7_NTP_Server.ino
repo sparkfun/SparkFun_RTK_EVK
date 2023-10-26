@@ -35,6 +35,8 @@
 #include <SPI.h>  // Needed for SPI to W5500
 #include <Wire.h> // Needed for I2C to GNSS
 
+TwoWire I2C_1 = TwoWire(0);
+
 #include <Ethernet.h> // http://librarymanager/All#Arduino_Ethernet
 
 #include <SSLClient.h> //http://librarymanager/All#SSLClient
@@ -55,6 +57,8 @@ const int PWREN = 32; // 3V3_SW and SDIO Enable
 const int STAT_LED = 2;
 const int SERIAL1_TX = 13;
 const int SERIAL1_RX = 14;
+const int SCL_1 = 22;
+const int SDA_1 = 21;
 const int SCL_2 = 15;
 const int SDA_2 = 12;
 const int ETHERNET_INT = 33;
@@ -181,6 +185,8 @@ void setup()
 
   Serial.begin(115200);
   Serial.println("SparkFun RTK - Test Sketch");
+
+  I2C_1.begin((int)SDA_1, (int)SCL_1, (uint32_t)400000); // Start I2C
 
   // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -313,7 +319,7 @@ void loop()
 
   if (processed)
   {
-    //w5500ClearSocketInterrupt(sockIndex); // Not sure if it is best to clear the interrupt(s) here - or in the ISR?
+    w5500ClearSocketInterrupt(sockIndex); // Not sure if it is best to clear the interrupt(s) here - or in the ISR?
     Serial.print("NTP request processed: ");
     Serial.println(ntpDiag);
   }

@@ -6,7 +6,7 @@
 void ethernetISR()
 {
   gettimeofday((timeval *)&ethernetTv, NULL);
-  w5500ClearSocketInterrupt(sockIndex); // Not sure if it is best to clear the interrupt(s) here - or in the loop?
+  //w5500ClearSocketInterrupt(sockIndex); // Not sure if it is best to clear the interrupt(s) here - or in the loop?
 }
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

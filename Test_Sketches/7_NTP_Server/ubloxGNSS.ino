@@ -51,7 +51,7 @@ bool configureGNSS()
 {
   int beginCount = 0;
   
-  while ((!theGNSS.begin(Wire)) && (beginCount < 5)) // Start the GNSS on I2C. Default to 4MHz
+  while ((!theGNSS.begin(I2C_1)) && (beginCount < 5)) // Start the GNSS on I2C. Default to 4MHz
   {
     beginCount++;
   }
