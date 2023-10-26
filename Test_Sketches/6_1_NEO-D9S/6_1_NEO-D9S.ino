@@ -31,6 +31,9 @@
   A36 : SD Card Detect
 */
 
+#include <Wire.h> // Needed for I2C to GNSS
+TwoWire I2C_1 = TwoWire(0);
+
 #include <SparkFun_u-blox_GNSS_v3.h> //http://librarymanager/All#SparkFun_u-blox_GNSS_v3
 SFE_UBLOX_GNSS myLBand; // NEO-D9S
 
@@ -45,6 +48,8 @@ const int PWREN = 32; // 3V3_SW and SDIO Enable
 const int STAT_LED = 2;
 const int SERIAL1_TX = 13;
 const int SERIAL1_RX = 14;
+const int SCL_1 = 22;
+const int SDA_1 = 21;
 const int SCL_2 = 15;
 const int SDA_2 = 12;
 const int ETHERNET_INT = 33;
@@ -101,14 +106,14 @@ void setup()
   Serial.begin(115200);
   Serial.println("SparkFun RTK - Test Sketch");
 
-  Wire.begin(); //Start I2C
+  I2C_1.begin((int)SDA_1, (int)SCL_1, (uint32_t)400000); // Start I2C
 
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   // Begin and configure the NEO-D9S L-Band receiver
 
   //myLBand.enableDebugging(); // Uncomment this line to enable helpful debug messages on Serial
 
-  while (myLBand.begin(Wire, 0x43) == false) //Connect to the u-blox NEO-D9S using Wire port. The D9S default I2C address is 0x43 (not 0x42)
+  while (myLBand.begin(I2C_1, 0x43) == false) //Connect to the u-blox NEO-D9S using Wire port. The D9S default I2C address is 0x43 (not 0x42)
   {
     Serial.println(F("u-blox NEO-D9S not detected at default I2C address. Please check wiring."));
     delay(2000);
