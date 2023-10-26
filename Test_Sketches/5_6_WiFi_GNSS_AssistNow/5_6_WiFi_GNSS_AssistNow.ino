@@ -6,7 +6,7 @@
   This example shows how to obtain AssistNow Online data from u-blox Thingstream over WiFi
   and push it to the u-blox module.
 
-  You will need to have a token to be able to access Thingstream.
+  You need a token to be able to access Thingstream.
 
   Update secrets.h with your:
   - WiFi credentials
@@ -51,6 +51,8 @@
 #include <HTTPClient.h>
 #include "secrets.h"
 
+TwoWire I2C_1 = TwoWire(0);
+
 #include <SparkFun_u-blox_GNSS_v3.h> //http://librarymanager/All#SparkFun_u-blox_GNSS_v3
 SFE_UBLOX_GNSS_SUPER theGNSS;
 
@@ -63,6 +65,8 @@ const int PWREN = 32; // 3V3_SW and SDIO Enable
 const int STAT_LED = 2;
 const int SERIAL1_TX = 13;
 const int SERIAL1_RX = 14;
+const int SCL_1 = 22;
+const int SDA_1 = 21;
 const int SCL_2 = 15;
 const int SDA_2 = 12;
 const int ETHERNET_INT = 33;
@@ -107,6 +111,8 @@ void setup()
   Serial.begin(115200);
   Serial.println("SparkFun RTK - Test Sketch");
 
+  I2C_1.begin((int)SDA_1, (int)SCL_1, (uint32_t)400000);
+
   while (Serial.available()) Serial.read(); // Empty the serial buffer
   Serial.println(F("Press any key to begin..."));
   while (!Serial.available()); // Wait for a keypress
@@ -117,7 +123,7 @@ void setup()
   // Uncomment the next line to enable the 'major' debug messages on Serial so you can see what AssistNow data is being sent
   //theGNSS.enableDebugging(Serial, true);
 
-  while (!theGNSS.begin(Wire)) // Start the GNSS on Wire
+  while (!theGNSS.begin(I2C_1)) // Start the GNSS on Wire
   {
     Serial.println("GNSS not detected. Retrying...");
   }
