@@ -210,6 +210,19 @@ void setup()
     Serial.println(F("Unable to communicate with the LARA."));
   }
 
+  Serial.print(F("Waiting for NI to go high"));
+  int tries = 0;
+  const int maxTries = 20;
+  while ((tries < maxTries) && (digitalRead(LARA_NI) == LOW))
+  {
+    delay(1000);
+    Serial.print(F("."));
+    tries++;
+  }
+  Serial.println();
+  if (tries == maxTries)
+    Serial.println(F("NI didn't go high. Giving up..."));
+
   int opsAvailable;
   struct operator_stats ops[MAX_OPERATORS];
   String currentOperator = "";
@@ -274,8 +287,20 @@ void setup()
       bool selected = false;
       while (!selected) {
         while (!Serial.available()) ;
+        delay(10); // Wait for more chars to arrive
+        int selection = 0;
         c = Serial.read();
-        int selection = c - '0';
+        if ((c >= '0') && (c <= '9'))
+          selection = c - '0';
+        if (Serial.available()) // Check for 2nd digit
+        {
+          c = Serial.read();
+          if ((c >= '0') && (c <= '9'))
+          {
+            selection *= 10;
+            selection += c - '0';
+          }
+        }
         if ((selection >= 1) && (selection <= (opsAvailable + 1))) {
           selected = true;
           Serial.println("Connecting to option " + String(selection));
@@ -311,8 +336,12 @@ void setup()
     }
   }
 
+  delay(2000);
+
   // At the very end print connection information
   printInfo();
+
+  Serial.println(F("LARA_R5 will power off in 5 seconds - ready for the next example."));
 }
 
 void loop()
@@ -326,6 +355,15 @@ void loop()
     laraSerial.write((char) Serial.read());
   }
 #endif
+
+  static unsigned long loopStart = millis();
+  static bool offSent = false;
+  if ((millis() > (loopStart + 5000)) && (!offSent)) // 5 second timeout
+  {
+    Serial.println(F("Powering off the LARA_R5 - ready for the next example."));
+    myLARA.modulePowerOff();
+    offSent = true;
+  }
 }
 
 void printInfo(void)
