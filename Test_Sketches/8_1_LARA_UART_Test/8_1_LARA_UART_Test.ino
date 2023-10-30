@@ -47,12 +47,24 @@ HardwareSerial laraSerial(2); //UART2 normally uses pins 16 and 17, but these ar
 
 #include <SparkFun_u-blox_SARA-R5_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_SARA-R5_Arduino_Library
 
-// Create a LARA_R6 object to use throughout the sketch
-SARA_R5 myLARA;
+// Derive the SARA_R5 class, so we can override beginSerial
+class SARA_R5_DERIVED : public SARA_R5
+{
+  public:
+    SARA_R5_DERIVED() : SARA_R5{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
 
-// Create a SARA_R5 object to use throughout the sketch
-// We can also tell the library what GPIO pin is connected to the SARA power pin.
-//SARA_R5 mySARA(LARA_PWR);
+  protected:
+    void beginSerial(unsigned long baud) override
+    {
+      delay(100);
+      laraSerial.end();
+      laraSerial.begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      delay(100);
+    }
+};
+
+// Create a LARA_R6 object to use throughout the sketch
+SARA_R5_DERIVED myLARA;
 
 void setup()
 {
@@ -60,33 +72,36 @@ void setup()
   digitalWrite(SD_CS, HIGH);
   pinMode(ETHERNET_CS, OUTPUT);
   digitalWrite(ETHERNET_CS, HIGH);
+
+  // Configure the LARA_PWR GPIO before enabling the regulators
+  pinMode(LARA_PWR, OUTPUT);
+  digitalWrite(LARA_PWR, LOW);
+
+  // Now enable the 3.3V regulators for the GNSS and LARA
   pinMode(PWREN, OUTPUT);
   digitalWrite(PWREN, HIGH);
+  
   pinMode(LARA_NI, INPUT);
   
-  pinMode(LARA_PWR, OUTPUT); //LARA_PWR is not inverted. But probably should be...
-  digitalWrite(LARA_PWR, HIGH);
-
-  laraSerial.begin(115200, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
-  
-  delay(1000);
+  delay(1000); // Wait for the ESP32
 
   Serial.begin(115200);
   Serial.println("SparkFun RTK - Test Sketch");
 
-  //Wait for the LARA_NI pin to go high
-  Serial.print("Waiting for the LARA NI pin to go high");
-  do {
-    Serial.print(".");
-    delay(1000);
-  } while (digitalRead(LARA_NI) == LOW);
-  Serial.println();
-  
+  // The LARA_R6 will be powered off by default.
+  // If desired, we can power it on manually by toggling the LARA_PWR pin now.
+  // Or we can wait and let myLARA.begin do it.
+  //digitalWrite(LARA_PWR, HIGH);
+  //delay(100);
+  //digitalWrite(LARA_PWR, LOW);
+  //
+  //delay(8000); // Wait > 7 seconds for the LARA to begin
+
   myLARA.enableDebugging();
 
-  myLARA.invertPowerPin(false); //LARA_PWR is not inverted. But probably should be...
-  
-  // Initialize the LARA - this checks the custom TX and RX pins don't get reset when _hardSerial->begin(baud); is called internally
+  myLARA.invertPowerPin(true); //LARA_PWR is inverted
+
+  // Initialize the LARA
   if (myLARA.begin(laraSerial, 115200) )
   {
     Serial.println(F("LARA-R6 connected!"));
@@ -99,5 +114,11 @@ void setup()
 
 void loop()
 {
-  //Nothing to do here...
+  Serial.print(F("LARA Network Indicator (NI) pin is: "));
+  if (digitalRead(LARA_NI) == HIGH)
+    Serial.println(F("HIGH"));
+  else
+    Serial.println(F("LOW"));
+
+  delay(1000);
 }
