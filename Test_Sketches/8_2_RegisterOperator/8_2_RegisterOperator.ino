@@ -47,12 +47,24 @@ HardwareSerial laraSerial(2); //UART2 normally uses pins 16 and 17, but these ar
 
 #include <SparkFun_u-blox_SARA-R5_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_SARA-R5_Arduino_Library
 
-// Create a LARA_R6 object to use throughout the sketch
-SARA_R5 myLARA;
+// Derive the SARA_R5 class, so we can override beginSerial
+class SARA_R5_DERIVED : public SARA_R5
+{
+  public:
+    SARA_R5_DERIVED() : SARA_R5{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
 
-// Create a SARA_R5 object to use throughout the sketch
-// We can also tell the library what GPIO pin is connected to the SARA power pin.
-//SARA_R5 myLARA(LARA_PWR);
+  protected:
+    void beginSerial(unsigned long baud) override
+    {
+      delay(100);
+      laraSerial.end();
+      laraSerial.begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      delay(100);
+    }
+};
+
+// Create a LARA_R6 object to use throughout the sketch
+SARA_R5_DERIVED myLARA;
 
 // Map registration status messages to more readable strings
 String registrationString[] =
@@ -166,37 +178,28 @@ void setup()
   digitalWrite(SD_CS, HIGH);
   pinMode(ETHERNET_CS, OUTPUT);
   digitalWrite(ETHERNET_CS, HIGH);
+
+  // Configure the LARA_PWR GPIO before enabling the regulators
+  pinMode(LARA_PWR, OUTPUT);
+  digitalWrite(LARA_PWR, LOW);
+
+  // Now enable the 3.3V regulators for the GNSS and LARA
   pinMode(PWREN, OUTPUT);
   digitalWrite(PWREN, HIGH);
+  
   pinMode(LARA_NI, INPUT);
   
-  pinMode(LARA_PWR, OUTPUT); //LARA_PWR is not inverted. But probably should be...
-  digitalWrite(LARA_PWR, HIGH);
-
-  laraSerial.begin(115200, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
-  
-  int opsAvailable;
-  struct operator_stats ops[MAX_OPERATORS];
-  String currentOperator = "";
-  bool newConnection = true;
-
-  delay(1000);
+  delay(1000); // Wait for the ESP32
 
   Serial.begin(115200);
   Serial.println("SparkFun RTK - Test Sketch");
 
-  //Wait for the LARA_NI pin to go high
-  Serial.print("Waiting for the LARA NI pin to go high");
-  do {
-    Serial.print(".");
-    delay(1000);
-  } while (digitalRead(LARA_NI) == LOW);
-  Serial.println();
-  
   //myLARA.enableDebugging();
 
-  myLARA.invertPowerPin(false); //LARA_PWR is not inverted. But probably should be...
-  
+  myLARA.invertPowerPin(true); //LARA_PWR is inverted
+
+  Serial.println(F("Initializing the LARA_R6. This could take ~20 seconds."));
+
   // Initialize the LARA
   if (myLARA.begin(laraSerial, 115200) )
   {
@@ -206,6 +209,11 @@ void setup()
   {
     Serial.println(F("Unable to communicate with the LARA."));
   }
+
+  int opsAvailable;
+  struct operator_stats ops[MAX_OPERATORS];
+  String currentOperator = "";
+  bool newConnection = true;
 
   while (Serial.available()) Serial.read();
   
@@ -247,7 +255,7 @@ void setup()
     Serial.println(F("Press any key scan for networks.."));
     serialWait();
 
-    Serial.println(F("Scanning for networks...this may take up to 3 minutes\r\n"));
+    Serial.println(F("Scanning for networks... This could take up to 3 minutes\r\n"));
     // myLARA.getOperators takes in a operator_stats struct pointer and max number of
     // structs to scan for, then fills up those objects with operator names and numbers
     opsAvailable = myLARA.getOperators(ops, MAX_OPERATORS); // This will block for up to 3 minutes
@@ -376,11 +384,20 @@ void printOperators(struct operator_stats * ops, int operatorsAvailable)
     }
     switch (ops[i].act)
     {
-    // SARA-R5 only supports LTE
+    case 0:
+      Serial.print(F(" - GSM"));
+      break;
+    case 2:
+      Serial.print(F(" - UTRAN"));
+      break;
+    case 3:
+      Serial.print(F(" - GSM/GPRS with EDGE"));
+      break;
     case 7:
-      Serial.print(F(" - LTE"));
+      Serial.print(F(" - LTE")); // SARA-R5 only supports LTE
       break;
     }
+    Serial.println();
   }
   Serial.println();
 }
