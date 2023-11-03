@@ -57,8 +57,11 @@ class SARA_R5_DERIVED : public SARA_R5
     void beginSerial(unsigned long baud) override
     {
       delay(100);
-      laraSerial.end();
-      laraSerial.begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      if (_hardSerial != nullptr)
+      {
+        _hardSerial->end();
+        _hardSerial->begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      }
       delay(100);
     }
 };
@@ -212,7 +215,7 @@ void setup()
 
   Serial.print(F("Waiting for NI to go high"));
   int tries = 0;
-  const int maxTries = 20;
+  const int maxTries = 60;
   while ((tries < maxTries) && (digitalRead(LARA_NI) == LOW))
   {
     delay(1000);
@@ -279,6 +282,14 @@ void setup()
       Serial.println("Found " + String(opsAvailable) + " operators:");
       printOperators(ops, opsAvailable);
       Serial.println(String(opsAvailable + 1) + ": use automatic selection");
+      Serial.println();
+
+      Serial.println(F("******************************************************"));
+      Serial.println(F("* Important note:                                    *"));
+      Serial.println(F("* Please select a LTE or UTRAN operator only.        *"));
+      Serial.println(F("* Selecting GSM will cause high peak currents during *"));
+      Serial.println(F("* transmit and could cause the power to brown-out.   *"));
+      Serial.println(F("******************************************************"));
       Serial.println();
 
       // Wait until the user presses a key to initiate an operator connection

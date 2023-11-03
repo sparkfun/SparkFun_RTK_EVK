@@ -60,8 +60,11 @@ class SARA_R5_DERIVED : public SARA_R5
     void beginSerial(unsigned long baud) override
     {
       delay(100);
-      laraSerial.end();
-      laraSerial.begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      if (_hardSerial != nullptr)
+      {
+        _hardSerial->end();
+        _hardSerial->begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      }
       delay(100);
     }
 

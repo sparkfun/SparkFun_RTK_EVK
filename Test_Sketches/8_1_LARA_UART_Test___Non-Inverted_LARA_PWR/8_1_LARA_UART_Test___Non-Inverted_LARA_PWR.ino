@@ -57,8 +57,11 @@ class SARA_R5_DERIVED : public SARA_R5
     void beginSerial(unsigned long baud) override
     {
       delay(100);
-      laraSerial.end();
-      laraSerial.begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      if (_hardSerial != nullptr)
+      {
+        _hardSerial->end();
+        _hardSerial->begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      }
       delay(100);
     }
 };
@@ -110,15 +113,29 @@ void setup()
   {
     Serial.println(F("Unable to communicate with the LARA."));
   }
+
+  Serial.println(F("LARA_R5 will power off in 30 seconds - ready for the next example."));
 }
 
 void loop()
 {
-  Serial.print(F("LARA Network Indicator (NI) pin is: "));
-  if (digitalRead(LARA_NI) == HIGH)
-    Serial.println(F("HIGH"));
-  else
-    Serial.println(F("LOW"));
+  static unsigned long loopStart = millis();
+  static bool offSent = false;
+  if ((millis() > (loopStart + 30000)) && (!offSent)) // 30 second timeout
+  {
+    Serial.println(F("Powering off the LARA_R5 - ready for the next example."));
+    myLARA.modulePowerOff();
+    offSent = true;
+  }
+
+  if (!offSent)
+  {
+    Serial.print(F("LARA Network Indicator (NI) pin is: "));
+    if (digitalRead(LARA_NI) == HIGH)
+      Serial.println(F("HIGH"));
+    else
+      Serial.println(F("LOW"));
+  }
 
   delay(1000);
 }
