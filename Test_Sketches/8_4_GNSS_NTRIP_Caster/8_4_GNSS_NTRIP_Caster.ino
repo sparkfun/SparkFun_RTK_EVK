@@ -97,6 +97,12 @@ volatile unsigned long lastReceivedRTCM_ms; // Record when data last arrived - s
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+// Headers
+
+bool keyPressed(char *c = nullptr);
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 void setup()
 {
   pinMode(SD_CS, OUTPUT);
@@ -323,7 +329,9 @@ void loop()
     open_connection,
     check_connection_and_wait_for_keypress,
     close_connection,
-    waiting_for_keypress
+    waiting_for_keypress,
+    shutdown_lara,
+    do_nothing
   };
   static states state = open_connection;
 
@@ -365,7 +373,8 @@ void loop()
     case close_connection:
       Serial.println(F("Closing the connection to the NTRIP caster..."));
       closeConnection((int *)&socketNum, (bool *)&connectionOpen);
-      Serial.println(F("Press any key to reconnect..."));
+      Serial.println(F("Press 's' to shut down the LARA-R6"));
+      Serial.println(F("Press any other key to reconnect..."));
       state = waiting_for_keypress; // Move on
       break;
     
@@ -373,8 +382,29 @@ void loop()
 
     case waiting_for_keypress:
       // Wait for the user to press a key
-      if (keyPressed())
-        state = open_connection; // Move on
+      char c;
+      if (keyPressed(&c))
+      {
+        if (c != 's')
+          state = open_connection; // Move on
+        else
+          state = shutdown_lara;
+      }
+      break; 
+
+    //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+    case shutdown_lara:
+      // Shut down the LARA
+      myLARA.modulePowerOff();
+      Serial.println(F("The LARA has shut down. Reset the RTK to start again."));
+      state = do_nothing;
+      break; 
+
+    //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+    case do_nothing:
+    default:
       break; 
   }
 }

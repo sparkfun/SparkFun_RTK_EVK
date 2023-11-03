@@ -62,11 +62,13 @@ void prettyPrintString(String theString) // Pretty-print a String in HEX and ASC
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 //Return true if a key has been pressed
-bool keyPressed()
+bool keyPressed(char *c)
 {
   if (Serial.available()) // Check for a new key press
   {
     delay(100); // Wait for any more keystrokes to arrive
+    if (c != nullptr)
+      *c = Serial.read(); // Store the first key if desired
     while (Serial.available()) // Empty the serial buffer
       Serial.read();
     return (true);   
