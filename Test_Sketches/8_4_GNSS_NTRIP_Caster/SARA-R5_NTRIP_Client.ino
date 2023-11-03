@@ -1,7 +1,9 @@
 
 #include "secrets.h" // Update secrets.h with your AssistNow token string
 
-const unsigned long maxTimeBeforeHangup_ms = 20000UL; //If we fail to get a complete RTCM frame after 20s, then disconnect from caster
+#define MAX_RESPONSE (1024 * 10) // Skylark MSM5 is 6800 bytes. Allocate 10k just in case
+
+const unsigned long maxTimeBeforeHangup_ms = 120000UL; //If we fail to get a complete RTCM frame after 120s, then disconnect from caster
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -148,12 +150,12 @@ bool beginClient(int *theSocket, bool *connectionIsOpen)
 
     //Check reply
     int connectionResult = 0;
-    char *response = new char[512 * 4];
-    memset(response, 0, 512 * 4);
+    char *response = new char[MAX_RESPONSE];
+    memset(response, 0, MAX_RESPONSE);
     size_t responseSpot = 0;
     while ((availableLength > 0) && (connectionResult == 0)) // Read bytes from the caster and store them
     {
-      if ((responseSpot + availableLength) >= ((512 * 4) - 1)) // Exit the loop if we get too much data
+      if ((responseSpot + availableLength) >= ((MAX_RESPONSE) - 1)) // Exit the loop if we get too much data
         break;
 
       myLARA.socketRead(*theSocket, availableLength, &response[responseSpot]);
@@ -184,7 +186,7 @@ bool beginClient(int *theSocket, bool *connectionIsOpen)
     }
     response[responseSpot] = '\0'; // NULL-terminate the response
 
-    //Serial.print(F("beginClient: Caster responded with: ")); Serial.println(response); // Uncomment this line to see the full response
+    Serial.print(F("beginClient: Caster responded with: ")); Serial.write(response, 12); Serial.println(); // Uncomment this line to see the full response
 
     // Free the memory allocated for serverRequest, credentials and response
     delete[] serverRequest;

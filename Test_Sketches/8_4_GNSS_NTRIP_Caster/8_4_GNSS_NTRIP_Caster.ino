@@ -35,6 +35,8 @@ const int SD_CS = 4; // Chip select for the microSD card
 const int ETHERNET_CS = 27; // Chip select for the WizNet 5500
 const int PWREN = 32; // 3V3_SW and SDIO Enable
 const int STAT_LED = 2;
+const int SCL_1 = 22;
+const int SDA_1 = 21;
 const int SCL_2 = 15;
 const int SDA_2 = 12;
 const int SERIAL_TX = 13;
@@ -53,17 +55,34 @@ const int LARA_NI = 34;
 #include <HardwareSerial.h>
 HardwareSerial laraSerial(2); //UART2 normally uses pins 16 and 17, but these are not available on WROVER
 
-// Create a SARA_R5 object to use throughout the sketch
-SARA_R5 myLARA;
+// Derive the SARA_R5 class, so we can override beginSerial
+class SARA_R5_DERIVED : public SARA_R5
+{
+  public:
+    SARA_R5_DERIVED() : SARA_R5{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
 
-// Create a SARA_R5 object to use throughout the sketch
-// We can also tell the library what GPIO pin is connected to the LARA power pin.
-//SARA_R5 myLARA(LARA_PWR);
+  protected:
+    void beginSerial(unsigned long baud) override
+    {
+      delay(100);
+      laraSerial.end();
+      laraSerial.begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      delay(100);
+    }
+};
+
+// Create a LARA_R6 object to use throughout the sketch
+SARA_R5_DERIVED myLARA;
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 #include <SparkFun_u-blox_GNSS_v3.h> //http://librarymanager/All#SparkFun_u-blox_GNSS_v3
 SFE_UBLOX_GNSS myGNSS;
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+#include <Wire.h>
+TwoWire I2C_1 = TwoWire(0);
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -81,34 +100,28 @@ void setup()
   digitalWrite(SD_CS, HIGH);
   pinMode(ETHERNET_CS, OUTPUT);
   digitalWrite(ETHERNET_CS, HIGH);
+
+  // Configure the LARA_PWR GPIO before enabling the regulators
+  pinMode(LARA_PWR, OUTPUT);
+  digitalWrite(LARA_PWR, LOW);
+
+  // Now enable the 3.3V regulators for the GNSS and LARA
   pinMode(PWREN, OUTPUT);
   digitalWrite(PWREN, HIGH);
+  
   pinMode(LARA_NI, INPUT);
   
-  pinMode(LARA_PWR, OUTPUT); //LARA_PWR is not inverted. But probably should be...
-  digitalWrite(LARA_PWR, HIGH);
-
-  laraSerial.begin(115200, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
-  
-  String currentOperator = "";
-
-   delay(1000);
+  delay(1000); // Wait for the ESP32
 
   Serial.begin(115200);
   Serial.println("SparkFun RTK - Test Sketch");
 
-  //Wait for the LARA_NI pin to go high
-  Serial.print("Waiting for the LARA NI pin to go high");
-  do {
-    Serial.print(".");
-    delay(1000);
-  } while (digitalRead(LARA_NI) == LOW);
-  Serial.println();
-  
   //myLARA.enableDebugging();
 
-  myLARA.invertPowerPin(false); //LARA_PWR is not inverted. But probably should be...
-  
+  myLARA.invertPowerPin(true); //LARA_PWR is inverted
+
+  Serial.println(F("Initializing the LARA_R6. This could take ~20 seconds."));
+
   // Initialize the LARA
   if (myLARA.begin(laraSerial, 115200) )
   {
@@ -118,6 +131,21 @@ void setup()
   {
     Serial.println(F("Unable to communicate with the LARA."));
   }
+
+  Serial.print(F("Waiting for NI to go high"));
+  int tries = 0;
+  const int maxTries = 60;
+  while ((tries < maxTries) && (digitalRead(LARA_NI) == LOW))
+  {
+    delay(1000);
+    Serial.print(F("."));
+    tries++;
+  }
+  Serial.println();
+  if (tries == maxTries)
+    Serial.println(F("NI didn't go high. Giving up..."));
+
+  String currentOperator = "";
 
   while (Serial.available()) Serial.read();
   
@@ -134,44 +162,50 @@ void setup()
       ; // Do nothing more
   }
 
-  // Deactivate the PSD profile - in case one is already active
-  if (myLARA.performPDPaction(0, SARA_R5_PSD_ACTION_DEACTIVATE) != SARA_R5_SUCCESS)
-  {
-    Serial.println(F("Warning: performPDPaction (deactivate profile) failed. Probably because no profile was active."));
-  }
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  // Load the PSD profile from NVM - these were saved by a previous example
-  if (myLARA.performPDPaction(0, SARA_R5_PSD_ACTION_LOAD) != SARA_R5_SUCCESS)
-  {
-    Serial.println(F("performPDPaction (load from NVM) failed! Freezing..."));
-    while (1)
-      ; // Do nothing more
-  }
+  // N/A on the LARA?
 
-  // Set a callback to process the results of the PSD Action - OPTIONAL
-  myLARA.setPSDActionCallback(&processPSDAction);
-
-  // Activate the profile
-  if (myLARA.performPDPaction(0, SARA_R5_PSD_ACTION_ACTIVATE) != SARA_R5_SUCCESS)
-  {
-    Serial.println(F("performPDPaction (activate profile) failed! Freezing..."));
-    while (1)
-      ; // Do nothing more
-  }
+//  // Deactivate the PSD profile - in case one is already active
+//  if (myLARA.performPDPaction(0, SARA_R5_PSD_ACTION_DEACTIVATE) != SARA_R5_SUCCESS)
+//  {
+//    Serial.println(F("Warning: performPDPaction (deactivate profile) failed. Probably because no profile was active."));
+//  }
+//
+//  // Load the PSD profile from NVM - these were saved by a previous example
+//  if (myLARA.performPDPaction(0, SARA_R5_PSD_ACTION_LOAD) != SARA_R5_SUCCESS)
+//  {
+//    Serial.println(F("performPDPaction (load from NVM) failed! Freezing..."));
+//    while (1)
+//      ; // Do nothing more
+//  }
+//
+//  // Set a callback to process the results of the PSD Action - OPTIONAL
+//  myLARA.setPSDActionCallback(&processPSDAction);
+//
+//  // Activate the profile
+//  if (myLARA.performPDPaction(0, SARA_R5_PSD_ACTION_ACTIVATE) != SARA_R5_SUCCESS)
+//  {
+//    Serial.println(F("performPDPaction (activate profile) failed! Freezing..."));
+//    while (1)
+//      ; // Do nothing more
+//  }
 
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  //Print the dynamic IP Address (for profile 0)
-  IPAddress myAddress;
-  myLARA.getNetworkAssignedIPAddress(0, &myAddress);
-  Serial.print(F("\r\nMy IP Address is: "));
-  Serial.print(myAddress[0]);
-  Serial.print(F("."));
-  Serial.print(myAddress[1]);
-  Serial.print(F("."));
-  Serial.print(myAddress[2]);
-  Serial.print(F("."));
-  Serial.println(myAddress[3]);
+  // N/A on the LARA?
+
+//  //Print the dynamic IP Address (for profile 0)
+//  IPAddress myAddress;
+//  myLARA.getNetworkAssignedIPAddress(0, &myAddress);
+//  Serial.print(F("\r\nMy IP Address is: "));
+//  Serial.print(myAddress[0]);
+//  Serial.print(F("."));
+//  Serial.print(myAddress[1]);
+//  Serial.print(F("."));
+//  Serial.print(myAddress[2]);
+//  Serial.print(F("."));
+//  Serial.println(myAddress[3]);
 
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -190,12 +224,12 @@ void setup()
 
   // Start I2C. Connect to the GNSS.
 
-  Wire.begin(); //Start I2C
+  I2C_1.begin((int)SDA_1, (int)SCL_1); //Start I2C
 
   // Uncomment the next line to enable the 'major' GNSS debug messages on Serial so you can see what AssistNow data is being sent
   //myGNSS.enableDebugging(Serial, true);
 
-  if (myGNSS.begin() == false) //Connect to the Ublox module using Wire port
+  if (myGNSS.begin(I2C_1) == false) //Connect to the Ublox module using Wire port
   {
     Serial.println(F("u-blox GPS not detected at default I2C address. Please check wiring. Freezing."));
     while (1);
@@ -223,6 +257,46 @@ void setup()
     Serial.println(F("NMEA messages were configured successfully"));
   else
     Serial.println(F("NMEA message configuration failed!"));
+
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  // Wait for a 2D fix
+
+  Serial.println(F("Waiting for a 2D fix"));
+
+  byte fixType = 0;
+  while (fixType < 2)
+  {
+    if (myGNSS.getPVT())
+    {
+      long latitude = myGNSS.getLatitude();
+      Serial.print(F("Lat: "));
+      Serial.print(latitude);
+  
+      long longitude = myGNSS.getLongitude();
+      Serial.print(F(" Long: "));
+      Serial.print(longitude);
+  
+      long altitude = myGNSS.getAltitude();
+      Serial.print(F(" Alt: "));
+      Serial.print(altitude);
+  
+      fixType = myGNSS.getFixType();
+      Serial.print(F(" Fix: "));
+      if(fixType == 0) Serial.print(F("No fix"));
+      else if(fixType == 1) Serial.print(F("Dead reckoning"));
+      else if(fixType == 2) Serial.print(F("2D"));
+      else if(fixType == 3) Serial.print(F("3D"));
+      else if(fixType == 4) Serial.print(F("GNSS + Dead reckoning"));
+      else if(fixType == 5) Serial.print(F("Time only"));
+
+      Serial.println();
+    }
+  }
+
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  // Setup callbacks
 
   myGNSS.setNMEAGPGGAcallbackPtr(&pushGPGGA); // Set up the callback for GPGGA
 
