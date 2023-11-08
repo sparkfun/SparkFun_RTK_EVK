@@ -17,7 +17,7 @@
 #ifndef __GNSS_H__
 #define __GNSS_H__
 
-#include <SparkFun_u-blox_GNSS_Arduino_Library.h>
+#include <SparkFun_u-blox_GNSS_Arduino_Library.h> //http://librarymanager/All#SparkFun_u-blox_GNSS - By: SparkFun https://github.com/sparkfun/SparkFun_u-blox_GNSS_Arduino_Library
 
 /** Configure the dynamic model of the receiver
  *  possible choice is between AUTOMOTIVE, SCOOTER, MOWER, PORTABLE (=no DR), UNKNOWN (= no change)

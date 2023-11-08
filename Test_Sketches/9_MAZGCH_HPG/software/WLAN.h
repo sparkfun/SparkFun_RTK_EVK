@@ -20,8 +20,8 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <WiFiClientSecure.h>
-#include <ArduinoMqttClient.h>
-#include <WiFiManager.h>
+#include <ArduinoMqttClient.h> //http://librarymanager/All#Arduino_MQTT_Client - By: Arduino https://github.com/arduino-libraries/ArduinoMqttClient
+#include <WiFiManager.h> //http://librarymanager/All#WiFiManager_tzapu - By: tablatronix https://github.com/tzapu/WiFiManager
 #if defined(ARDUINO_UBLOX_NORA_W10) && defined(ESP_ARDUINO_VERSION) && (ESP_ARDUINO_VERSION < ESP_ARDUINO_VERSION_VAL(2,0,5))
   #error The WiFiManager triggers a race condition with ESP core > 2.3.0 -> please use Arduino_esp32 2.0.5 and 
 #endif

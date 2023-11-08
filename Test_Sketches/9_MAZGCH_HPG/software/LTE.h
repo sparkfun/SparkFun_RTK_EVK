@@ -18,7 +18,7 @@
 #define __LTE_H__
 
 #include <base64.h>
-#include <SparkFun_u-blox_SARA-R5_Arduino_Library.h>
+#include <SparkFun_u-blox_SARA-R5_Arduino_Library.h> //http://librarymanager/All#SparkFun_u-blox_SARA-R5_Arduino_Library - By: SparkFun https://github.com/sparkfun/SparkFun_u-blox_SARA-R5_Arduino_Library
 
 #include "HW.h"
 #include "CONFIG.h"

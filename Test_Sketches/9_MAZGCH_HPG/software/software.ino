@@ -50,14 +50,14 @@
 // Library Manager:   http://librarymanager/All#NimBLE-Arduino
 // Github Repository: https://github.com/h2zero/NimBLE-Arduino
 
-// Sparkfun libraries
+// SparkFun libraries
 //-----------------------------------
 
-// SparkFun u-blox GNSS Arduino Library by Sparkfun Electronics, version 2.2.24
+// SparkFun u-blox GNSS Arduino Library by SparkFun Electronics, version 2.2.24
 // Library Manager:    http://librarymanager/All#SparkFun_u-blox_GNSS_Arduino_Library
 // Github Repository:  https://github.com/sparkfun/SparkFun_u-blox_GNSS_Arduino_Library
 
-// SparkFun u-blox SARA-R5 Arduino Library by Sparkfun Electronics, version 1.1.6
+// SparkFun u-blox SARA-R5 Arduino Library by SparkFun Electronics, version 1.1.6
 // Library Manager:    http://librarymanager/All#SparkFun_u-blox_SARA-R5_Arduino_Library
 // Github Repository:  https://github.com/sparkfun/SparkFun_u-blox_SARA-R5_Arduino_Library
 

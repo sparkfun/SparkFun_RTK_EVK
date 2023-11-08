@@ -17,7 +17,7 @@
 #ifndef __WEBSOCKET__H__
 #define __WEBSOCKET__H__
 
-#include <ArduinoWebsockets.h>
+#include <ArduinoWebsockets.h> //http://librarymanager/All#Arduino_Websockets_pongs - By: gilmaimon https://github.com/gilmaimon/ArduinoWebsockets
 using namespace websockets;
 
 const uint16_t WEBSOCKET_PORT     =        8080; //!< needs to match WEBSOCKET_HTML and hpg.mazg.ch value
