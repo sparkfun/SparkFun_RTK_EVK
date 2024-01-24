@@ -1,5 +1,5 @@
 /*
-  SparkFun RTK Control Test Sketch
+  SparkFun RTK EVK Test Sketch
 
   License: MIT. Please see LICENSE.md for more details
 
@@ -9,13 +9,13 @@
   D2  : STAT LED
   D3  : Serial RX (CH340 TX)
   D4  : SD CS
-  D5  : Unused - via 74HC4066 switch
-  D12 : SDA2 - Qwiic OLED - via 74HC4066 switch
+  D5  : LARA_ON - via 74HC4066 switch and PWREN
+  D12 : SDA2 - Qwiic OLED - via 74HC4066 switch and PWREN
   D13 : Serial1 TX - LARA_TXDI
   D14 : Serial1 RX - LARA RXDO
-  D15 : SCL2 - Qwiic OLED - via 74HC4066 switch
-  D16 : N/C
-  D17 : N/C
+  D15 : SCL2 - Qwiic OLED - via 74HC4066 switch and PWREN
+  D16 : N/A
+  D17 : N/A
   D18 : SPI SCK
   D19 : SPI POCI
   D21 : I2C SDA
@@ -34,16 +34,16 @@
 #include "SPI.h"
 #include "SdFat.h"
 
-const int pin_microSD_CS = 4; // Chip select for the microSD card
-const int ETHERNET_CS = 27; // Chip select for the WizNet 5500
-const int PWREN = 32; // 3V3_SW and SDIO Enable
 const int STAT_LED = 2;
-const int SERIAL1_TX = 13;
-const int SERIAL1_RX = 14;
-const int SCL_2 = 15;
-const int SDA_2 = 12;
-const int ETHERNET_INT = 33;
-const int GNSS_INT = 25;
+const int pin_microSD_CS = 4; // Chip select for the microSD card
+const int SDA_2 = 12; // OLED
+const int SERIAL1_TX = 13; // LARA_TXDI
+const int SERIAL1_RX = 14; // LARA RXDO
+const int SCL_2 = 15; // OLED
+const int ETHERNET_CS = 27; // Chip select for the WizNet W5500
+const int PWREN = 32; // 74HC4066 switch Enable - pull high to enable SCL2/SDA2 and LARA_ON
+const int ETHERNET_INT = 33; // WizNet W5500 interrupt
+const int GNSS_INT = 25; // ZED_F9P interrupt
 
 SdFat *sd;
 
@@ -384,7 +384,7 @@ void setup()
   delay(1000);
 
   Serial.begin(115200);
-  Serial.println("SparkFun RTK - Test Sketch");
+  Serial.println("SparkFun RTK EVK - Test Sketch");
 
   Serial.println("Initializing microSD - using SPI, SdFat and SdFile");
 
