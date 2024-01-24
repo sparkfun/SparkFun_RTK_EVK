@@ -33,8 +33,8 @@
 
 const int STAT_LED = 2;
 const int SD_CS = 4; // Chip select for the microSD card
-const int SCL_2 = 15;
-const int SDA_2 = 12;
+const int SCL_2 = 15; // OLED
+const int SDA_2 = 12; // OLED
 const int ETHERNET_CS = 27; // Chip select for the WizNet 5500
 const int PWREN = 32; // 74HC4066 switch Enable - pull high to enable SCL2/SDA2 and LARA_ON
 
