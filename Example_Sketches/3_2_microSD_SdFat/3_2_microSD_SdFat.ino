@@ -44,6 +44,7 @@ const int ETHERNET_CS = 27; // Chip select for the WizNet W5500
 const int PWREN = 32; // 74HC4066 switch Enable - pull high to enable SCL2/SDA2 and LARA_ON
 const int ETHERNET_INT = 33; // WizNet W5500 interrupt
 const int GNSS_INT = 25; // ZED_F9P interrupt
+const int SD_PRESENT = 36; // microSD card card present - from the microSD socket switch
 
 SdFat *sd;
 
@@ -380,6 +381,7 @@ void setup()
   digitalWrite(ETHERNET_CS, HIGH);
   pinMode(PWREN, OUTPUT);
   digitalWrite(PWREN, HIGH);
+  pinMode(SD_PRESENT, INPUT_PULLUP);
 
   delay(1000);
 
@@ -387,6 +389,11 @@ void setup()
   Serial.println("SparkFun RTK EVK - Test Sketch");
 
   Serial.println("Initializing microSD - using SPI, SdFat and SdFile");
+
+  while (digitalRead(SD_PRESENT)){ // SD_PRESENT is high when the card is not present
+    Serial.println("Card not present. Please insert one to begin the test...");
+    delay(1000);
+  }
 
   resetSPI();                         // Re-initialize the SPI/SD interface
 
