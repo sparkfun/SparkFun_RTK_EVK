@@ -4,19 +4,19 @@
 #include "secrets.h" // Update secrets.h with your AssistNow token string
 
 #ifdef USE_SERVER_ASSISTANCE
-// Use 55 degrees (*10^7) north, 1 degree (*10^7) west, 100m (10000cm) altitude, 100km (10000000cm) accuracy. Replace these with your position.
+// SF HQ is at 40.1 degrees (*10^7) north, 105.2 degrees (*10^7) west, 1500m (150000cm) altitude, 100km (10000000cm) accuracy. Replace these with your position.
 // The units for lat and lon are degrees * 1e-7 (WGS84)
 // The units for alt (WGS84) and posAcc (stddev) are cm.
 
-const char useLatitude[] = "lat=54.9;"; // Use an approximate latitude of 55 degrees north. Replace this with your latitude.
-const char useLongitude[] = "lon=-1.4;"; // Use an approximate longitude of 1 degree west. Replace this with your longitude.
-const char useAlt[] = "alt=100;"; // Use an approximate latitude of 100m above WGS84. Replace this with your altitude.
-const char usePosAcc[] = "pacc=25000;filteronpos;"; // Use a position accuracy of 25000m (25km)
+const char useLatitude[] = "lat=40.1;"; // Use an approximate latitude of 40.1 degrees north. Replace this with your latitude.
+const char useLongitude[] = "lon=-105.2;"; // Use an approximate longitude of 105.2 degrees west. Replace this with your longitude.
+const char useAlt[] = "alt=1500;"; // Use an approximate latitude of 100m above WGS84. Replace this with your altitude.
+const char usePosAcc[] = "pacc=100000;"; // Use a position accuracy of 100000m (100km)
 
-const int32_t myLat = 549000000; // Replace this with your latitude (degrees * 1e-7)
-const int32_t myLon = -14000000; // Replace this with your longitude (degrees * 1e-7)
-const int32_t myAlt = 10000; // Replace this with your altitude (cm)
-const uint32_t posAcc = 2500000; // Position accuracy (cm)
+const int32_t myLat = 401000000; // Replace this with your latitude (degrees * 1e-7)
+const int32_t myLon = -1502000000; // Replace this with your longitude (degrees * 1e-7)
+const int32_t myAlt = 150000; // Replace this with your altitude (cm)
+const uint32_t posAcc = 10000000; // Position accuracy (cm)
 #endif
 
 const uint8_t numAssistNowServers = 2;
