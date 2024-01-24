@@ -1,5 +1,5 @@
 /*
-  SparkFun RTK Control Test Sketch
+  SparkFun RTK EVK Test Sketch
 
   License: MIT. Please see LICENSE.md for more details
 
