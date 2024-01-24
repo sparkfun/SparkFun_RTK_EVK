@@ -110,7 +110,7 @@ void setup()
   delay(1000);
 
   Serial.begin(115200);
-  Serial.println("SparkFun RTK - Test Sketch");
+  Serial.println("SparkFun RTK EVK - Test Sketch");
 
   I2C_1.begin((int)SDA_1, (int)SCL_1, (uint32_t)400000);
 
