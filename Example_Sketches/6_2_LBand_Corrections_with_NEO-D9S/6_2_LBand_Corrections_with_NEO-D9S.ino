@@ -3,6 +3,12 @@
 
   License: MIT. Please see LICENSE.md for more details
 
+  This example shows how to receive u-blox PointPerfect L-Band correction data
+  with the NEO-D9S and transfer it to the ZED-F9P over UART or I2C.
+
+  The L-Band SPARTN correction data is encrypted; the ZED-F9P requires keys to decrypt it.
+  Update secrets.h with your PointPerfect L-Band keys from Thingstream.
+
   ESP32-WROVER-IE Pin Allocations:
   D0  : Boot + Boot Button
   D1  : Serial TX (CH340 RX)
