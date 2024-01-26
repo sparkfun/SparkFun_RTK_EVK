@@ -33,7 +33,7 @@
 
 const int STAT_LED = 2;
 const int SD_CS = 4; // Chip select for the microSD card
-const int LARA_ON = 5; // High indicates the LARA VCCIO is on
+const int LARA_ON = 5; // High indicates the LARA VCCIO is on. Needs PULLDOWN
 const int SDA_2 = 12; // OLED
 const int SERIAL_TX = 13; // LARA_TXDI
 const int SERIAL_RX = 14; // LARA RXDO
@@ -103,11 +103,14 @@ void setup()
   // The LARA_R6 will be powered off by default.
   // If desired, we can power it on manually by toggling the LARA_PWR pin now.
   // Or we can wait and let myLARA.begin do it.
-  //digitalWrite(LARA_PWR, HIGH);
-  //delay(100);
-  //digitalWrite(LARA_PWR, LOW);
-  //
-  //delay(8000); // Wait > 7 seconds for the LARA to begin
+  // else
+  // {
+  //   digitalWrite(LARA_PWR, HIGH);
+  //   delay(100);
+  //   digitalWrite(LARA_PWR, LOW);
+    
+  //   delay(8000); // Wait > 7 seconds for the LARA to begin
+  // }
 
   myLARA.enableDebugging();
 

@@ -1,5 +1,5 @@
 /*
-  SparkFun RTK Control Test Sketch
+  SparkFun RTK EVK Test Sketch
 
   License: MIT. Please see LICENSE.md for more details
 
@@ -9,13 +9,13 @@
   D2  : STAT LED
   D3  : Serial RX (CH340 TX)
   D4  : SD CS
-  D5  : Unused - via 74HC4066 switch
-  D12 : SDA2 - Qwiic OLED - via 74HC4066 switch
+  D5  : LARA_ON - via 74HC4066 switch and PWREN. Needs PULLDOWN
+  D12 : SDA2 - Qwiic OLED - via 74HC4066 switch and PWREN
   D13 : Serial1 TX - LARA_TXDI
   D14 : Serial1 RX - LARA RXDO
-  D15 : SCL2 - Qwiic OLED - via 74HC4066 switch
-  D16 : N/C
-  D17 : N/C
+  D15 : SCL2 - Qwiic OLED - via 74HC4066 switch and PWREN
+  D16 : N/A
+  D17 : N/A
   D18 : SPI SCK
   D19 : SPI POCI
   D21 : I2C SDA
@@ -31,16 +31,22 @@
   A36 : SD Card Detect
 */
 
-const int SD_CS = 4; // Chip select for the microSD card
-const int ETHERNET_CS = 27; // Chip select for the WizNet 5500
-const int PWREN = 32; // 3V3_SW and SDIO Enable
 const int STAT_LED = 2;
-const int SCL_2 = 15;
-const int SDA_2 = 12;
-const int SERIAL_TX = 13;
-const int SERIAL_RX = 14;
-const int LARA_PWR = 26;
-const int LARA_NI = 34;
+const int SD_CS = 4; // Chip select for the microSD card
+const int LARA_ON = 5; // High indicates the LARA VCCIO is on. Needs PULLDOWN
+const int SDA_2 = 12; // OLED
+const int SERIAL_TX = 13; // LARA_TXDI
+const int SERIAL_RX = 14; // LARA RXDO
+const int SCL_2 = 15; // OLED
+const int SCL_1 = 22; // ZED-F9P and NEO-D9S
+const int SDA_1 = 21; // ZED-F9P and NEO-D9S
+const int GNSS_INT = 25; // ZED_F9P interrupt
+const int LARA_PWR = 26; // LARA_PWR_ON - inverted - set LARA_PWR high to pull LARA_PWR_ON low
+const int ETHERNET_CS = 27; // Chip select for the WizNet W5500
+const int PWREN = 32; // 74HC4066 switch Enable - pull high to enable SCL2/SDA2 and LARA_ON
+const int ETHERNET_INT = 33; // WizNet W5500 interrupt
+const int LARA_NI = 34; // LARA Network Indicator - only valid when the LARA is powered on
+const int SD_PRESENT = 36; // microSD card card present - from the microSD socket switch
 
 #include <HardwareSerial.h>
 HardwareSerial laraSerial(2); //UART2 normally uses pins 16 and 17, but these are not available on WROVER
@@ -107,11 +113,24 @@ void setup()
   digitalWrite(PWREN, HIGH);
   
   pinMode(LARA_NI, INPUT);
+  pinMode(LARA_ON, INPUT_PULLDOWN);
   
   delay(1000); // Wait for the ESP32
 
   Serial.begin(115200);
-  Serial.println("SparkFun RTK - Test Sketch");
+  Serial.println("SparkFun RTK EVK - Test Sketch");
+
+  // The LARA_R6 will be powered off by default.
+  // If desired, we can power it on manually by toggling the LARA_PWR pin now.
+  // Or we can wait and let myLARA.begin do it.
+  // else
+  // {
+  //   digitalWrite(LARA_PWR, HIGH);
+  //   delay(100);
+  //   digitalWrite(LARA_PWR, LOW);
+    
+  //   delay(8000); // Wait > 7 seconds for the LARA to begin
+  // }
 
   //myLARA.enableDebugging();
 
@@ -128,6 +147,9 @@ void setup()
   {
     Serial.println(F("Unable to communicate with the LARA."));
   }
+
+  if (!digitalRead(LARA_ON))
+    Serial.println(F("LARA-R6 failed to power on!"));
 
   // Send the factory configuration: clear file system, delete modem profiles
   if (myLARA.factoryConfiguration(0,1) == SARA_R5_ERROR_SUCCESS)
