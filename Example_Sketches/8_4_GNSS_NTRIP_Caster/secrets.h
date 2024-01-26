@@ -1,7 +1,3 @@
-//Your WiFi credentials
-const char ssid[] = "yourSSID";
-const char password[] = "yourPassword";
-
 //RTK2Go works well and is free
 //const char casterHost[] = "rtk2go.com";
 //const uint16_t casterPort = 2101;
@@ -24,4 +20,4 @@ const char casterHost[] = "na.skylark.swiftnav.com"; // na = North Americs L1+L2
 const uint16_t casterPort = 2101;
 const char casterUser[] = "NTRIPusername+accountSubdomain"; // This is generated when you add a device to your Skylark account
 const char casterUserPW[] = "devicePassword";
-const char mountPoint[] = "CRS"; // The mount point you want to get data from. Select CRS (Cloud Reference Station) for the ZED-F9x
+const char mountPoint[] = "MSM5"; // The mount point you want to get data from

@@ -3,6 +3,8 @@
 
   License: MIT. Please see LICENSE.md for more details
 
+  This example demonstrates how to power-on the LARA-R6 and check it is connected.
+
   ESP32-WROVER-IE Pin Allocations:
   D0  : Boot + Boot Button
   D1  : Serial TX (CH340 RX)

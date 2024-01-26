@@ -3,6 +3,12 @@
 
   License: MIT. Please see LICENSE.md for more details
 
+  This example demonstrates how to connect the LARA_R6 to a new operator.
+
+  Important note:
+  Please select a LTE or UTRAN operator only.
+  Selecting GSM will cause high peak currents during transmit and could cause the power to brown-out.
+
   ESP32-WROVER-IE Pin Allocations:
   D0  : Boot + Boot Button
   D1  : Serial TX (CH340 RX)

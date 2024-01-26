@@ -3,6 +3,11 @@
 
   License: MIT. Please see LICENSE.md for more details
 
+  This example demonstrates how to connect to an NTRIP Caster like Skylark or PointOneNav.
+  Corrections are received by the LARA-R6 and pushed to the GNSS.
+
+  Enter your NTRIP credentials in secrets.h
+
   ESP32-WROVER-IE Pin Allocations:
   D0  : Boot + Boot Button
   D1  : Serial TX (CH340 RX)
