@@ -130,6 +130,7 @@ void mqttCallback(int command, int result)
         if (pos == topics.end()) // if unsubTopic is not in topics
         {
           console->printf("MQTT unsubscribe result %d topic \"%s\" but topic not in list\r\n", result, unsubTopic.c_str());
+          unsubTopic = ""; // Clear the unsubTopic otherwise mqttTask will always be busy
         }
         else
         {
@@ -252,7 +253,7 @@ void mqttTask(bool keyPress)
     std::vector<String> newTopics;
     newTopics.clear();
     newTopics.push_back(MQTT_TOPIC_KEY); // Always subscribe to the keys topic
-    if ((myLat == 99999) || (myLon == 99999))
+    if ((myLat == 99999) || (myLon == 99999) || !useLocalizedDistribution)
       newTopics.push_back(MQTT_TOPIC_SPARTN); // If our location is unknown, subscribe to the full continental topic
     else
     {
@@ -271,10 +272,13 @@ void mqttTask(bool keyPress)
       else
         newTopics.push_back(tileTopic); // Tile is known so subscribe to only our localized topic
     }
-    if (mqttFirstTime) // First time, subscribe to the full Assist Now MGA data, thereafter subscribe to updates only
-      newTopics.push_back(MQTT_TOPIC_ASSISTNOW);
-    else
-      newTopics.push_back(MQTT_TOPIC_ASSISTNOW_UPDATES);
+    if (useAssistNow)
+    {
+      if (mqttFirstTime || !useAssistNowUpdates) // First time, subscribe to the full Assist Now MGA data, thereafter subscribe to updates only
+        newTopics.push_back(MQTT_TOPIC_ASSISTNOW);
+      else
+        newTopics.push_back(MQTT_TOPIC_ASSISTNOW_UPDATES);
+    }
 
     // loop through new topics and subscribe to the first topic that is not in our curent topics list.
     for (auto it = newTopics.begin(); (it != newTopics.end()) && !busy; it = std::next(it))
@@ -354,8 +358,9 @@ void mqttTask(bool keyPress)
               busy = true;
             }
           }
-          else if ((topic.equals(tileTopic)) && (strstr(topic.c_str(), "/dict") != nullptr)) // Check if this is a dictionary of tile nodes
+          else if ((topic.equals(tileTopic)) && (strstr(strTopic, "/dict") != nullptr)) // Check if this is a dictionary of tile nodes
           {
+            console->println("mqttTask: localized distribution dict received\r\n");
             // This is a cheat... We should be using a JSON library to read the nodes:
             // {
             //   "tile": "L2N5375W00125",
@@ -413,6 +418,7 @@ void mqttTask(bool keyPress)
           {
             // Anything else can be sent to the GNSS as is
             myGNSS.pushRawData(buf, (size_t)len);
+            console->printf("mqttTask: pushing %d bytes to the GNSS\r\n",len);
 
             // Check if pushing the full AssistNow MGA data
             if (topic.equals(MQTT_TOPIC_ASSISTNOW))

@@ -14,11 +14,14 @@ const char MQTT_TOPIC_SPARTN[] = "/pp/Lb/us"; // This topic provides the SPARTN 
 // const char MQTT_TOPIC_SPARTN[] = "/pp/ip/us"; // This topic provides the SPARTN corrections for IP only for the US region
 // const char MQTT_TOPIC_SPARTN[] = "/pp/ip/eu"; // This topic provides the SPARTN corrections for IP only for the EU region
 
+const bool useLocalizedDistribution = true; // True for localized distribution. Set to false to only use the continental corrections
 const char localizedPrefix[] = "pp/ip/L"; // The localized distribution topic prefix. Note: starts with "pp", not "/pp"
 const char localizedLevel = '2'; // The localized distribution level: 0 = 10 degrees; 1 = 5 degrees; 2 = 2.5 degrees
 
 // <Your PointPerfect Thing> -> Credentials -> AssistNow (MGA) topic
+const bool useAssistNow = true; // Set to true to use Assist Now MGA
 const char MQTT_TOPIC_ASSISTNOW[] = "/pp/ubx/mga";
+const bool useAssistNowUpdates = true; // If useAssistNow is true, set to true to use updates (less traffic)
 const char MQTT_TOPIC_ASSISTNOW_UPDATES[] = "/pp/ubx/mga/updates";
 
 // <Your PointPerfect Thing> -> Credentials -> Client Id
