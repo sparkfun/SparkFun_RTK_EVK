@@ -3,7 +3,8 @@
 
   License: MIT. Please see LICENSE.md for more details
 
-  This example demonstrates how to connect to PointPerfect using MQTT on the LARA-R6001D.
+  This example demonstrates how to connect to PointPerfect using MQTT on the LARA-R6001D
+  and feed localized corrections to the ZED-F9P.
 
   You need a valid IP or IP+L-Band subscription for this example.
   Log in to Thingstream and copy your Location Thing Client ID and certificates into secrets.h.
