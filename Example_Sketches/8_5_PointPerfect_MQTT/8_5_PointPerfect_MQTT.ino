@@ -40,7 +40,7 @@ void setup()
   console->println(F("GNSS is ready"));
 
   // Disable PMP messages on the NEO-D9S UART1 to prevent the ZED getting correction data twice!
-  if (!initLBand()) //see LBand.h
+  if (!initLBand()) // See LBand.h
   {
     console->println(F("Could not initialize the L-Band! Freezing..."));
     while (1)

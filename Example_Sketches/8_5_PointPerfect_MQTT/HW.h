@@ -156,7 +156,7 @@ void prettyPrintString(String theString) // Pretty-print a String in HEX and ASC
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 // Return true if a key has been pressed
-bool keyPressed(char *c = nullptr);
+bool keyPressed(char *c = nullptr); // Header
 bool keyPressed(char *c)
 {
   if (console->available()) // Check for a new key press
