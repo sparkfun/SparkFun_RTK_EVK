@@ -59,16 +59,16 @@ const int SD_PRESENT = 36; // microSD card card present - from the microSD socke
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-#include <SparkFun_u-blox_SARA-R5_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_SARA-R5_Arduino_Library
-
 #include <HardwareSerial.h>
 HardwareSerial laraSerial(2); //UART2 normally uses pins 16 and 17, but these are not available on WROVER
 
-// Derive the SARA_R5 class, so we can override beginSerial
-class SARA_R5_DERIVED : public SARA_R5
+#include <SparkFun_u-blox_Cellular_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_Cellular
+
+// Derive the LARA_R6 class, so we can override beginSerial
+class LARA_R6_Derived : public SparkFun_ublox_LARA_R6001D
 {
   public:
-    SARA_R5_DERIVED() : SARA_R5{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
+    LARA_R6_Derived() : SparkFun_ublox_LARA_R6001D{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
 
   protected:
     void beginSerial(unsigned long baud) override
@@ -84,7 +84,7 @@ class SARA_R5_DERIVED : public SARA_R5
 };
 
 // Create a LARA_R6 object to use throughout the sketch
-SARA_R5_DERIVED myLARA;
+LARA_R6_Derived myLARA;
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -184,14 +184,14 @@ void setup()
   while (Serial.available()) Serial.read();
   
   // First check to see if we're connected to an operator:
-  if (myLARA.getOperator(&currentOperator) == SARA_R5_SUCCESS)
+  if (myLARA.getOperator(&currentOperator) == UBX_CELL_SUCCESS)
   {
     Serial.print(F("Connected to: "));
     Serial.println(currentOperator);
   }
   else
   {
-    Serial.print(F("The SARA is not yet connected to an operator. Please use the previous examples to connect. Or wait and retry. Freezing..."));
+    Serial.print(F("The LARA is not yet connected to an operator. Please use the previous examples to connect. Or wait and retry. Freezing..."));
     while (1)
       ; // Do nothing more
   }
@@ -205,8 +205,6 @@ void setup()
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   // Set a callback to process the socket close
-  // 
-  // Note: the SARA-R5 only sends a +UUSOCL URC when the socket os closed by the remote
   myLARA.setSocketCloseCallback(&processSocketClose);
   
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -302,7 +300,7 @@ void loop()
   myGNSS.checkUblox(); // Check for the arrival of new GNSS data and process it.
   myGNSS.checkCallbacks(); // Check if any GNSS callbacks are waiting to be processed.
 
-  myLARA.bufferedPoll(); // Process the SARA-R5 URC's. This pushes the incoming RTCM data to the GNSS.
+  myLARA.bufferedPoll(); // Process the URC's. This pushes the incoming RTCM data to the GNSS.
 
   enum states // Use a 'state machine' to open and close the connection
   {

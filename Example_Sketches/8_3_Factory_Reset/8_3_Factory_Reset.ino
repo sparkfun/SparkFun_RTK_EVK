@@ -51,16 +51,13 @@ const int SD_PRESENT = 36; // microSD card card present - from the microSD socke
 #include <HardwareSerial.h>
 HardwareSerial laraSerial(2); //UART2 normally uses pins 16 and 17, but these are not available on WROVER
 
-#include <SparkFun_u-blox_SARA-R5_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_SARA-R5_Arduino_Library
+#include <SparkFun_u-blox_Cellular_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_Cellular
 
-// Derive the SARA_R5 class, so we can override beginSerial
-
-extern class SARA_R5_DERIVED myLARA;
-
-class SARA_R5_DERIVED : public SARA_R5
+// Derive the LARA_R6 class, so we can override beginSerial
+class LARA_R6_Derived : public SparkFun_ublox_LARA_R6001D
 {
   public:
-    SARA_R5_DERIVED() : SARA_R5{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
+    LARA_R6_Derived() : SparkFun_ublox_LARA_R6001D{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
 
   protected:
     void beginSerial(unsigned long baud) override
@@ -75,26 +72,26 @@ class SARA_R5_DERIVED : public SARA_R5
     }
 
   public:
-    SARA_R5_error_t factoryConfiguration(uint8_t fs_op, uint8_t nvm_op)
+    UBX_CELL_error_t factoryConfiguration(uint8_t fs_op, uint8_t nvm_op)
     {
-      SARA_R5_error_t err;
+      UBX_CELL_error_t err;
       char *command;
     
       command = (char *)calloc(sizeof("+UFACTORY=") + 4, sizeof(char));
       if (command == nullptr)
-        return SARA_R5_ERROR_OUT_OF_MEMORY;
+        return UBX_CELL_ERROR_OUT_OF_MEMORY;
       sprintf(command, "%s%d,%d", "+UFACTORY=", fs_op, nvm_op);
-      err = sendCommandWithResponse(command, SARA_R5_RESPONSE_OK,
-                                    nullptr, SARA_R5_STANDARD_RESPONSE_TIMEOUT);
+      err = sendCommandWithResponse(command, UBX_CELL_RESPONSE_OK,
+                                    nullptr, UBX_CELL_STANDARD_RESPONSE_TIMEOUT);
       free(command);
       return err;
     }
 };
 
 // Create a LARA_R6 object to use throughout the sketch
-SARA_R5_DERIVED myLARA;
+LARA_R6_Derived myLARA;
 
-// Uncomment this line if you want to be able to communicate directly with the SARA in the main loop
+// Uncomment this line if you want to be able to communicate directly with the LARA in the main loop
 //#define DEBUG_PASSTHROUGH_ENABLED
 
 void setup()
@@ -152,7 +149,7 @@ void setup()
     Serial.println(F("LARA-R6 failed to power on!"));
 
   // Send the factory configuration: clear file system, delete modem profiles
-  if (myLARA.factoryConfiguration(0,1) == SARA_R5_ERROR_SUCCESS)
+  if (myLARA.factoryConfiguration(0,1) == UBX_CELL_SUCCESS)
     Serial.println(F("Factory configuration sent. Reboot module to apply."));
   else
     Serial.println(F("Factory configuration failed!"));

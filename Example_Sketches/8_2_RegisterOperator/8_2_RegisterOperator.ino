@@ -57,13 +57,13 @@ const int SD_PRESENT = 36; // microSD card card present - from the microSD socke
 #include <HardwareSerial.h>
 HardwareSerial laraSerial(2); //UART2 normally uses pins 16 and 17, but these are not available on WROVER
 
-#include <SparkFun_u-blox_SARA-R5_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_SARA-R5_Arduino_Library
+#include <SparkFun_u-blox_Cellular_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_Cellular
 
-// Derive the SARA_R5 class, so we can override beginSerial
-class SARA_R5_DERIVED : public SARA_R5
+// Derive the LARA_R6 class, so we can override beginSerial
+class LARA_R6_Derived : public SparkFun_ublox_LARA_R6001D
 {
   public:
-    SARA_R5_DERIVED() : SARA_R5{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
+    LARA_R6_Derived() : SparkFun_ublox_LARA_R6001D{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
 
   protected:
     void beginSerial(unsigned long baud) override
@@ -79,7 +79,7 @@ class SARA_R5_DERIVED : public SARA_R5
 };
 
 // Create a LARA_R6 object to use throughout the sketch
-SARA_R5_DERIVED myLARA;
+LARA_R6_Derived myLARA;
 
 // Map registration status messages to more readable strings
 String registrationString[] =
@@ -113,7 +113,7 @@ String registrationString[] =
 // MNO_DT -- Deutsche Telekom
 // MNO_US_CELLULAR
 // MNO_SKT
-// MNO_GLOBAL -- SARA factory-programmed value
+// MNO_GLOBAL -- factory-programmed value
 // MNO_STD_EUROPE
 // MNO_STD_EU_NOEPCO
 
@@ -184,7 +184,7 @@ int convertOperatorNumber( mobile_network_operator_t mno)
 // of MNO_SW_DEFAULT.
 #define MAX_OPERATORS 20
 
-// Uncomment this line if you want to be able to communicate directly with the SARA in the main loop
+// Uncomment this line if you want to be able to communicate directly with the LARA in the main loop
 //#define DEBUG_PASSTHROUGH_ENABLED
 
 void setup()
@@ -262,7 +262,7 @@ void setup()
   while (Serial.available()) Serial.read();
   
   // First check to see if we're already connected to an operator:
-  if (myLARA.getOperator(&currentOperator) == SARA_R5_SUCCESS) {
+  if (myLARA.getOperator(&currentOperator) == UBX_CELL_SUCCESS) {
     Serial.print(F("Already connected to: "));
     Serial.println(currentOperator);
     // If already connected provide the option to type y to connect to new operator
@@ -345,7 +345,7 @@ void setup()
           Serial.println("Connecting to option " + String(selection));
           if (selection == (opsAvailable + 1))
           {
-            if (myLARA.automaticOperatorSelection() == SARA_R5_SUCCESS)
+            if (myLARA.automaticOperatorSelection() == UBX_CELL_SUCCESS)
             {
               Serial.println("Automatic operator selection: successful\r\n");
             }
@@ -356,7 +356,7 @@ void setup()
           }
           else
           {
-            if (myLARA.registerOperator(ops[selection - 1]) == SARA_R5_SUCCESS)
+            if (myLARA.registerOperator(ops[selection - 1]) == UBX_CELL_SUCCESS)
             {
               Serial.println("Network " + ops[selection - 1].longOp + " registered\r\n");
             }
@@ -411,7 +411,7 @@ void printInfo(void)
 
   Serial.println(F("Connection info:"));
   Serial.println(F("Context ID:\tAPN Name:\tIP Address:"));
-  for (int cid = 0; cid < SARA_R5_NUM_PDP_CONTEXT_IDENTIFIERS; cid++)
+  for (int cid = 0; cid < UBX_CELL_NUM_PDP_CONTEXT_IDENTIFIERS; cid++)
   {
     String apn = "";
     IPAddress ip(0, 0, 0, 0);
@@ -427,7 +427,7 @@ void printInfo(void)
   }
 
   // Operator name or number
-  if (myLARA.getOperator(&currentOperator) == SARA_R5_SUCCESS)
+  if (myLARA.getOperator(&currentOperator) == UBX_CELL_SUCCESS)
   {
     Serial.print(F("Operator: "));
     Serial.println(currentOperator);
@@ -471,7 +471,7 @@ void printOperators(struct operator_stats * ops, int operatorsAvailable)
       Serial.print(F(" - GSM/GPRS with EDGE"));
       break;
     case 7:
-      Serial.print(F(" - LTE")); // SARA-R5 only supports LTE
+      Serial.print(F(" - LTE"));
       break;
     }
     Serial.println();

@@ -53,13 +53,13 @@ const int SD_PRESENT = 36; // microSD card card present - from the microSD socke
 #include <HardwareSerial.h>
 HardwareSerial laraSerial(2); //UART2 normally uses pins 16 and 17, but these are not available on WROVER
 
-#include <SparkFun_u-blox_SARA-R5_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_SARA-R5_Arduino_Library
+#include <SparkFun_u-blox_Cellular_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_Cellular
 
-// Derive the SARA_R5 class, so we can override beginSerial
-class SARA_R5_DERIVED : public SARA_R5
+// Derive the LARA_R6 class, so we can override beginSerial
+class LARA_R6_Derived : public SparkFun_ublox_LARA_R6001D
 {
   public:
-    SARA_R5_DERIVED() : SARA_R5{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
+    LARA_R6_Derived() : SparkFun_ublox_LARA_R6001D{LARA_PWR}{} // Pass the LARA_PWR pin into the class so the library can powerOn / powerOff
 
   protected:
     void beginSerial(unsigned long baud) override
@@ -75,7 +75,7 @@ class SARA_R5_DERIVED : public SARA_R5
 };
 
 // Create a LARA_R6 object to use throughout the sketch
-SARA_R5_DERIVED myLARA;
+LARA_R6_Derived myLARA;
 
 void setup()
 {
