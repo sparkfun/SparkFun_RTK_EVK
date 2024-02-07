@@ -166,11 +166,11 @@ bool initGNSS(void)
 
   if (myGNSS.begin(I2C_1) == false) // Connect to the Ublox module using Wire port
   {
-    console->println(F("u-blox GPS not detected at default I2C address!"));
+    console->println(F("u-blox GNSS not detected at default I2C address!"));
     return false;
   }
 
-  console->println(F("u-blox module connected"));
+  console->println(F("u-blox GNSS module connected"));
 
   myGNSS.setI2COutput(COM_TYPE_UBX);                  // Set the I2C port to output NMEA messages only
   myGNSS.setI2CInput(COM_TYPE_UBX | COM_TYPE_SPARTN); // Be sure SPARTN input is enabled

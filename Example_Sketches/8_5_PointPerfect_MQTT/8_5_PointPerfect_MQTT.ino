@@ -17,6 +17,7 @@
 #include "secrets.h"
 #include "HW.h"
 #include "GNSS.h"
+#include "LBand.h"
 #include "LARA-R6.h"
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -35,8 +36,15 @@ void setup()
     while (1)
       ;
   }
-
   console->println(F("GNSS is ready"));
+
+  // Disable PMP messages on the NEO-D9S UART1 to prevent the ZED getting correction data twice!
+  if (!initLBand()) //see LBand.h
+  {
+    console->println(F("Could not initialize the L-Band! Freezing..."));
+    while (1)
+      ;
+  }
 
   if (!initLARA()) // Initialize the LARA-R6 - see LARA-R6.h
   {
@@ -44,7 +52,6 @@ void setup()
     while (1)
       ;
   }
-
   console->println(F("LARA-R6 is ready"));
 
   console->println(F(">>> Press any key to connect to toggle the MQTT connection to PointPerfect <<<"));
