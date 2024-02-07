@@ -80,11 +80,11 @@ void mqttCallback(int command, int result)
     UBX_CELL_error_t err = myLARA.getMQTTprotocolError(&code, &code2);
     if (UBX_CELL_SUCCESS == err)
     {
-      console->printf("getMQTTprotocolError: command %d protocol error code %d code2 %d\r\n", command, code, code2);
+      console->printf("mqttCallback: command %d protocol error code %d code2 %d\r\n", command, code, code2);
     }
     else
     {
-      console->printf("getMQTTprotocolError: command %d protocol error failed with error %d\r\n", command, err);
+      console->printf("mqttCallback: command %d protocol error failed with error %d\r\n", command, err);
     }
   }
   else
@@ -93,13 +93,13 @@ void mqttCallback(int command, int result)
     {
     case UBX_CELL_MQTT_COMMAND_LOGIN:
     {
-      console->println(F("MQTT Login"));
+      console->println(F("mqttCallback: MQTT login"));
       mqttLogin = true;
     }
     break;
     case UBX_CELL_MQTT_COMMAND_LOGOUT:
     {
-      console->println(F("MQTT Logout"));
+      console->println(F("mqttCallback: MQTT logout"));
       mqttLogin = false;
       mqttMsgs = 0;
       topics.clear();
@@ -111,10 +111,10 @@ void mqttCallback(int command, int result)
     case UBX_CELL_MQTT_COMMAND_SUBSCRIBE:
     {
       if (!subTopic.length())
-        console->printf("MQTT subscribe result %d but no topic", result);
+        console->printf("mqttCallback: MQTT subscribe result %d but no topic\r\n", result);
       else
       {
-        console->printf("MQTT subscribe result %d topic \"%s\"\r\n", result, subTopic.c_str());
+        console->printf("mqttCallback: MQTT subscribe result %d topic \"%s\"\r\n", result, subTopic.c_str());
         topics.push_back(subTopic);
         subTopic = "";
       }
@@ -123,19 +123,19 @@ void mqttCallback(int command, int result)
     case UBX_CELL_MQTT_COMMAND_UNSUBSCRIBE:
     {
       if (!unsubTopic.length())
-        console->printf("MQTT unsubscribe result %d but no topic", result);
+        console->printf("mqttCallback: MQTT unsubscribe result %d but no topic\r\n", result);
       else
       {
         std::vector<String>::iterator pos = std::find(topics.begin(), topics.end(), unsubTopic);
         if (pos == topics.end()) // if unsubTopic is not in topics
         {
-          console->printf("MQTT unsubscribe result %d topic \"%s\" but topic not in list\r\n", result, unsubTopic.c_str());
+          console->printf("mqttCallback: MQTT unsubscribe result %d topic \"%s\" but topic not in list\r\n", result, unsubTopic.c_str());
           unsubTopic = ""; // Clear the unsubTopic otherwise mqttTask will always be busy
         }
         else
         {
           topics.erase(pos);
-          console->printf("MQTT unsubscribe result %d topic \"%s\"\r\n", result, unsubTopic.c_str());
+          console->printf("mqttCallback: MQTT unsubscribe result %d topic \"%s\"\r\n", result, unsubTopic.c_str());
           unsubTopic = "";
         }
       }
@@ -143,7 +143,7 @@ void mqttCallback(int command, int result)
     break;
     case UBX_CELL_MQTT_COMMAND_READ:
     {
-      console->printf("MQTT read result %d\r\n", result);
+      console->printf("mqttCallback: MQTT read result %d\r\n", result);
       mqttMsgs = result;
     }
     break;
@@ -213,7 +213,7 @@ bool mqttStop(void)
   }
   else
   {
-    console->printf("mqttStop: disconnect, failed with error %d\r\n", err);
+    console->printf("mqttStop: disconnect failed with error %d\r\n", err);
   }
   return UBX_CELL_SUCCESS != err;
 }
@@ -290,12 +290,12 @@ void mqttTask(bool keyPress)
         UBX_CELL_error_t err = myLARA.subscribeMQTTtopic(0, topic);
         if (UBX_CELL_SUCCESS == err)
         {
-          console->printf("mqttTask: subscribe requested topic \"%s\" qos %d\r\n", topic.c_str(), 0);
+          console->printf("mqttTask: subscribe request topic \"%s\" qos %d\r\n", topic.c_str(), 0);
           subTopic = topic;
         }
         else
         {
-          console->printf("mqttTask: subscribe request topic \"%s\" qos %d, failed with error %d\r\n", topic.c_str(), 0, err);
+          console->printf("mqttTask: subscribe request topic \"%s\" qos %d failed with error %d\r\n", topic.c_str(), 0, err);
         }
         busy = true;
       }
@@ -315,7 +315,7 @@ void mqttTask(bool keyPress)
         }
         else
         {
-          console->printf("mqttTask: unsubscribe request topic \"%s\", failed with error %d\r\n", topic.c_str(), err);
+          console->printf("mqttTask: unsubscribe request topic \"%s\" failed with error %d\r\n", topic.c_str(), err);
         }
         busy = true;
       }
@@ -348,19 +348,19 @@ void mqttTask(bool keyPress)
               err = myLARA.unsubscribeMQTTtopic(topic);
               if (UBX_CELL_SUCCESS == err)
               {
-                console->printf("mqttTask: unsubscribe requested for unexpected topic \"%s\"\r\n", strTopic);
+                console->printf("mqttTask: unsubscribe request for unexpected topic \"%s\"\r\n", strTopic);
                 unsubTopic = topic;
               }
               else
               {
-                console->printf("mqttTask: unsubscribe request for unexpected topic \"%s\", failed with error %d\r\n", topic.c_str(), err);
+                console->printf("mqttTask: unsubscribe request for unexpected topic \"%s\" failed with error %d\r\n", topic.c_str(), err);
               }
               busy = true;
             }
           }
           else if ((topic.equals(tileTopic)) && (strstr(strTopic, "/dict") != nullptr)) // Check if this is a dictionary of tile nodes
           {
-            console->println("mqttTask: localized distribution dict received\r\n");
+            console->println("mqttTask: localized distribution dict received");
             // This is a cheat... We should be using a JSON library to read the nodes:
             // {
             //   "tile": "L2N5375W00125",
@@ -434,6 +434,8 @@ void mqttTask(bool keyPress)
       }
     }
   }
+
+  lastTask = millis(); // Update lastTask so we wait mqttTaskInterval from now
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

@@ -1,6 +1,3 @@
-#include <Wire.h>
-TwoWire I2C_1 = TwoWire(0);
-
 #include <SparkFun_u-blox_GNSS_v3.h> //http://librarymanager/All#SparkFun_u-blox_GNSS_v3
 SFE_UBLOX_GNSS myGNSS;
 
@@ -158,9 +155,7 @@ void printRXMCOR(UBX_RXM_COR_data_t *ubxDataStruct)
 
 bool initGNSS(void)
 {
-  // Start I2C. Connect to the GNSS.
-
-  I2C_1.begin((int)SDA_1, (int)SCL_1); // Start I2C
+  // Connect to the GNSS.
 
   // myGNSS.enableDebugging(*console); // Uncomment this line to show debug messages on the console
 

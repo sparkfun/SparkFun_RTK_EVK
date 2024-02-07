@@ -44,6 +44,9 @@ const int ETHERNET_INT = 33; // WizNet W5500 interrupt
 const int LARA_NI = 34;      // LARA Network Indicator - only valid when the LARA is powered on
 const int SD_PRESENT = 36;   // microSD card card present - from the microSD socket switch
 
+#include <Wire.h>
+TwoWire I2C_1 = TwoWire(0);
+
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 void initPins(void)
@@ -63,6 +66,8 @@ void initPins(void)
 
   pinMode(LARA_NI, INPUT);
   pinMode(LARA_ON, INPUT_PULLDOWN);
+
+  I2C_1.begin((int)SDA_1, (int)SCL_1); // Start I2C
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

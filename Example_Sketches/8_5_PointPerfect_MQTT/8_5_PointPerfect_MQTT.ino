@@ -24,7 +24,7 @@
 
 void setup()
 {
-  initPins(); // Initialize the IO pins - see HW.ino
+  initPins(); // Initialize the IO pins and start I2C - see HW.ino
 
   delay(1000); // Wait for the ESP32
 
