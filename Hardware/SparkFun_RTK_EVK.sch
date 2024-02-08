@@ -193,7 +193,7 @@
 <layer number="254" name="cooling" color="7" fill="1" visible="no" active="no"/>
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="no"/>
 </layers>
-<schematic xreflabel="%F%N/%S" xrefpart="/%S.%C%R">
+<schematic xreflabel="%F%N/%S" xrefpart="/%S">
 <libraries>
 <library name="SparkFun-Aesthetics">
 <description>&lt;h3&gt;SparkFun Aesthetics&lt;/h3&gt;
@@ -34587,8 +34587,6 @@ USB2514B is four-port</description>
 <part name="SUPPLY17" library="SparkFun-PowerSymbols" deviceset="3.3V_SW" device=""/>
 <part name="SUPPLY18" library="SparkFun-PowerSymbols" deviceset="3.3V_SW" device=""/>
 <part name="SUPPLY23" library="SparkFun-PowerSymbols" deviceset="3.3V_SW" device=""/>
-<part name="RX-TX" library="SparkFun-Jumpers" deviceset="JUMPER-COMBO_2_NC_TRACE" device=""/>
-<part name="TX-RX" library="SparkFun-Jumpers" deviceset="JUMPER-COMBO_2_NC_TRACE" device=""/>
 <part name="ZED_EXTINT" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 <part name="GND56" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="C5" library="SparkFun-Capacitors" deviceset="2.2UF" device="-0603-10V-20%" value="2.2uF"/>
@@ -34714,7 +34712,6 @@ USB2514B is four-port</description>
 <part name="SCL" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 <part name="SDA" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 <part name="SUPPLY63" library="SparkFun-PowerSymbols" deviceset="3.3V_SW" device=""/>
-<part name="LARA_ON" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 <part name="GND49" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="BYPASS1" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_2_SOIC-PAD_NO-PASTE" device="" value="NO PASTE"/>
 <part name="BYPASS2" library="SparkFun-Jumpers" deviceset="JUMPER-SMT_2_SOIC-PAD_NO-PASTE" device="" value="NO PASTE"/>
@@ -34743,6 +34740,10 @@ USB2514B is four-port</description>
 <part name="GND126" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="R69" library="SparkFun-Resistors" deviceset="100KOHM" device="-0603-1/10W-1%" value="100k"/>
 <part name="GND129" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
+<part name="NEO_TX" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH"/>
+<part name="NEO_RX" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH"/>
+<part name="ZED_TXO" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
+<part name="ZED_RXI" library="SparkFun-Connectors" deviceset="TEST-POINT" device="POGO_PTH" value="TEST-POINTPOGO_PTH"/>
 </parts>
 <sheets>
 <sheet>
@@ -34750,7 +34751,7 @@ USB2514B is four-port</description>
 <text x="88.9" y="274.32" size="2.54" layer="94" font="vector">ESP32 WROVER</text>
 <text x="93.98" y="228.6" size="2.54" layer="94" font="vector" align="top-left">ESP32 USB-C</text>
 <text x="350.52" y="10.16" size="2.54" layer="94" font="vector">Paul Clark</text>
-<text x="421.64" y="7.62" size="2.54" layer="94" font="vector">v10</text>
+<text x="421.64" y="7.62" size="2.54" layer="94" font="vector">v11</text>
 <text x="342.9" y="102.87" size="2.54" layer="94" font="vector" align="top-left">Reset and Boot</text>
 <text x="332.74" y="228.6" size="2.54" layer="94" font="vector" align="top-left">LED</text>
 <wire x1="0" y1="175.26" x2="91.44" y2="175.26" width="0.1524" layer="97" style="longdash"/>
@@ -35835,7 +35836,6 @@ Iout Max: 1.8A</text>
 <attribute name="NAME" x="355.6" y="264.16" size="1.778" layer="95" font="vector"/>
 <attribute name="VALUE" x="355.6" y="246.38" size="1.778" layer="96" font="vector"/>
 </instance>
-<instance part="LARA_ON" gate="G$1" x="414.02" y="132.08" smashed="yes"/>
 <instance part="GND49" gate="1" x="134.62" y="132.08" smashed="yes">
 <attribute name="VALUE" x="134.62" y="131.826" size="1.778" layer="96" align="top-center"/>
 </instance>
@@ -36968,12 +36968,7 @@ Iout Max: 1.8A</text>
 <label x="370.84" y="220.98" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="ESP33/!ETH_INT!" class="0">
-<segment>
-<label x="66.04" y="208.28" size="1.27" layer="95" xref="yes"/>
-<pinref part="U1" gate="U1" pin="XTAL_N/IOA33"/>
-<wire x1="63.5" y1="208.28" x2="66.04" y2="208.28" width="0.1524" layer="91"/>
-</segment>
+<net name="ESP39/!ETH_INT!" class="0">
 <segment>
 <pinref part="U7" gate="U1" pin="!INT!"/>
 <wire x1="220.98" y1="111.76" x2="223.52" y2="111.76" width="0.1524" layer="91"/>
@@ -36983,13 +36978,13 @@ Iout Max: 1.8A</text>
 <wire x1="223.52" y1="114.3" x2="223.52" y2="111.76" width="0.1524" layer="91"/>
 <junction x="223.52" y="111.76"/>
 </segment>
-</net>
-<net name="ESP25/TP" class="0">
 <segment>
-<label x="66.04" y="218.44" size="1.27" layer="95" xref="yes"/>
-<pinref part="U1" gate="U1" pin="DAC1/IOA25"/>
-<wire x1="66.04" y1="218.44" x2="63.5" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="63.5" y1="198.12" x2="66.04" y2="198.12" width="0.1524" layer="91"/>
+<pinref part="U1" gate="U1" pin="SENSOR_VN/IA39"/>
+<label x="66.04" y="198.12" size="1.27" layer="95" xref="yes"/>
 </segment>
+</net>
+<net name="ZED_TP" class="0">
 <segment>
 <label x="408.94" y="172.72" size="1.27" layer="95" xref="yes"/>
 <wire x1="373.38" y1="172.72" x2="406.4" y2="172.72" width="0.1524" layer="91"/>
@@ -36998,6 +36993,11 @@ Iout Max: 1.8A</text>
 <wire x1="406.4" y1="172.72" x2="408.94" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="406.4" y1="170.18" x2="406.4" y2="172.72" width="0.1524" layer="91"/>
 <junction x="406.4" y="172.72"/>
+</segment>
+<segment>
+<pinref part="U9" gate="G$1" pin="3Z"/>
+<wire x1="408.94" y1="134.62" x2="411.48" y2="134.62" width="0.1524" layer="91"/>
+<label x="411.48" y="134.62" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ESP19/POCI" class="0">
@@ -37950,18 +37950,6 @@ Iout Max: 1.8A</text>
 <wire x1="55.88" y1="152.4" x2="55.88" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="ESP5/LARA_ON" class="0">
-<segment>
-<pinref part="U1" gate="U1" pin="CS3/IO5"/>
-<wire x1="63.5" y1="254" x2="66.04" y2="254" width="0.1524" layer="91"/>
-<label x="66.04" y="254" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U9" gate="G$1" pin="3Y"/>
-<wire x1="378.46" y1="134.62" x2="375.92" y2="134.62" width="0.1524" layer="91"/>
-<label x="375.92" y="134.62" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
 <net name="VIN1-" class="0">
 <segment>
 <pinref part="U17" gate="U1" pin="VIN-"/>
@@ -37984,18 +37972,6 @@ Iout Max: 1.8A</text>
 <wire x1="345.44" y1="261.62" x2="342.9" y2="261.62" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="259.08" x2="345.44" y2="261.62" width="0.1524" layer="91"/>
 <junction x="345.44" y="261.62"/>
-</segment>
-</net>
-<net name="LARA_ON" class="0">
-<segment>
-<pinref part="U9" gate="G$1" pin="3Z"/>
-<pinref part="LARA_ON" gate="G$1" pin="1"/>
-<label x="414.02" y="134.62" size="1.27" layer="95" xref="yes"/>
-<wire x1="414.02" y1="134.62" x2="411.48" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="411.48" y1="134.62" x2="408.94" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="414.02" y1="132.08" x2="411.48" y2="132.08" width="0.1524" layer="91"/>
-<wire x1="411.48" y1="132.08" x2="411.48" y2="134.62" width="0.1524" layer="91"/>
-<junction x="411.48" y="134.62"/>
 </segment>
 </net>
 <net name="N$22" class="0">
@@ -38024,6 +38000,32 @@ Iout Max: 1.8A</text>
 <pinref part="TPWR" gate="G$1" pin="2"/>
 <pinref part="U12" gate="G$1" pin="EN"/>
 <wire x1="266.7" y1="193.04" x2="271.78" y2="193.04" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="ESP5/TP" class="0">
+<segment>
+<pinref part="U9" gate="G$1" pin="3Y"/>
+<wire x1="378.46" y1="134.62" x2="375.92" y2="134.62" width="0.1524" layer="91"/>
+<label x="375.92" y="134.62" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="U1" pin="CS3/IO5"/>
+<wire x1="63.5" y1="254" x2="66.04" y2="254" width="0.1524" layer="91"/>
+<label x="66.04" y="254" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="ESP25/ZED_TXO" class="0">
+<segment>
+<wire x1="63.5" y1="218.44" x2="66.04" y2="218.44" width="0.1524" layer="91"/>
+<label x="66.04" y="218.44" size="1.27" layer="95" xref="yes"/>
+<pinref part="U1" gate="U1" pin="DAC1/IOA25"/>
+</segment>
+</net>
+<net name="ESP33/ZED_RXI" class="0">
+<segment>
+<wire x1="63.5" y1="208.28" x2="66.04" y2="208.28" width="0.1524" layer="91"/>
+<label x="66.04" y="208.28" size="1.27" layer="95" xref="yes"/>
+<pinref part="U1" gate="U1" pin="XTAL_N/IOA33"/>
 </segment>
 </net>
 </nets>
@@ -38083,7 +38085,7 @@ Change BYPASS1 &amp; BYPASS2 to PASTE
 <text x="262.89" y="22.86" size="1.778" layer="97" font="vector" align="center">ANT</text>
 <text x="298.45" y="22.86" size="1.778" layer="97" font="vector" align="center">ANT_ZED</text>
 <text x="350.52" y="10.16" size="2.54" layer="94" font="vector">Paul Clark</text>
-<text x="421.64" y="7.62" size="2.54" layer="94" font="vector">v10</text>
+<text x="421.64" y="7.62" size="2.54" layer="94" font="vector">v11</text>
 </plain>
 <instances>
 <instance part="FRAME2" gate="G$1" x="0" y="0" smashed="yes">
@@ -38400,12 +38402,6 @@ Change BYPASS1 &amp; BYPASS2 to PASTE
 </instance>
 <instance part="SUPPLY23" gate="G$1" x="86.36" y="185.42" smashed="yes">
 <attribute name="VALUE" x="86.36" y="188.214" size="1.778" layer="96" font="vector" align="bottom-center"/>
-</instance>
-<instance part="RX-TX" gate="JP1" x="226.06" y="231.14" smashed="yes">
-<attribute name="NAME" x="226.06" y="233.934" size="1.778" layer="95" font="vector" align="center"/>
-</instance>
-<instance part="TX-RX" gate="JP1" x="226.06" y="228.6" smashed="yes" rot="R180">
-<attribute name="NAME" x="226.06" y="225.806" size="1.778" layer="95" font="vector" rot="R180" align="center"/>
 </instance>
 <instance part="ZED_EXTINT" gate="G$1" x="119.38" y="256.54" smashed="yes" rot="R90"/>
 <instance part="GND56" gate="1" x="200.66" y="175.26" smashed="yes">
@@ -38827,6 +38823,14 @@ Change BYPASS1 &amp; BYPASS2 to PASTE
 <instance part="GND129" gate="1" x="363.22" y="127" smashed="yes">
 <attribute name="VALUE" x="363.22" y="126.746" size="1.778" layer="96" align="top-center"/>
 </instance>
+<instance part="NEO_TX" gate="G$1" x="220.98" y="231.14" smashed="yes">
+<attribute name="NAME" x="226.06" y="231.14" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="NEO_RX" gate="G$1" x="220.98" y="228.6" smashed="yes">
+<attribute name="NAME" x="226.06" y="228.6" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="ZED_TXO" gate="G$1" x="88.9" y="243.84" smashed="yes"/>
+<instance part="ZED_RXI" gate="G$1" x="88.9" y="236.22" smashed="yes"/>
 </instances>
 <busses>
 </busses>
@@ -39455,7 +39459,7 @@ Change BYPASS1 &amp; BYPASS2 to PASTE
 <junction x="114.3" y="172.72"/>
 </segment>
 </net>
-<net name="ESP25/TP" class="0">
+<net name="ZED_TP" class="0">
 <segment>
 <label x="101.6" y="215.9" size="1.27" layer="95" xref="yes"/>
 <wire x1="101.6" y1="215.9" x2="99.06" y2="215.9" width="0.1524" layer="91"/>
@@ -39582,28 +39586,28 @@ Change BYPASS1 &amp; BYPASS2 to PASTE
 <wire x1="365.76" y1="104.14" x2="363.22" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="ZED_TXO" class="0">
+<net name="ESP25/ZED_TXO" class="0">
 <segment>
 <pinref part="U4" gate="U1" pin="TX/MISO"/>
 <wire x1="83.82" y1="241.3" x2="86.36" y2="241.3" width="0.1524" layer="91"/>
-<label x="86.36" y="241.3" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="TX-RX" gate="JP1" pin="1"/>
-<wire x1="231.14" y1="228.6" x2="233.68" y2="228.6" width="0.1524" layer="91"/>
-<label x="233.68" y="228.6" size="1.27" layer="95" xref="yes"/>
+<label x="88.9" y="241.3" size="1.27" layer="95" xref="yes"/>
+<pinref part="ZED_TXO" gate="G$1" pin="1"/>
+<wire x1="86.36" y1="241.3" x2="88.9" y2="241.3" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="243.84" x2="86.36" y2="243.84" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="243.84" x2="86.36" y2="241.3" width="0.1524" layer="91"/>
+<junction x="86.36" y="241.3"/>
 </segment>
 </net>
-<net name="ZED_RXI" class="0">
+<net name="ESP33/ZED_RXI" class="0">
 <segment>
 <pinref part="U4" gate="U1" pin="RX/MOSI"/>
 <wire x1="83.82" y1="238.76" x2="86.36" y2="238.76" width="0.1524" layer="91"/>
-<label x="86.36" y="238.76" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="RX-TX" gate="JP1" pin="2"/>
-<wire x1="231.14" y1="231.14" x2="233.68" y2="231.14" width="0.1524" layer="91"/>
-<label x="233.68" y="231.14" size="1.27" layer="95" xref="yes"/>
+<label x="88.9" y="238.76" size="1.27" layer="95" xref="yes"/>
+<pinref part="ZED_RXI" gate="G$1" pin="1"/>
+<wire x1="86.36" y1="238.76" x2="88.9" y2="238.76" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="236.22" x2="86.36" y2="236.22" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="236.22" x2="86.36" y2="238.76" width="0.1524" layer="91"/>
+<junction x="86.36" y="238.76"/>
 </segment>
 </net>
 <net name="3.3V_SW" class="0">
@@ -39844,15 +39848,15 @@ Change BYPASS1 &amp; BYPASS2 to PASTE
 <net name="NEO_TXO" class="0">
 <segment>
 <pinref part="U5" gate="U1" pin="TXD1/POCI"/>
-<pinref part="RX-TX" gate="JP1" pin="1"/>
 <wire x1="218.44" y1="231.14" x2="220.98" y2="231.14" width="0.1524" layer="91"/>
+<pinref part="NEO_TX" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="NEO_RXI" class="0">
 <segment>
 <pinref part="U5" gate="U1" pin="RXD1/PICO"/>
-<pinref part="TX-RX" gate="JP1" pin="2"/>
 <wire x1="218.44" y1="228.6" x2="220.98" y2="228.6" width="0.1524" layer="91"/>
+<pinref part="NEO_RX" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$46" class="0">
@@ -40458,13 +40462,6 @@ Change BYPASS1 &amp; BYPASS2 to PASTE
 <pinref part="U15" gate="U1" pin="SCL/CFG0"/>
 <wire x1="271.78" y1="111.76" x2="269.24" y2="111.76" width="0.1524" layer="91"/>
 <label x="269.24" y="111.76" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="LARA_ON" class="0">
-<segment>
-<pinref part="U16" gate="G$1" pin="B4"/>
-<wire x1="307.34" y1="241.3" x2="309.88" y2="241.3" width="0.1524" layer="91"/>
-<label x="309.88" y="241.3" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
