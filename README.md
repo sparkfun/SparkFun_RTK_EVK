@@ -34,9 +34,13 @@ Repository Contents
 * **[/Rear_Panel](/Rear_Panel/)** - Eagle design files (.brd, .sch) for the prototype (PCB) enclosure panel used to validate the dimensions
 * **[/Front_Sticker](/Front_Sticker/)** - DXF and PDF files for the front sticker
 * **[/Rear_Sticker](/Rear_Sticker/)** - DXF and PDF files for the rear sticker
-* **[/Firmware](/Firmware/)** - ESP IDF source code and binaries for the firmware which runs on the ESP32-WROVER
 * **[/Example_Sketches](/Example_Sketches/)** - Arduino IDE code examples
 * **[/Documents](/Documents/)** - Component datasheets etc.
+
+Firmware
+----------------
+
+The RTK Everywhere firmware has its own [dedicated repo](https://github.com/sparkfun/SparkFun_RTK_Everywhere_Firmware).
 
 Product Variants
 ----------------
