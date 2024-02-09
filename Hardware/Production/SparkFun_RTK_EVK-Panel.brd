@@ -849,51 +849,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <smd name="2" x="0" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
 <smd name="3" x="0.8128" y="0" dx="0.635" dy="1.27" layer="1" cream="no"/>
 </package>
-<package name="SMT-JUMPER_3_2-NC_TRACE_SILK" urn="urn:adsk.eagle:footprint:39270/1" locally_modified="yes">
-<wire x1="1.27" y1="-1.016" x2="-1.27" y2="-1.016" width="0.2032" layer="21"/>
-<wire x1="1.27" y1="1.016" x2="1.7272" y2="0.5588" width="0.2032" layer="21" curve="-90"/>
-<wire x1="-1.7272" y1="0.5588" x2="-1.27" y2="1.016" width="0.2032" layer="21" curve="-90"/>
-<wire x1="-1.7272" y1="-0.5588" x2="-1.27" y2="-1.016" width="0.2032" layer="21" curve="90"/>
-<wire x1="1.27" y1="-1.016" x2="1.7272" y2="-0.5588" width="0.2032" layer="21" curve="90"/>
-<wire x1="1.7272" y1="-0.5588" x2="1.7272" y2="0.5588" width="0.2032" layer="21"/>
-<wire x1="-1.7272" y1="-0.5588" x2="-1.7272" y2="0.5588" width="0.2032" layer="21"/>
-<wire x1="-1.27" y1="1.016" x2="1.27" y2="1.016" width="0.2032" layer="21"/>
-<smd name="1" x="-1.0414" y="0" dx="0.6604" dy="1.27" layer="1" cream="no"/>
-<smd name="2" x="0" y="0" dx="0.6604" dy="1.27" layer="1" cream="no"/>
-<smd name="3" x="1.0414" y="0" dx="0.6604" dy="1.27" layer="1" cream="no"/>
-<text x="0" y="1.143" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-1.143" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-<polygon width="0.127" layer="29">
-<vertex x="0.3175" y="0.127"/>
-<vertex x="0.6985" y="0.127"/>
-<vertex x="0.6985" y="-0.127"/>
-<vertex x="0.3175" y="-0.127"/>
-</polygon>
-<polygon width="0.127" layer="29">
-<vertex x="-0.6985" y="0.127"/>
-<vertex x="-0.3175" y="0.127"/>
-<vertex x="-0.3175" y="-0.127"/>
-<vertex x="-0.6985" y="-0.127"/>
-</polygon>
-<polygon width="0.0127" layer="1">
-<vertex x="-0.5334" y="0.127"/>
-<vertex x="0.5334" y="0.127"/>
-<vertex x="0.5334" y="-0.127"/>
-<vertex x="-0.5334" y="-0.127"/>
-</polygon>
-<polygon width="0.0127" layer="1">
-<vertex x="-1.2319" y="0.127"/>
-<vertex x="-0.508" y="0.127"/>
-<vertex x="-0.508" y="-0.127"/>
-<vertex x="-1.2319" y="-0.127"/>
-</polygon>
-<polygon width="0.0127" layer="1">
-<vertex x="0.508" y="0.127"/>
-<vertex x="1.2319" y="0.127"/>
-<vertex x="1.2319" y="-0.127"/>
-<vertex x="0.508" y="-0.127"/>
-</polygon>
-</package>
 <package name="SMT-JUMPER_2_NO_SILK" urn="urn:adsk.eagle:footprint:39254/1">
 <text x="0" y="1.143" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-1.143" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
@@ -994,11 +949,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <package3d name="SMT-JUMPER_3_NO_SILK" urn="urn:adsk.eagle:package:39285/1" type="box">
 <packageinstances>
 <packageinstance name="SMT-JUMPER_3_NO_SILK"/>
-</packageinstances>
-</package3d>
-<package3d name="SMT-JUMPER_3_2-NC_TRACE_SILK" urn="urn:adsk.eagle:package:39289/1" locally_modified="yes" type="box">
-<packageinstances>
-<packageinstance name="SMT-JUMPER_3_2-NC_TRACE_SILK"/>
 </packageinstances>
 </package3d>
 <package3d name="SMT-JUMPER_2_NO_SILK" urn="urn:adsk.eagle:package:39279/1" type="box">
@@ -23130,7 +23080,7 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <attribute name="PROD_ID" value="CAP-07888" x="70.5485" y="22.86" size="1.778" layer="27" ratio="15" rot="R270" display="off"/>
 <attribute name="VALUE" x="69.9865" y="22.86" size="0.6096" layer="27" font="vector" ratio="20" rot="R270" align="top-center"/>
 </element>
-<element name="I2C" library="SparkFun-Jumpers" package="SMT-JUMPER_3_2-NC_TRACE_SILK" package3d_urn="urn:adsk.eagle:package:39289/1" value="JUMPER-SMT_3_2-NC_TRACE_SILK" x="75.8825" y="15.24" smashed="yes" rot="MR0">
+<element name="I2C" library="SparkFun-Jumpers" package="SMT-JUMPER_3_NO_SILK" package3d_urn="urn:adsk.eagle:package:39285/1" value="JUMPER-SMT_3_NO_SILK" x="75.8825" y="15.24" smashed="yes" rot="MR0">
 <attribute name="NAME" x="75.8825" y="16.383" size="0.6096" layer="26" font="vector" ratio="20" rot="MR0" align="bottom-center"/>
 </element>
 <element name="R16" library="SparkFun-Resistors" package="0603" value="2.2k" x="72.0725" y="16.51" smashed="yes" rot="R90">
@@ -23813,8 +23763,8 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <attribute name="PROD_ID" value="CAP-07888" x="81.3435" y="16.51" size="1.778" layer="27" ratio="15" rot="R90" display="off"/>
 <attribute name="VALUE" x="82.1055" y="16.51" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center"/>
 </element>
-<element name="U$152" library="output" package="RTK5#SVG0" value="" x="140.6525" y="41.402" smashed="yes"/>
-<element name="U$153" library="output" package="RTK5#SVG0" value="" x="113.9825" y="73.279" smashed="yes" rot="MR0"/>
+<element name="U$152" library="output" package="RTK5#SVG0" value="" x="139.3825" y="40.132" smashed="yes"/>
+<element name="U$153" library="output" package="RTK5#SVG0" value="" x="115.2525" y="72.009" smashed="yes" rot="MR0"/>
 <element name="J13" library="SparkFun-Connectors" package="1X10_SCREW_TERMINAL_3.5MM" value="" x="46.6725" y="98.425" smashed="yes" rot="R180">
 <attribute name="NAME" x="46.6725" y="93.345" size="1.27" layer="25" rot="R180" align="bottom-center"/>
 <attribute name="PROD_ID" value="CONN-17279" x="46.6725" y="98.425" size="1.778" layer="27" ratio="15" rot="R180" display="off"/>
@@ -24267,8 +24217,8 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <element name="U$70" library="output" package="VIN#0" value="" x="28.5115" y="88.9" smashed="yes" rot="R90"/>
 <element name="U$71" library="output" package="VIN#1" value="" x="34.3535" y="88.773" smashed="yes" rot="MR270"/>
 <element name="U$72" library="output" package="VIN#1" value="" x="34.3535" y="88.9" smashed="yes" rot="R90"/>
-<element name="U$14" library="output" package="NEO_TX2" value="" x="79.6925" y="71.12" smashed="yes" rot="MR0"/>
-<element name="U$15" library="output" package="NEO_RX3" value="" x="79.6925" y="68.58" smashed="yes" rot="MR0"/>
+<element name="U$14" library="output" package="NEO_TX2" value="" x="77.1525" y="71.12" smashed="yes" rot="MR0"/>
+<element name="U$15" library="output" package="NEO_RX3" value="" x="77.1525" y="68.58" smashed="yes" rot="MR0"/>
 <element name="U$89" library="output" package="4_#_#SD_CS#15" value="" x="50.4825" y="10.922" smashed="yes" rot="MR270"/>
 <element name="BYPASS1" library="SparkFun-Jumpers" package="SMT-JUMPER_2_SOIC-PAD_NO-PASTE" value="NO PASTE" x="97.4725" y="85.09" smashed="yes" rot="R90">
 <attribute name="VALUE" value="NO PASTE" x="97.4725" y="85.09" size="1.778" layer="27" rot="R90" display="off"/>
@@ -24390,13 +24340,13 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <attribute name="PROD_ID" value="RES-07828" x="133.4135" y="49.53" size="1.778" layer="27" ratio="15" rot="R270" display="off"/>
 <attribute name="VALUE" x="132.6515" y="49.53" size="0.6096" layer="27" font="vector" ratio="20" rot="R270" align="top-center"/>
 </element>
-<element name="NEO_TX" library="SparkFun-Connectors" package="1X01_NO_SILK" value="TEST-POINTPOGO_PTH" x="75.8825" y="71.12" smashed="yes">
-<attribute name="NAME" x="74.6125" y="72.263" size="0.6096" layer="25" font="vector" ratio="20"/>
-<attribute name="VALUE" x="74.6125" y="69.342" size="0.6096" layer="27" font="vector" ratio="20"/>
+<element name="NEO_TX" library="SparkFun-Connectors" package="1X01_NO_SILK" value="TEST-POINTPOGO_PTH" x="73.3425" y="71.12" smashed="yes">
+<attribute name="NAME" x="72.0725" y="72.263" size="0.6096" layer="25" font="vector" ratio="20"/>
+<attribute name="VALUE" x="72.0725" y="69.342" size="0.6096" layer="27" font="vector" ratio="20"/>
 </element>
-<element name="NEO_RX" library="SparkFun-Connectors" package="1X01_NO_SILK" value="TEST-POINTPOGO_PTH" x="75.8825" y="68.58" smashed="yes">
-<attribute name="NAME" x="74.6125" y="69.723" size="0.6096" layer="25" font="vector" ratio="20"/>
-<attribute name="VALUE" x="74.6125" y="66.802" size="0.6096" layer="27" font="vector" ratio="20"/>
+<element name="NEO_RX" library="SparkFun-Connectors" package="1X01_NO_SILK" value="TEST-POINTPOGO_PTH" x="73.3425" y="68.58" smashed="yes">
+<attribute name="NAME" x="72.0725" y="69.723" size="0.6096" layer="25" font="vector" ratio="20"/>
+<attribute name="VALUE" x="72.0725" y="66.802" size="0.6096" layer="27" font="vector" ratio="20"/>
 </element>
 <element name="ZED_TXO" library="SparkFun-Connectors" package="1X01_NO_SILK" value="TEST-POINTPOGO_PTH" x="111.4425" y="43.18" smashed="yes">
 <attribute name="NAME" x="110.1725" y="44.323" size="0.6096" layer="25" font="vector" ratio="20"/>
@@ -25308,7 +25258,9 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <vertex x="53.0225" y="83.947"/>
 <vertex x="53.0225" y="68.199"/>
 <vertex x="29.4005" y="68.199"/>
-<vertex x="13.6525" y="83.947"/>
+<vertex x="14.9225" y="82.677"/>
+<vertex x="14.9225" y="84.201"/>
+<vertex x="13.6525" y="85.414971875"/>
 </polygon>
 <wire x1="145.8595" y1="100.33" x2="145.8595" y2="99.314" width="0" layer="19" extent="1-1"/>
 <wire x1="145.8595" y1="98.044" x2="145.8595" y2="99.314" width="0" layer="19" extent="1-1"/>
@@ -27414,10 +27366,6 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <wire x1="50.0425" y1="72.68" x2="47.9785" y2="72.68" width="0.254" layer="1"/>
 <wire x1="47.9785" y1="72.68" x2="47.9425" y2="72.644" width="0.254" layer="1"/>
 <via x="47.9425" y="72.644" extent="1-16" drill="0.3"/>
-<wire x1="55.5625" y1="69.596" x2="53.5305" y2="69.596" width="0.8128" layer="15"/>
-<wire x1="53.5305" y1="69.596" x2="52.5145" y2="69.596" width="0.8128" layer="15"/>
-<wire x1="52.5145" y1="69.596" x2="48.1965" y2="69.596" width="0.8128" layer="15"/>
-<wire x1="47.9425" y1="69.85" x2="48.1965" y2="69.596" width="0.8128" layer="15"/>
 <via x="55.5625" y="69.596" extent="1-16" drill="0.3"/>
 <wire x1="55.5625" y1="69.596" x2="55.5425" y2="69.616" width="0.254" layer="1"/>
 <wire x1="55.5425" y1="69.616" x2="55.5425" y2="70.68" width="0.254" layer="1"/>
@@ -27454,6 +27402,10 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <wire x1="47.9425" y1="74.168" x2="47.9425" y2="72.644" width="0.6096" layer="2"/>
 <wire x1="47.9425" y1="72.644" x2="47.9425" y2="69.85" width="0.6096" layer="2"/>
 <wire x1="40.3225" y1="79.375" x2="40.3225" y2="82.55" width="0.6096" layer="2"/>
+<wire x1="47.9425" y1="69.85" x2="48.1965" y2="69.596" width="0.6096" layer="2"/>
+<wire x1="48.1965" y1="69.596" x2="52.5145" y2="69.596" width="0.6096" layer="2"/>
+<wire x1="52.5145" y1="69.596" x2="53.5305" y2="69.596" width="0.6096" layer="2"/>
+<wire x1="53.5305" y1="69.596" x2="55.5625" y2="69.596" width="0.6096" layer="2"/>
 </signal>
 <signal name="N$23">
 <contactref element="U7" pad="10"/>
@@ -27918,9 +27870,9 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <wire x1="71.7795" y1="17.36" x2="70.8025" y2="16.383" width="0.1524" layer="1"/>
 <via x="70.8025" y="16.383" extent="1-16" drill="0.3"/>
 <wire x1="70.8025" y1="16.383" x2="71.4375" y2="17.018" width="0.1524" layer="16"/>
-<wire x1="74.8411" y1="16.4084" x2="74.8411" y2="15.24" width="0.1524" layer="16"/>
 <wire x1="71.4375" y1="17.018" x2="74.2315" y2="17.018" width="0.1524" layer="16"/>
-<wire x1="74.2315" y1="17.018" x2="74.8411" y2="16.4084" width="0.1524" layer="16"/>
+<wire x1="75.0697" y1="16.1798" x2="75.0697" y2="15.24" width="0.1524" layer="16"/>
+<wire x1="74.2315" y1="17.018" x2="75.0697" y2="16.1798" width="0.1524" layer="16"/>
 </signal>
 <signal name="N$15">
 <contactref element="R19" pad="2"/>
@@ -27929,7 +27881,7 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <wire x1="79.359" y1="17.36" x2="78.4225" y2="16.4235" width="0.1524" layer="1"/>
 <via x="78.4225" y="16.4235" extent="1-16" drill="0.3"/>
 <wire x1="78.4225" y1="16.4235" x2="78.4225" y2="15.748" width="0.1524" layer="16"/>
-<wire x1="77.9145" y1="15.24" x2="76.9239" y2="15.24" width="0.1524" layer="16"/>
+<wire x1="77.9145" y1="15.24" x2="76.6953" y2="15.24" width="0.1524" layer="16"/>
 <wire x1="78.4225" y1="15.748" x2="77.9145" y2="15.24" width="0.1524" layer="16"/>
 </signal>
 <signal name="N$36">
@@ -28471,14 +28423,14 @@ These are the minimums &lt;a href=&quot;https://jlcpcb.com/capabilities/Capabili
 <signal name="NEO_TXO">
 <contactref element="U5" pad="20"/>
 <contactref element="NEO_TX" pad="1"/>
-<wire x1="80.0425" y1="71.06" x2="75.9425" y2="71.06" width="0.1524" layer="1"/>
-<wire x1="75.9425" y1="71.06" x2="75.8825" y2="71.12" width="0.1524" layer="1"/>
+<wire x1="80.0425" y1="71.06" x2="73.4025" y2="71.06" width="0.1524" layer="1"/>
+<wire x1="73.4025" y1="71.06" x2="73.3425" y2="71.12" width="0.1524" layer="1"/>
 </signal>
 <signal name="NEO_RXI">
 <contactref element="U5" pad="21"/>
 <contactref element="NEO_RX" pad="1"/>
-<wire x1="80.0425" y1="69.96" x2="77.2625" y2="69.96" width="0.1524" layer="1"/>
-<wire x1="77.2625" y1="69.96" x2="75.8825" y2="68.58" width="0.1524" layer="1"/>
+<wire x1="80.0425" y1="69.96" x2="74.7225" y2="69.96" width="0.1524" layer="1"/>
+<wire x1="74.7225" y1="69.96" x2="73.3425" y2="68.58" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$46">
 <contactref element="R9" pad="2"/>
