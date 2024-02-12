@@ -1,5 +1,5 @@
 #include <HardwareSerial.h>
-HardwareSerial laraSerial(2); // UART2 normally uses pins 16 and 17, but these are not available on WROVER
+HardwareSerial laraSerial(1); //UART1
 
 #include <SparkFun_u-blox_Cellular_Arduino_Library.h> //Click here to get the library: http://librarymanager/All#SparkFun_u-blox_Cellular
 
@@ -16,7 +16,7 @@ protected:
     if (_hardSerial != nullptr)
     {
       _hardSerial->end();
-      _hardSerial->begin(baud, SERIAL_8N1, SERIAL_RX, SERIAL_TX); // Configure Serial1
+      _hardSerial->begin(baud, SERIAL_8N1, SERIAL1_RX, SERIAL1_TX); // Configure Serial1
     }
     delay(100);
   }
@@ -445,7 +445,6 @@ bool initLARA(void)
   // The LARA_R6 will be powered off by default.
   // If desired, we can power it on manually by toggling the LARA_PWR pin now.
   // Or we can wait and let myLARA.begin do it.
-  // else
   // {
   //   digitalWrite(LARA_PWR, HIGH);
   //   delay(100);
@@ -468,12 +467,6 @@ bool initLARA(void)
   else
   {
     console->println(F("Unable to communicate with the LARA!"));
-    return false;
-  }
-
-  if (!digitalRead(LARA_ON))
-  {
-    console->println(F("LARA-R6 failed to power on!"));
     return false;
   }
 
