@@ -9,7 +9,7 @@
   D2  : STAT LED
   D3  : Serial RX (CH340 TX)
   D4  : SD CS
-  D5  : LARA_ON - via 74HC4066 switch and PWREN
+  D5  : GNSS Time Pulse - via 74HC4066 switch and PWREN
   D12 : SDA2 - Qwiic OLED - via 74HC4066 switch and PWREN
   D13 : Serial1 TX - LARA_TXDI
   D14 : Serial1 RX - LARA RXDO
@@ -21,30 +21,37 @@
   D21 : I2C SDA
   D22 : I2C SCL
   D23 : SPI PICO
-  D25 : GNSS Time Pulse
+  D25 : Serial2 RX - ZED-F9P TXO
   D26 : LARA Power On
   D27 : Ethernet Chip Select
   D32 : PWREN
-  D33 : Ethernet Interrupt
+  D33 : Serial2 TX - ZED-F9P RXI
   A34 : LARA Network Indicator
   A35 : Board Detect (3.0V)
   A36 : SD Card Detect
+  A39 : Ethernet Interrupt
 */
 
 #include "SPI.h"
 #include "SdFat.h"
 
 const int STAT_LED = 2;
-const int pin_microSD_CS = 4; // Chip select for the microSD card
+const int SD_CS = 4; // Chip select for the microSD card
+const int GNSS_INT = 5; // ZED_F9P time pulse interrupt
 const int SDA_2 = 12; // OLED
 const int SERIAL1_TX = 13; // LARA_TXDI
 const int SERIAL1_RX = 14; // LARA RXDO
 const int SCL_2 = 15; // OLED
+const int SDA_1 = 21; // ZED-F9P and NEO-D9S
+const int SCL_1 = 22; // ZED-F9P and NEO-D9S
+const int SERIAL2_RX = 25; // ZED-F9P TXO
+const int LARA_PWR = 26; // LARA_PWR_ON - inverted - set LARA_PWR high to pull LARA_PWR_ON low
 const int ETHERNET_CS = 27; // Chip select for the WizNet W5500
-const int PWREN = 32; // 74HC4066 switch Enable - pull high to enable SCL2/SDA2 and LARA_ON
-const int ETHERNET_INT = 33; // WizNet W5500 interrupt
-const int GNSS_INT = 25; // ZED_F9P interrupt
+const int PWREN = 32; // 74HC4066 switch Enable - pull high to enable SCL2/SDA2 and GNSS_INT
+const int SERIAL2_TX = 33; // ZED-F9P RXI
+const int LARA_NI = 34; // LARA Network Indicator - only valid when the LARA is powered on
 const int SD_PRESENT = 36; // microSD card card present - from the microSD socket switch
+const int ETHERNET_INT = 39; // WizNet W5500 interrupt
 
 SdFat *sd;
 
@@ -53,8 +60,8 @@ SdFat *sd;
 void resetSPI()
 {
     {
-        pinMode(pin_microSD_CS, OUTPUT);
-        digitalWrite(pin_microSD_CS, HIGH); // De-select SD card
+        pinMode(SD_CS, OUTPUT);
+        digitalWrite(SD_CS, HIGH); // De-select SD card
 
         // Flush SPI interface
         SPI.begin();
@@ -64,7 +71,7 @@ void resetSPI()
         SPI.endTransaction();
         SPI.end();
 
-        digitalWrite(pin_microSD_CS, LOW); // Select SD card
+        digitalWrite(SD_CS, LOW); // Select SD card
 
         // Flush SD interface
         SPI.begin();
@@ -74,7 +81,7 @@ void resetSPI()
         SPI.endTransaction();
         SPI.end();
 
-        digitalWrite(pin_microSD_CS, HIGH); // Deselet SD card
+        digitalWrite(SD_CS, HIGH); // Deselet SD card
     }
 }
 
@@ -115,7 +122,7 @@ bool sdPresent(void)
         SPI.setClockDivider(SPI_CLOCK_DIV2);
         SPI.setDataMode(SPI_MODE0);
         SPI.setBitOrder(MSBFIRST);
-        pinMode(pin_microSD_CS, OUTPUT);
+        pinMode(SD_CS, OUTPUT);
 
         // Sending clocks while card power stabilizes...
         deselectCard();               // always make sure
@@ -209,13 +216,13 @@ byte sdSendCommand(byte command, unsigned long arg)
 // Select (enable) the SD card
 void selectCard(void)
 {
-    digitalWrite(pin_microSD_CS, LOW);
+    digitalWrite(SD_CS, LOW);
 }
 
 // Deselect (disable) the SD card
 void deselectCard(void)
 {
-    digitalWrite(pin_microSD_CS, HIGH);
+    digitalWrite(SD_CS, HIGH);
 }
 
 // Exchange a byte of data with the SD card via host's SPI bus
@@ -375,13 +382,13 @@ bool createTestFile()
 
 void setup()
 {
-  pinMode(pin_microSD_CS, OUTPUT);
-  digitalWrite(pin_microSD_CS, HIGH);
+  pinMode(SD_CS, OUTPUT);
+  digitalWrite(SD_CS, HIGH);
   pinMode(ETHERNET_CS, OUTPUT);
   digitalWrite(ETHERNET_CS, HIGH);
   pinMode(PWREN, OUTPUT);
   digitalWrite(PWREN, HIGH);
-  pinMode(SD_PRESENT, INPUT_PULLUP);
+  pinMode(SD_PRESENT, INPUT);
 
   delay(1000);
 
@@ -430,7 +437,7 @@ void setup()
 
   resetSPI(); // Re-initialize the SPI/SD interface
 
-  if (sd->begin(SdSpiConfig(pin_microSD_CS, SHARED_SPI, SD_SCK_MHZ(16))) == false)
+  if (sd->begin(SdSpiConfig(SD_CS, SHARED_SPI, SD_SCK_MHZ(16))) == false)
   {
       tries = 0;
       maxTries = 1;
@@ -439,14 +446,14 @@ void setup()
           Serial.printf("SD init failed - using SPI and SdFat. Trying again %d out of %d\r\n", tries + 1, maxTries);
 
           delay(250); // Give SD more time to power up, then try again
-          if (sd->begin(SdSpiConfig(pin_microSD_CS, SHARED_SPI, SD_SCK_MHZ(16))) == true)
+          if (sd->begin(SdSpiConfig(SD_CS, SHARED_SPI, SD_SCK_MHZ(16))) == true)
               return;
       }
 
       if (tries == maxTries)
       {
           Serial.println("SD init failed - using SPI and SdFat. Is card formatted?");
-          digitalWrite(pin_microSD_CS, HIGH); // Be sure SD is deselected
+          digitalWrite(SD_CS, HIGH); // Be sure SD is deselected
 
           return;
       }

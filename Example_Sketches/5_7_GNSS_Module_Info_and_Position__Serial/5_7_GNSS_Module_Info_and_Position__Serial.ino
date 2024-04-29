@@ -32,8 +32,6 @@
   A39 : Ethernet Interrupt
 */
 
-#include <Wire.h> // Needed for I2C to GNSS
-
 #include <SparkFun_u-blox_GNSS_v3.h> //http://librarymanager/All#SparkFun_u-blox_GNSS_v3
 
 SFE_UBLOX_GNSS_SUPER theGNSS;
@@ -56,7 +54,8 @@ const int LARA_NI = 34; // LARA Network Indicator - only valid when the LARA is 
 const int SD_PRESENT = 36; // microSD card card present - from the microSD socket switch
 const int ETHERNET_INT = 39; // WizNet W5500 interrupt
 
-TwoWire I2C_1 = TwoWire(0);
+#include <HardwareSerial.h>
+HardwareSerial mySerial(2); // Use UART2 to communicate with the ZED-F9P
 
 void setup()
 {
@@ -74,9 +73,9 @@ void setup()
 
   //theGNSS.enableDebugging(Serial); // Uncomment this line to enable debug messages on Serial
 
-  I2C_1.begin((int)SDA_1, (int)SCL_1);
+  mySerial.begin(38400, SERIAL_8N1, SERIAL2_RX, SERIAL2_TX);
 
-  while (!theGNSS.begin(I2C_1)) // Start the GNSS on Wire
+  while (!theGNSS.begin(mySerial)) // Start the GNSS on Serial2
   {
     Serial.println("GNSS not detected. Retrying...");
   }
