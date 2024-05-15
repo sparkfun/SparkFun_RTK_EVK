@@ -32,7 +32,7 @@
   A39 : Ethernet Interrupt
 */
 
-#include <SPI.h> // Needed for SPI to GNSS
+#include <SPI.h>
 #include <Ethernet.h>
 
 const int STAT_LED = 2;
