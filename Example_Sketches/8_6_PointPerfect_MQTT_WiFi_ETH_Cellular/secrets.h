@@ -1,11 +1,9 @@
 static const char WIFI_SSID[] = "<ADD YOUR WIFI SSID HERE>";
 static const char WIFI_PASSWORD[] = "<ADD YOUR WIFI PASSWORD HERE>";
 
-// <Your PointPerfect Thing> -> Credentials -> Client Id
-static const char POINTPERFECT_TOKEN[] = "<ADD YOUR POINTPERFECT TOKEN HERE>"; // POINTPERFECT_LBAND_IP_TOKEN
-
-static const char ZTP_HARDWARE_ID[] = "<ADD YOUR 14 CHARACTER HARDWARE ID HERE>";  // ABCDABCDABCD00
-static const char ZTP_GIVEN_NAME[] = "<ADD YOUR FULL THING NAME HERE>"; // EVK d99.99 - ABCDABCDABCD00
+static const char POINTPERFECT_TOKEN[] = "<ADD YOUR POINTPERFECT TOKEN HERE>"; // "ABCDABCD-ABCD-ABCD-ABCD-ABCDABCDABCD"
+static const char ZTP_HARDWARE_ID[] = "<ADD YOUR 14 CHARACTER HARDWARE ID HERE>";  // "ABCDABCDABCD00"
+static const char ZTP_GIVEN_NAME[] = "<ADD YOUR FULL THING NAME HERE>"; // "EVK d99.99 - ABCDABCDABCD00"
 
 // Settings for ZTP request that use HTTPS protocol
 #define    THINGSTREAM_SERVER     "api.thingstream.io"            //!< the thingstream Rest API server domain        
