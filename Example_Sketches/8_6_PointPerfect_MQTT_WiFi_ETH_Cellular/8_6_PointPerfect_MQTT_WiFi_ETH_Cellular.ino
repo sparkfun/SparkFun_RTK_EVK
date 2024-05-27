@@ -5,7 +5,7 @@
 
   This example demonstrates how to connect to:
   * Use ZTP to retrieve the certificate and private key needed for MQTT
-  * Subscribe to  PointPerfect using MQTT and feed localized corrections to the ZED-F9P
+  * Subscribe to PointPerfect using MQTT and feed localized corrections to the ZED-F9P
   * Using WiFi or Ethernet or Cellular (LARA-R6)
 
   You need a valid IP or IP+L-Band subscription for this example.
