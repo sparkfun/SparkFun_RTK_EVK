@@ -295,7 +295,7 @@ void mqttConnect_LARA(void)
   }
   else
   {
-    console->printf("mqttConnect_LARA: connecting to \"%s:%d\" as client \"%s\"\r\n", AWS_IOT_ENDPOINT, AWS_IOT_PORT, clientID);
+    console->printf("mqttConnect_LARA: connecting to \"%s:%d\" as client \"%s\"\r\n", AWS_IOT_ENDPOINT, AWS_IOT_PORT, clientID.c_str());
     LTE_CHECK_INIT;
     LTE_CHECK(1) = myLARA.setSecurityManager(UBX_CELL_SEC_MANAGER_OPCODE_IMPORT, UBX_CELL_SEC_MANAGER_ROOTCA, String(SEC_ROOT_CA), String(AWS_CERT_CA));
     LTE_CHECK(2) = myLARA.setSecurityManager(UBX_CELL_SEC_MANAGER_OPCODE_IMPORT, UBX_CELL_SEC_MANAGER_CLIENT_CERT, SEC_CLIENT_CERT, clientCert);

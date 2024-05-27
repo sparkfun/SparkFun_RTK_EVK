@@ -88,10 +88,7 @@ void setup()
     while ((clientID.length() == 0) && (millis() < (ztpStart + 10000)))
     {
       myLARA.bufferedPoll(); // Process any URC messages from the LARA
-      delay(100);
-      console->print(".");
     }
-    console->println();
 
     if (clientID.length() == 0)
     {
