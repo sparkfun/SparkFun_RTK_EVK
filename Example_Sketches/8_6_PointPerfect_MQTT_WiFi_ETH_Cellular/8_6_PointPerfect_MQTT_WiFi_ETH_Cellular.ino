@@ -99,11 +99,18 @@ void setup()
       while (1)
         ;
     }
+    else
+    {
+      console->printf("clientID:   %s\r\n", clientID.c_str());
+      console->printf("brokerHost: %s\r\n", brokerHost.c_str());
+      console->printf("currentKey: %s\r\n", currentKey.c_str());
+      console->printf("nextKey:    %s\r\n", nextKey.c_str());
+    }
   }
 
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  console->println(F(">>> Press any key to connect to toggle the MQTT connection to PointPerfect <<<"));
+  console->println(F("\r\n>>> Press any key to connect to toggle the MQTT connection to PointPerfect <<<\r\n"));
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
