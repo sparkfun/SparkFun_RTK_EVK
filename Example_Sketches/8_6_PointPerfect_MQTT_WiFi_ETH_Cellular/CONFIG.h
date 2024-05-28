@@ -11,8 +11,8 @@ const char MQTT_TOPIC_KEY[] = "/pp/ubx/0236/Lb"; // This topic provides the L-Ba
 // const char MQTT_TOPIC_KEY[] = "/pp/ubx/0236/ip"; // This topic provides the IP only dynamic keys in UBX format
 
 // <Your PointPerfect Thing> -> Credentials -> IP correction topic for EU/US region
-// const char MQTT_TOPIC_SPARTN[] = "/pp/Lb/us"; // This topic provides the SPARTN corrections for L-Band and L-Band + IP for the US region
-const char MQTT_TOPIC_SPARTN[] = "/pp/Lb/eu"; // This topic provides the SPARTN corrections for L-Band and L-Band + IP for the EU region
+const char MQTT_TOPIC_SPARTN[] = "/pp/Lb/us"; // This topic provides the SPARTN corrections for L-Band and L-Band + IP for the US region
+// const char MQTT_TOPIC_SPARTN[] = "/pp/Lb/eu"; // This topic provides the SPARTN corrections for L-Band and L-Band + IP for the EU region
 // const char MQTT_TOPIC_SPARTN[] = "/pp/ip/us"; // This topic provides the SPARTN corrections for IP only for the US region
 // const char MQTT_TOPIC_SPARTN[] = "/pp/ip/eu"; // This topic provides the SPARTN corrections for IP only for the EU region
 
