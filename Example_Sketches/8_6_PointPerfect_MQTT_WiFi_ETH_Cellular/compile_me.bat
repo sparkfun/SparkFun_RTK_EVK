@@ -1,0 +1,1 @@
+arduino-cli compile --fqbn "esp32:esp32:esp32":DebugLevel=debug,PSRAM=enabled 8_6_PointPerfect_MQTT_WiFi_ETH_Cellular.ino --warnings default --build-property build.partitions=RTKEverywhere --build-property upload.maximum_size=3145728 --build-property "compiler.cpp.extra_flags=-MMD -c" --export-binaries

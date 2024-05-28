@@ -1,4 +1,3 @@
-//#include <base64.h>
 #include <WiFi.h>
 #include <WiFiMulti.h>
 #include <NetworkClientSecure.h>
@@ -89,7 +88,9 @@ void onMQTT_LAN(int messageSize) {
         const char *strTopic = topic.c_str();
         console->printf("onMQTT_LAN: topic \"%s\" read %d bytes\r\n", strTopic, len);
 
-        // if we detect data from a topic, then why not unsubscribe from it.
+        // If we detect data from an unexpected topic, we could unsubscribe from it.
+        // But the server may just be being slow to respond to a previous unsubscribe...
+        /*
         std::vector<String>::iterator pos = std::find(topics.begin(), topics.end(), topic);
         if (pos == topics.end()) // if topic from MQTT is not in topics
         {
@@ -97,14 +98,15 @@ void onMQTT_LAN(int messageSize) {
           if (mqttClient.unsubscribe(topic))
           {
             console->printf("onMQTT_LAN: unsubscribe request for unexpected topic \"%s\"\r\n", strTopic);
-            unsubTopic = topic;
           }
           else
           {
             console->printf("onMQTT_LAN: unsubscribe request for unexpected topic \"%s\" failed!\r\n", topic.c_str());
           }
         }
-        else if ((topic.equals(tileTopic)) && (strstr(strTopic, "/dict") != nullptr)) // Check if this is a dictionary of tile nodes
+        else
+        */
+        if ((topic.equals(tileTopic)) && (strstr(strTopic, "/dict") != nullptr)) // Check if this is a dictionary of tile nodes
         {
           console->println("onMQTT_LAN: localized distribution dict received");
           // This is a cheat... We should be using a JSON library to read the nodes:
@@ -208,10 +210,7 @@ bool mqttConnect_LAN() {
     console->printf("mqttConnect_LAN: server \"%s\":%d as client \"%s\" failed with error %d(%s)\r\n",
               brokerHost.c_str(), AWS_IOT_PORT, clientID.c_str(), err, LUT[err + 2]);
   }
-  mqttMsgs = 0;
   topics.clear();
-  subTopic = "";
-  unsubTopic = "";
   mqttFirstTime = true;
   return mqttClient.connected();
 }
@@ -238,7 +237,7 @@ void mqttStop_LAN(void) {
 void mqttTask_LAN(bool keyPress) {
   if (keyPress) // Has the user pressed a key?
   {
-    if (!mqttLogin)
+    if (!mqttClient.connected())
       mqttConnect_LAN();
     else
       mqttStop_LAN();
@@ -251,79 +250,72 @@ void mqttTask_LAN(bool keyPress) {
   else
     return;
 
-  if (!mqttLogin) // We can only subscribe to topics and read MQTT data when connected
+  if (!mqttClient.connected()) // We can only subscribe to topics and read MQTT data when connected
     return;
 
-  // The busy check may be redundant on LAN. TODO: check if we need this
-  bool busy = (0 < subTopic.length()) || (0 < unsubTopic.length());
-  if (!busy)
+  std::vector<String> newTopics;
+  newTopics.clear();
+  newTopics.push_back(MQTT_TOPIC_KEY); // Always subscribe to the keys topic
+  if ((myLat == 99999) || (myLon == 99999) || !useLocalizedDistribution)
+    newTopics.push_back(MQTT_TOPIC_SPARTN); // If our location is unknown, subscribe to the full continental topic
+  else
   {
-    std::vector<String> newTopics;
-    newTopics.clear();
-    newTopics.push_back(MQTT_TOPIC_KEY); // Always subscribe to the keys topic
-    if ((myLat == 99999) || (myLon == 99999) || !useLocalizedDistribution)
-      newTopics.push_back(MQTT_TOPIC_SPARTN); // If our location is unknown, subscribe to the full continental topic
+    if ((myLat != lastLat) || (myLon != lastLon) || !tileKnown) // Update tile topic if position has changed
+    {
+      lastLat = myLat;
+      lastLon = myLon;
+      tileKnown = false;
+      char verifiedLevel = localizedLevel;
+      if ((verifiedLevel < '0') || (verifiedLevel > '2'))
+        verifiedLevel = '2';
+      snprintf(tileTopic, sizeof(tileTopic), "%s%c%c%04d%c%05d/dict", localizedPrefix, verifiedLevel, (myTileLat < 0) ? 'S' : 'N', abs(myTileLat), (myTileLon) < 0 ? 'W' : 'E', abs(myTileLon));
+      newTopics.push_back(tileTopic);         // Subscribe to the nearest localized topic
+      newTopics.push_back(MQTT_TOPIC_SPARTN); // We still need the full continental topic until we have our local tile
+    }
     else
-    {
-      if ((myLat != lastLat) || (myLon != lastLon) || !tileKnown) // Update tile topic if position has changed
-      {
-        lastLat = myLat;
-        lastLon = myLon;
-        tileKnown = false;
-        char verifiedLevel = localizedLevel;
-        if ((verifiedLevel < '0') || (verifiedLevel > '2'))
-          verifiedLevel = '2';
-        snprintf(tileTopic, sizeof(tileTopic), "%s%c%c%04d%c%05d/dict", localizedPrefix, verifiedLevel, (myTileLat < 0) ? 'S' : 'N', abs(myTileLat), (myTileLon) < 0 ? 'W' : 'E', abs(myTileLon));
-        newTopics.push_back(tileTopic);         // Subscribe to the nearest localized topic
-        newTopics.push_back(MQTT_TOPIC_SPARTN); // We still need the full continental topic until we have our local tile
-      }
-      else
-        newTopics.push_back(tileTopic); // Tile is known so subscribe to only our localized topic
-    }
-    if (useAssistNow)
-    {
-      if (mqttFirstTime || !useAssistNowUpdates) // First time, subscribe to the full Assist Now MGA data, thereafter subscribe to updates only
-        newTopics.push_back(MQTT_TOPIC_ASSISTNOW);
-      else
-        newTopics.push_back(MQTT_TOPIC_ASSISTNOW_UPDATES);
-    }
+      newTopics.push_back(tileTopic); // Tile is known so subscribe to only our localized topic
+  }
+  if (useAssistNow)
+  {
+    if (mqttFirstTime || !useAssistNowUpdates) // First time, subscribe to the full Assist Now MGA data, thereafter subscribe to updates only
+      newTopics.push_back(MQTT_TOPIC_ASSISTNOW);
+    else
+      newTopics.push_back(MQTT_TOPIC_ASSISTNOW_UPDATES);
+  }
 
-    // loop through new topics and subscribe to the first topic that is not in our curent topics list.
-    for (auto it = newTopics.begin(); (it != newTopics.end()) && !busy; it = std::next(it))
+  // loop through new topics and subscribe to any that are not in our curent topics list.
+  for (auto it = newTopics.begin(); (it != newTopics.end()); it = std::next(it))
+  {
+    String topic = *it;
+    std::vector<String>::iterator pos = std::find(topics.begin(), topics.end(), topic);
+    if (pos == topics.end()) // if topic from newTopics is not in topics
     {
-      String topic = *it;
-      std::vector<String>::iterator pos = std::find(topics.begin(), topics.end(), topic);
-      if (pos == topics.end()) // if topic from newTopics is not in topics
+      if (mqttClient.subscribe(topic))
       {
-        if (mqttClient.subscribe(topic))
-        {
-          console->printf("mqttTask_LAN: subscribe request topic \"%s\"\r\n", topic.c_str());
-          subTopic = topic;
-        }
-        else
-        {
-          console->printf("mqttTask_LAN: subscribe request topic \"%s\" failed!\r\n", topic.c_str());
-        }
-        busy = true;
+        console->printf("mqttTask_LAN: subscribe request topic \"%s\"\r\n", topic.c_str());
+        topics.push_back(topic);
+      }
+      else
+      {
+        console->printf("mqttTask_LAN: subscribe request topic \"%s\" failed!\r\n", topic.c_str());
       }
     }
-    // loop through current topics and unsubscribe to the first topic that is not in the new topics list.
-    for (auto it = topics.begin(); (it != topics.end()) && !busy; it = std::next(it))
+  }
+  // loop through current topics and unsubscribe from any that are not in the new topics list.
+  for (auto it = topics.begin(); (it != topics.end()); it = std::next(it))
+  {
+    String topic = *it;
+    std::vector<String>::iterator pos = std::find(newTopics.begin(), newTopics.end(), topic);
+    if (pos == newTopics.end()) // if topic from topics is not in newTopics
     {
-      String topic = *it;
-      std::vector<String>::iterator pos = std::find(newTopics.begin(), newTopics.end(), topic);
-      if (pos == newTopics.end()) // if topic from topics is not in newTopics
+      if (mqttClient.unsubscribe(topic))
       {
-        if (mqttClient.unsubscribe(topic))
-        {
-          console->printf("mqttTask_LAN: unsubscribe requested topic \"%s\"\r\n", topic.c_str());
-          unsubTopic = topic;
-        }
-        else
-        {
-          console->printf("mqttTask_LAN: unsubscribe request topic \"%s\" failed!\r\n", topic.c_str());
-        }
-        busy = true;
+        console->printf("mqttTask_LAN: unsubscribe requested topic \"%s\"\r\n", topic.c_str());
+        topics.erase(it);
+      }
+      else
+      {
+        console->printf("mqttTask_LAN: unsubscribe request topic \"%s\" failed!\r\n", topic.c_str());
       }
     }
   }

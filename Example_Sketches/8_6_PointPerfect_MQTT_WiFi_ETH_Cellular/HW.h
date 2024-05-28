@@ -46,6 +46,10 @@ const int LARA_NI = 34; // LARA Network Indicator - only valid when the LARA is 
 const int SD_PRESENT = 36; // microSD card card present - from the microSD socket switch
 const int ETHERNET_INT = 39; // WizNet W5500 interrupt
 
+const int SPI_SCK = 18;
+const int SPI_MISO = 19;
+const int SPI_MOSI = 23;
+
 #include <Wire.h>
 TwoWire I2C_1 = TwoWire(0);
 

@@ -27,7 +27,7 @@ typedef enum
   EVK_IF_ETH,
   EVK_IF_LARA
 } EVKInterfaceTypes;
-EVKInterfaceTypes EVKInterfaceType = EVK_IF_LARA; // Change this as needed
+EVKInterfaceTypes EVKInterfaceType = EVK_IF_WIFI; // Change this as needed
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -39,7 +39,7 @@ EVKInterfaceTypes EVKInterfaceType = EVK_IF_LARA; // Change this as needed
 #include "GNSS.h"
 #include "LBand.h"
 #include "WLAN.h"
-// #include "ELAN.h"
+#include "ELAN.h"
 #include "LARA-R6.h"
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -79,6 +79,22 @@ void setup()
         ;
     }
     console->println(F("WiFi is ready"));
+    console->println(F("Starting ZTP"));
+
+    mqttProvision_LAN();
+  }
+
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  else if (EVKInterfaceType == EVK_IF_ETH)
+  {
+    if (!initELAN()) // Connect to Ethernet - see ELAN.h
+    {
+      console->println(F("Could not connect to Ethernet! Freezing..."));
+      while (1)
+        ;
+    }
+    console->println(F("Ethernet is ready"));
     console->println(F("Starting ZTP"));
 
     mqttProvision_LAN();
@@ -144,6 +160,11 @@ void loop()
 
   if (EVKInterfaceType == EVK_IF_LARA)
     myLARA.bufferedPoll(); // Process any URC messages from the LARA
+  else
+  {
+      if (mqttClient.connected())
+        mqttClient.poll(); // Process MQTT subscriptions etc.
+  }
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
