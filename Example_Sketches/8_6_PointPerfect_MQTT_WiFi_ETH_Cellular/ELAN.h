@@ -10,7 +10,7 @@
 
 static bool eth_connected = false;
 
-const unsigned long ETH_CONNECT_TIMEOUT = 10000;
+const unsigned long ETH_CONNECT_TIMEOUT_MS = 10000;
 
 //NetworkClientSecure lanClient; <- this is in WLAN.h
 //HTTPClient httpClient; <- this is in WLAN.h
@@ -62,9 +62,9 @@ bool initELAN()
   console->println("ETH begun. Waiting for IP...");
 
   unsigned long start = millis();
-  while ((!eth_connected) && (millis() < (start + ETH_CONNECT_TIMEOUT))) // Wait for up to 10 seconds
+  while ((!eth_connected) && (millis() < (start + ETH_CONNECT_TIMEOUT_MS))) // Wait for up to 10 seconds
   {
-    ;
+    delay(1); // Yield
   }
 
   return eth_connected;

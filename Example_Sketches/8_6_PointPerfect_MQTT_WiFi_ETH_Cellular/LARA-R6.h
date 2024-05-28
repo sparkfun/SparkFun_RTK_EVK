@@ -232,6 +232,14 @@ void mqttProvision_LARA(void)
     LTE_CHECK(14) = myLARA.sendHTTPPOSTfile(LTE_HTTP_PROFILE, THINGSTREAM_ZTPPATH, FILE_RESP, FILE_REQUEST, UBX_CELL_HTTP_CONTENT_APPLICATION_JSON);
     LTE_CHECK_EVAL("mqttProvision_LARA");
   }
+
+  unsigned long ztpStart = millis();
+
+  // Wait for the ZTP to complete. clientID will be updated via the HTTP callback
+  while ((clientID.length() == 0) && (millis() < (ztpStart + HTTP_CONNECT_TIMEOUT_MS)))
+  {
+    myLARA.bufferedPoll(); // Process any URC messages from the LARA
+  }
 }
 
 /** Connect to the Thingstream PointPerfect server using the credentials from ZTP process

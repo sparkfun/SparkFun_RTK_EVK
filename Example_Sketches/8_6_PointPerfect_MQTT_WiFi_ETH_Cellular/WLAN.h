@@ -48,7 +48,7 @@ void mqttProvision_LAN(void) {
       console->printf("lanClient connected to %s on port %d\r\n", THINGSTREAM_SERVER, HTTPS_PORT);
 
       httpClient.begin(THINGSTREAM_ZTPURL);
-      httpClient.setConnectTimeout(5000);
+      httpClient.setConnectTimeout(HTTP_CONNECT_TIMEOUT_MS);
       httpClient.addHeader(F("Content-Type"), F("application/json"));
       console->printf("HTTP ZTP \"%s:%d\" POST \"%s\"\r\n", THINGSTREAM_ZTPURL, HTTPS_PORT, ztpReq.c_str());
       int httpResponseCode = httpClient.POST(ztpReq.c_str());

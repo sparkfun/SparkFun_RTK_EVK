@@ -131,17 +131,10 @@ void setup()
       while (1)
         ;
     }
-    console->println(F("LARA-R6 is ready. Waiting for ZTP to complete"));
+    console->println(F("LARA-R6 is ready"));
+    console->println(F("Starting ZTP"));
 
     mqttProvision_LARA();
-
-    unsigned long ztpStart = millis();
-
-    // Wait for the ZTP to complete. clientID will be updated via the HTTP callback
-    while ((clientID.length() == 0) && (millis() < (ztpStart + 10000)))
-    {
-      myLARA.bufferedPoll(); // Process any URC messages from the LARA
-    }
   }
 
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

@@ -28,6 +28,8 @@ const char MQTT_TOPIC_ASSISTNOW_UPDATES[] = "/pp/ubx/mga/updates";
 
 const uint16_t HTTPS_PORT = 443; //!< The HTTPS default port
 
+const unsigned long HTTP_CONNECT_TIMEOUT_MS = 10000; // ms
+
 String clientCert = "";         // This should be stored in LittleFS
 String clientKey = "";          // This should be stored in LittleFS
 String clientID = "";           // This should be stored in LittleFS
