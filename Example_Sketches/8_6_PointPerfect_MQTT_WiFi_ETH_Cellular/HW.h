@@ -86,7 +86,7 @@ void initSerial(HardwareSerial &port, int baud)
   console = &port;
 
   console->begin(baud);
-  console->println(F("SparkFun RTK EVK - Test Sketch"));
+  console->println(F("SparkFun RTK EVK - Test Sketch\r\n"));
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

@@ -308,6 +308,8 @@ void mqttTask_LARA(bool keyPress)
     return; // Return now
   }
 
+  myLARA.bufferedPoll(); // Process any URC messages from the LARA
+
   static unsigned long lastTask = millis();
   if (millis() > (lastTask + mqttTaskInterval)) // Perform the task every mqttTaskInterval ms
     lastTask = millis();

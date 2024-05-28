@@ -13,7 +13,7 @@
 
   Note: this example is written for arduino-esp32 v3.0.0 (RC3).
   When compiling with the CLI, include the extra compiler flags -MMD and -c. E.g.:
-  --build-property "compiler.cpp.extra_flags=-MMD -c \"-DENABLE_DEVELOPER=true\""
+  --build-property "compiler.cpp.extra_flags=-MMD -c"
 
   This example is based partly on Michael Ammann (@mazgch)'s HPG Solution: https://github.com/mazgch/hpg
   Thank you Michael
@@ -27,7 +27,7 @@ typedef enum
   EVK_IF_ETH,
   EVK_IF_LARA
 } EVKInterfaceTypes;
-EVKInterfaceTypes EVKInterfaceType = EVK_IF_WIFI; // Change this as needed
+EVKInterfaceTypes EVKInterfaceType;
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -51,6 +51,27 @@ void setup()
   delay(1000); // Wait for the ESP32
 
   initSerial(Serial, 115200); // Initialize the serial console - see HW.ino
+
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  // Ask user for choice of interface
+
+  console->println(F("0: WiFi"));
+  console->println(F("1: Ethernet"));
+  console->println(F("2: Cellular"));
+
+  while (console->available())
+    console->read();
+
+  while (!console->available())
+    ;
+
+  char choice = console->read();
+
+  EVKInterfaceType = (EVKInterfaceTypes)(choice - '0');
+
+  console->println();
+
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   if (!initGNSS()) // Initialize the GNSS - see GNSS.h
   {
@@ -157,14 +178,6 @@ void loop()
     mqttTask_LARA(keyPress); // This task handles the MQTT connection
   else
     mqttTask_LAN(keyPress); // This task handles the MQTT connection
-
-  if (EVKInterfaceType == EVK_IF_LARA)
-    myLARA.bufferedPoll(); // Process any URC messages from the LARA
-  else
-  {
-      if (mqttClient.connected())
-        mqttClient.poll(); // Process MQTT subscriptions etc.
-  }
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

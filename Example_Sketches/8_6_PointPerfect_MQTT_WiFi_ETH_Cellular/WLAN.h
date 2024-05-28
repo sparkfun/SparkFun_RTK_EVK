@@ -53,7 +53,6 @@ void mqttProvision_LAN(void) {
       console->printf("HTTP ZTP \"%s:%d\" POST \"%s\"\r\n", THINGSTREAM_ZTPURL, HTTPS_PORT, ztpReq.c_str());
       int httpResponseCode = httpClient.POST(ztpReq.c_str());
       String str = httpClient.getString();
-      httpClient.end();
       if (httpResponseCode != HTTP_CODE_OK) {
         console->printf("HTTP ZTP response error %d %s\r\n", httpResponseCode, str.c_str());
       } else {
@@ -62,8 +61,8 @@ void mqttProvision_LAN(void) {
         // Pull pertinent values from response
         extractZTP(str);
       }
-
-      lanClient.stop();
+      httpClient.end();
+      //lanClient.stop();
     }
   }
 }
@@ -212,7 +211,8 @@ bool mqttConnect_LAN() {
   }
   topics.clear();
   mqttFirstTime = true;
-  return mqttClient.connected();
+  mqttLogin = mqttClient.connected();
+  return mqttLogin;
 }
 
 /** Disconnect and cleanup the MQTT connection
@@ -226,7 +226,8 @@ void mqttStop_LAN(void) {
   topics.clear();
   if (mqttClient.connected()) {
     console->println("mqttStop: disconnect");
-    mqttClient.stop();
+    //mqttClient.stop();
+    mqttLogin = false;
   }
 }
 
@@ -237,20 +238,22 @@ void mqttStop_LAN(void) {
 void mqttTask_LAN(bool keyPress) {
   if (keyPress) // Has the user pressed a key?
   {
-    if (!mqttClient.connected())
+    if (!mqttLogin)
       mqttConnect_LAN();
     else
       mqttStop_LAN();
     return; // Return now
   }
 
+  if (!mqttLogin) // We can only subscribe to topics and read MQTT data when connected
+    return;
+
+  mqttClient.poll(); // Process MQTT subscriptions etc.
+
   static unsigned long lastTask = millis();
   if (millis() > (lastTask + mqttTaskInterval)) // Perform the task every mqttTaskInterval ms
     lastTask = millis();
   else
-    return;
-
-  if (!mqttClient.connected()) // We can only subscribe to topics and read MQTT data when connected
     return;
 
   std::vector<String> newTopics;
