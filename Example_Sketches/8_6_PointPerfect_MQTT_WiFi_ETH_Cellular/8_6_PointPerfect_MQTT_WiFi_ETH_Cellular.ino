@@ -11,7 +11,7 @@
   You need a valid IP or IP+L-Band subscription for this example.
   Copy your PointPerfect token into secrets.h.
 
-  Note: this example is written for arduino-esp32 v3.0.0 (RC3).
+  Note: this example is written for arduino-esp32 v3.0.0.
   When compiling with the CLI, include the extra compiler flags -MMD and -c. E.g.:
   --build-property "compiler.cpp.extra_flags=-MMD -c"
 
