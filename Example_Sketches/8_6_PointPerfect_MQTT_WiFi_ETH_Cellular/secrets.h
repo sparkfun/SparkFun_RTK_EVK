@@ -5,35 +5,6 @@ static const char POINTPERFECT_TOKEN[] = "<ADD YOUR POINTPERFECT TOKEN HERE>"; /
 static const char ZTP_HARDWARE_ID[] = "<ADD YOUR 14 CHARACTER HARDWARE ID HERE>";  // "ABCDABCDABCD00"
 static const char ZTP_GIVEN_NAME[] = "<ADD YOUR FULL THING NAME HERE>"; // "EVK d99.99 - ABCDABCDABCD00"
 
-// Settings for ZTP request that use HTTPS protocol
-#define    THINGSTREAM_SERVER     "api.thingstream.io"            //!< the thingstream Rest API server domain        
-#define    THINGSTREAM_ZTPPATH    "/ztp/pointperfect/credentials" //!< ZTP rest api
-const char THINGSTREAM_ZTPURL[]   = "https://" THINGSTREAM_SERVER THINGSTREAM_ZTPPATH; // full ZTP url
-
-// <Your PointPerfect Thing> -> Credentials -> Hostname
-const char AWS_IOT_ENDPOINT[] = "pp.services.u-blox.com";
-const unsigned short AWS_IOT_PORT = 8883;
-
-// <Your PointPerfect Thing> -> Credentials -> IP key distribution topic
-const char MQTT_TOPIC_KEY[] = "/pp/ubx/0236/Lb"; // This topic provides the L-Band and L-Band + IP dynamic keys in UBX format
-// const char MQTT_TOPIC_KEY[] = "/pp/ubx/0236/ip"; // This topic provides the IP only dynamic keys in UBX format
-
-// <Your PointPerfect Thing> -> Credentials -> IP correction topic for EU/US region
-const char MQTT_TOPIC_SPARTN[] = "/pp/Lb/us"; // This topic provides the SPARTN corrections for L-Band and L-Band + IP for the US region
-// const char MQTT_TOPIC_SPARTN[] = "/pp/Lb/eu"; // This topic provides the SPARTN corrections for L-Band and L-Band + IP for the EU region
-// const char MQTT_TOPIC_SPARTN[] = "/pp/ip/us"; // This topic provides the SPARTN corrections for IP only for the US region
-// const char MQTT_TOPIC_SPARTN[] = "/pp/ip/eu"; // This topic provides the SPARTN corrections for IP only for the EU region
-
-const bool useLocalizedDistribution = true; // True for localized distribution. Set to false to only use the continental corrections
-const char localizedPrefix[] = "pp/ip/L"; // The localized distribution topic prefix. Note: starts with "pp", not "/pp"
-const char localizedLevel = '2'; // The localized distribution level: 0 = 10 degrees; 1 = 5 degrees; 2 = 2.5 degrees
-
-// <Your PointPerfect Thing> -> Credentials -> AssistNow (MGA) topic
-const bool useAssistNow = true; // Set to true to use Assist Now MGA
-const char MQTT_TOPIC_ASSISTNOW[] = "/pp/ubx/mga";
-const bool useAssistNowUpdates = true; // If useAssistNow is true, set to true to use updates (less traffic)
-const char MQTT_TOPIC_ASSISTNOW_UPDATES[] = "/pp/ubx/mga/updates";
-
 // Amazon Root Certificate
 static const char AWS_CERT_CA[] PROGMEM = R"EOF(-----BEGIN CERTIFICATE-----
 MIIDQTCCAimgAwIBAgITBmyfz5m/jAo54vB4ikPmljZbyjANBgkqhkiG9w0BAQsF
