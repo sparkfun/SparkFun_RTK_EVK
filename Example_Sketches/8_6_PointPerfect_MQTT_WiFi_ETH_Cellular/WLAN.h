@@ -2,7 +2,7 @@
 #include <WiFiMulti.h>
 #include <NetworkClientSecure.h>
 #include <HTTPClient.h>
-#include <ArduinoMqttClient.h>
+#include <ArduinoMqttClient.h> // https://github.com/arduino-libraries/ArduinoMqttClient
 
 WiFiMulti wifiMulti;
 NetworkClientSecure lanClient;

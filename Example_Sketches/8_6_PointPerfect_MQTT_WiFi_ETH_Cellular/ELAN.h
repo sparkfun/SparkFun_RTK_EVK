@@ -2,7 +2,7 @@
 #include <ETH.h>
 #include <NetworkClientSecure.h>
 #include <HTTPClient.h>
-#include <ArduinoMqttClient.h>
+#include <ArduinoMqttClient.h> // https://github.com/arduino-libraries/ArduinoMqttClient
 
 #define ETH_PHY_TYPE ETH_PHY_W5500
 #define ETH_PHY_ADDR 0
