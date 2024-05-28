@@ -1,0 +1,64 @@
+# Individual files - e.g. compiled binaries or local batch files - can be added to .git/info/exclude
+
+partitions.csv
+*.bin
+*.elf
+*.map
+
+tokens.h
+.vscode/*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+#Eagle Backup files
+*.s#?
+*.b#?
+*.l#?
+*.lck
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must ends with two \r.
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# =========================
+# Linux Files
+# =========================
+
+Compare
+NMEA_Client
+Read_Map_File
+RTK_Reset
+Split_Messages
+X.509_crt_bundle_bin_to_c
