@@ -38,8 +38,8 @@ EVKInterfaceTypes EVKInterfaceType = EVK_IF_LARA; // Change this as needed
 #include "CONFIG.h"
 #include "GNSS.h"
 #include "LBand.h"
-// #include "EVK_WiFi.h"
-// #include "EVK_Ethernet.h"
+#include "WLAN.h"
+// #include "ELAN.h"
 #include "LARA-R6.h"
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -70,7 +70,23 @@ void setup()
 
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  if (EVKInterfaceType == EVK_IF_LARA)
+  if (EVKInterfaceType == EVK_IF_WIFI)
+  {
+    if (!initWLAN()) // Connect to WiFi - see WLAN.h
+    {
+      console->println(F("Could not connect to WiFi! Freezing..."));
+      while (1)
+        ;
+    }
+    console->println(F("WiFi is ready"));
+    console->println(F("Starting ZTP"));
+
+    mqttProvision_LAN();
+  }
+
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  else if (EVKInterfaceType == EVK_IF_LARA)
   {
     if (!initLARA()) // Initialize the LARA-R6 - see LARA-R6.h
     {
@@ -89,20 +105,22 @@ void setup()
     {
       myLARA.bufferedPoll(); // Process any URC messages from the LARA
     }
+  }
 
-    if (clientID.length() == 0)
-    {
-      console->println(F("ZTP timed out! Freezing..."));
-      while (1)
-        ;
-    }
-    else
-    {
-      console->printf("clientID:   %s\r\n", clientID.c_str());
-      console->printf("brokerHost: %s\r\n", brokerHost.c_str());
-      console->printf("currentKey: %s\r\n", currentKey.c_str());
-      console->printf("nextKey:    %s\r\n", nextKey.c_str());
-    }
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  if (clientID.length() == 0)
+  {
+    console->println(F("ZTP failed! Freezing..."));
+    while (1)
+      ;
+  }
+  else
+  {
+    console->printf("clientID:   %s\r\n", clientID.c_str());
+    console->printf("brokerHost: %s\r\n", brokerHost.c_str());
+    console->printf("currentKey: %s\r\n", currentKey.c_str());
+    console->printf("nextKey:    %s\r\n", nextKey.c_str());
   }
 
   //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -117,7 +135,12 @@ void loop()
   myGNSS.checkUblox();     // Check for the arrival of new GNSS data and process it.
   myGNSS.checkCallbacks(); // Check if any GNSS callbacks are waiting to be processed.
 
-  mqttTask(keyPressed()); // This task handles the MQTT connection
+  bool keyPress = keyPressed();
+  
+  if (EVKInterfaceType == EVK_IF_LARA)
+    mqttTask_LARA(keyPress); // This task handles the MQTT connection
+  else
+    mqttTask_LAN(keyPress); // This task handles the MQTT connection
 
   if (EVKInterfaceType == EVK_IF_LARA)
     myLARA.bufferedPoll(); // Process any URC messages from the LARA

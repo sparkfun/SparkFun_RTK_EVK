@@ -44,8 +44,6 @@ LARA_R6_Derived myLARA;
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-const int MQTT_MAX_MSG_SIZE = 10 * 1024; //!< the max size of a MQTT pointperfect topic
-
 const int LTE_HTTP_PROFILE = 0;          //!< The HTTP profile used duing provisioning
 const int LTE_SEC_PROFILE_HTTP = 1;      //!< The security profile used for the HTTP connections druing provisioning
 const int LTE_SEC_PROFILE_MQTT = 0;      //!< The security profile used for the MQTT connections
@@ -54,20 +52,6 @@ const char *FILE_RESP = "resp.json";     //!< Temporarly file name used for the 
 const char *SEC_ROOT_CA = "aws-rootCA";  //!< Temporarly file name used when injecting the ROOT CA
 const char *SEC_CLIENT_CERT = "pp-cert"; //!< Temporarly file name used when injecting the client certificate
 const char *SEC_CLIENT_KEY = "pp-key";   //!< Temporarly file name used when injecting the client keys
-
-std::vector<String> topics; //!< vector with current subscribed topics
-String subTopic = "";       //!< requested topic to be subscribed (needed by the callback)
-String unsubTopic = "";     //!< requested topic to be un-subscribed (needed by the callback)
-int mqttMsgs;               //!< remember the number of messages pending indicated by the URC
-bool mqttLogin = false;     // Remember if we are connected to MQTT
-bool mqttFirstTime = true;  // Remember if this is the first connection, so we can request MGA
-
-const unsigned long mqttTaskInterval = 100; // Minimum interval between MQTT task calls - needed for subscribe/unsubscribe
-
-int lastLat = 99999; // The last lat and lon in centidegrees. Used to re-subscribe to the localized distribution topics
-int lastLon = 99999;
-char tileTopic[40] = {0}; // Contains the localized distribution topic: ends with /dict initially, then the nearest tile
-bool tileKnown = false;   // Set to true when the nearest tile is known
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -162,7 +146,7 @@ static void mqttCallbackStatic_LARA(int command, int result)
   mqttCallback_LARA(command, result);
 }
 
-/** The HTTP callback processes the URC and is responsible for advancing the state.
+/** The HTTP callback processes the URC. clientID.length > 0 indicates the ZTP POST is complete
  *  \param profile  the HTTP profile
  *  \param command  the HTTP command
  *  \param request  the response code 1 = sucess, 0 = error
@@ -193,6 +177,8 @@ void httpCallback_LARA(int profile, int command, int result)
     LTE_CHECK_EVAL("HTTP read");
     if (LTE_CHECK_OK)
     {
+      console->printf("HTTP ZTP response: %s\r\n", str.c_str());
+          
       const char START_TAG[] = "\r\n\r\n";
       int offset = str.indexOf(START_TAG);
       if (offset)
@@ -202,40 +188,7 @@ void httpCallback_LARA(int profile, int command, int result)
         {
           // Device is now active with ThingStream
           // Pull pertinent values from response
-          DynamicJsonDocument *jsonZtp = new DynamicJsonDocument(8192);
-          if (!jsonZtp)
-          {
-              console->println("ERROR - Failed to allocate jsonZtp!");
-          }
-          else
-          {
-            DeserializationError error = deserializeJson(*jsonZtp, str);
-            if (DeserializationError::Ok != error)
-            {
-                console->println("JSON error");
-            }
-            else
-            {
-              clientCert = (const char *)((*jsonZtp)["certificate"]);
-
-              clientKey = (const char *)((*jsonZtp)["privateKey"]);
-
-              // TODO: checkCertificates
-
-              clientID = (const char *)((*jsonZtp)["clientId"]);
-              brokerHost = (const char *)((*jsonZtp)["brokerHost"]);
-
-              // TODO: staore the key distribution topic and correction topics
-
-              currentKey = (const char *)((*jsonZtp)["dynamickeys"]["current"]["value"]);
-              currentKeyDuration = (const char *)(*jsonZtp)["dynamickeys"]["current"]["duration"];
-              currentKeyStart = (const char *)(*jsonZtp)["dynamickeys"]["current"]["start"];
-
-              nextKey = (const char *)((*jsonZtp)["dynamickeys"]["next"]["value"]);
-              nextKeyDuration = (const char *)(*jsonZtp)["dynamickeys"]["next"]["duration"];
-              nextKeyStart = (const char *)(*jsonZtp)["dynamickeys"]["next"]["start"];
-            } // JSON Derialized correctly
-          }
+          extractZTP(str);
         }
       }
     }
@@ -250,7 +203,7 @@ static void httpCallbackStatic_LARA(int profile, int command, int result)
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /** Try to provision the PointPerfect to that we can start the MQTT server. This involves:
- *  HTTPS request to Thingstream POSTing the device tocken to get the credentials and client cert, key and ID
+ *  HTTPS request to Thingstream POSTing the device token to get the credentials and client cert, key and ID
  */
 void mqttProvision_LARA(void)
 {
@@ -325,16 +278,16 @@ void mqttConnect_LARA(void)
 /** Disconnect and cleanup the MQTT connection
  *  \return true if already disconnected (no need to wait for the callback)
  */
-bool mqttStop(void)
+bool mqttStop_LARA(void)
 {
   UBX_CELL_error_t err = myLARA.disconnectMQTT();
   if (UBX_CELL_SUCCESS == err)
   {
-    console->println("mqttStop: disconnect");
+    console->println("mqttStop_LARA: disconnect");
   }
   else
   {
-    console->printf("mqttStop: disconnect failed with error %d\r\n", err);
+    console->printf("mqttStop_LARA: disconnect failed with error %d\r\n", err);
   }
   return UBX_CELL_SUCCESS != err;
 }
@@ -344,14 +297,14 @@ bool mqttStop(void)
  *  2) unsubscribing from topics
  *  3) read MQTT data from the modem and inject it into the GNSS receiver
  */
-void mqttTask(bool keyPress)
+void mqttTask_LARA(bool keyPress)
 {
   if (keyPress) // Has the user pressed a key?
   {
     if (!mqttLogin)
       mqttConnect_LARA();
     else
-      mqttStop();
+      mqttStop_LARA();
     return; // Return now
   }
 
