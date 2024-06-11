@@ -98,7 +98,7 @@ void setup()
   delay(1000); // Wait for the ESP32
 
   Serial.begin(115200);
-  Serial.println("SparkFun RTK EVK - Test Sketch");
+  Serial.println(F("SparkFun RTK EVK - Test Sketch"));
 
   // The LARA_R6 will be powered off by default.
   // If desired, we can power it on manually by toggling the LARA_PWR pin now.
@@ -111,9 +111,11 @@ void setup()
   //   delay(8000); // Wait > 7 seconds for the LARA to begin
   // }
 
-  myLARA.enableDebugging();
+  //myLARA.enableDebugging(); // Uncomment this line to see helpful debug messages on Serial
 
   myLARA.invertPowerPin(true); //LARA_PWR is inverted
+
+  Serial.println(F("Initializing the LARA_R6. This could take ~20 seconds."));
 
   // Initialize the LARA
   if (myLARA.begin(laraSerial, 115200) )
@@ -125,15 +127,51 @@ void setup()
     Serial.println(F("Unable to communicate with the LARA!"));
   }
 
+  Serial.println();
+  Serial.println(F("Module and SIM information will be printed in 15 seconds"));
   Serial.println(F("LARA_R5 will power off in 30 seconds - ready for the next example"));
+  Serial.println();
 }
 
 void loop()
 {
   static unsigned long loopStart = millis();
+  static bool infoPrinted = false;
   static bool offSent = false;
-  if ((millis() > (loopStart + 30000)) && (!offSent)) // 30 second timeout
+
+  if ((millis() > (loopStart + 15000)) && (!infoPrinted)) // 15 second timer
   {
+    // Read ID, IMSI etc.
+    Serial.println();
+    Serial.print(F("Manufacturer ID: "));
+    Serial.println(myLARA.getManufacturerID());
+    Serial.print(F("Model ID: "));
+    Serial.println(myLARA.getModelID());
+    Serial.print(F("Firmware version: "));
+    Serial.println(myLARA.getFirmwareVersion());
+    Serial.print(F("Serial No: "));
+    Serial.println(myLARA.getSerialNo());
+    Serial.print(F("IMEI: "));
+    Serial.println(myLARA.getIMEI());
+    Serial.print(F("IMSI: "));
+    String IMSI = myLARA.getIMSI();
+    if (IMSI == "")
+      Serial.println(F("None. Is the SIM correctly inserted?"));
+    else
+      Serial.println(IMSI.c_str());
+    Serial.print(F("CCID: "));
+    String CCID = myLARA.getCCID();
+    if (CCID == "")
+      Serial.println(F("None. Is the SIM correctly inserted?"));
+    else
+      Serial.println(CCID.c_str());
+    Serial.println();
+    infoPrinted = true;
+  }
+
+  if ((millis() > (loopStart + 30000)) && (!offSent)) // 30 second timer
+  {
+    Serial.println();
     Serial.println(F("Powering off the LARA_R5 - ready for the next example"));
     myLARA.modulePowerOff();
     offSent = true;
@@ -142,8 +180,9 @@ void loop()
   if (!offSent)
   {
     Serial.print(F("LARA Network Indicator (NI) pin is: "));
-    if (digitalRead(LARA_NI) == HIGH)
+    if (digitalRead(LARA_NI) == HIGH) {
       Serial.println(F("HIGH"));
+    }
     else
       Serial.println(F("LOW"));
   }
