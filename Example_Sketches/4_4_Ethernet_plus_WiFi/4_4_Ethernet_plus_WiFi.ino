@@ -55,6 +55,8 @@
 #include <SPI.h>
 #include <ETH.h>
 
+#define USE_DHCP 0 // Change to 1 to use DHCP
+
 const int STAT_LED = 2;
 const int SD_CS = 4;         // Chip select for the microSD card
 const int GNSS_INT = 5;      // ZED_F9P time pulse interrupt
@@ -83,9 +85,28 @@ const int ETHERNET_INT = 39; // WizNet W5500 interrupt
 #define ETH_SPI_MISO 19
 #define ETH_SPI_MOSI 23
 
+esp_netif_t *ethernet_netif = nullptr;
+
 static bool eth_connected = false;
 
-void onEvent(arduino_event_id_t event, arduino_event_info_t info)
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// WiFi
+
+#include <WiFi.h>
+#include <WiFiMulti.h>
+#include <WiFiGeneric.h>
+#include "secrets.h"
+
+WiFiMulti wifiMulti;
+
+esp_netif_t *wifi_netif = nullptr;
+
+static bool wifi_connected = false;
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// Network Events
+
+void onNetworkEvent(arduino_event_id_t event, arduino_event_info_t info)
 {
     switch (event)
     {
@@ -96,9 +117,17 @@ void onEvent(arduino_event_id_t event, arduino_event_info_t info)
         break;
     case ARDUINO_EVENT_ETH_CONNECTED:
         Serial.println("ETH Connected");
+        // esp_eth_handle_t info.eth_connected;
         break;
     case ARDUINO_EVENT_ETH_GOT_IP:
-        Serial.printf("ETH Got IP: '%s'\n", esp_netif_get_desc(info.got_ip.esp_netif));
+        Serial.printf("ETH Got IP: '%s'\r\n", esp_netif_get_desc(info.got_ip.esp_netif));
+        Serial.println(ETH);
+        // ip_event_got_ip_t info.got_ip;
+        ethernet_netif = info.got_ip.esp_netif;
+        eth_connected = true;
+        break;
+    case ARDUINO_EVENT_ETH_GOT_IP6:
+        Serial.printf("ETH Got **IP6**: '%s'\r\n", esp_netif_get_desc(info.got_ip.esp_netif));
         Serial.println(ETH);
         eth_connected = true;
         break;
@@ -114,51 +143,115 @@ void onEvent(arduino_event_id_t event, arduino_event_info_t info)
         Serial.println("ETH Stopped");
         eth_connected = false;
         break;
+
+    case ARDUINO_EVENT_WIFI_OFF:
+        Serial.println("WiFi Off");
+        break;
+    case ARDUINO_EVENT_WIFI_READY:
+        Serial.println("WiFi Ready");
+        break;
+    case ARDUINO_EVENT_WIFI_SCAN_DONE:
+        Serial.println("WiFi Scan Done");
+        // wifi_event_sta_scan_done_t info.wifi_scan_done;
+        break;
+    case ARDUINO_EVENT_WIFI_STA_START:
+        Serial.println("WiFi STA Started");
+        break;
+    case ARDUINO_EVENT_WIFI_STA_STOP:
+        Serial.println("WiFi STA Stopped");
+        wifi_connected = false;
+        break;
+    case ARDUINO_EVENT_WIFI_STA_CONNECTED:
+        Serial.println("WiFi STA Connected");
+        // wifi_event_sta_connected_t info.wifi_sta_connected;
+        break;
+    case ARDUINO_EVENT_WIFI_STA_DISCONNECTED:
+        Serial.println("WiFi STA Disconnected");
+        // wifi_event_sta_disconnected_t info.wifi_sta_disconnected;
+        wifi_connected = false;
+        break;
+    case ARDUINO_EVENT_WIFI_STA_AUTHMODE_CHANGE:
+        Serial.println("WiFi STA Auth Mode Changed");
+        // wifi_event_sta_authmode_change_t info.wifi_sta_authmode_change;
+        break;
+    case ARDUINO_EVENT_WIFI_STA_GOT_IP:
+        Serial.printf("WiFi STA Got IP: '%s'\n", esp_netif_get_desc(info.got_ip.esp_netif));
+        wifi_netif = info.got_ip.esp_netif;
+        wifi_connected = true;
+        break;
+    case ARDUINO_EVENT_WIFI_STA_GOT_IP6:
+        Serial.printf("WiFi STA Got **IP6**: '%s'\n", esp_netif_get_desc(info.got_ip.esp_netif));
+        wifi_connected = true;
+        break;
+    case ARDUINO_EVENT_WIFI_STA_LOST_IP:
+        Serial.println("WiFi STA Lost IP");
+        wifi_connected = false;
+        break;
+    
     default:
         break;
     }
 }
 
-void testETHClient(const char *host, uint16_t port)
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+// Network Client
+
+NetworkClient *networkClient = nullptr;
+
+bool testClient(NetworkClient *client, const char *host, uint16_t port)
 {
-    Serial.print("\nConnecting to ");
+    Serial.print("\r\nConnecting to ");
     Serial.println(host);
 
-    NetworkClient client;
-    if (!client.connect(host, port))
+    if (!client->connect(host, port))
     {
-        Serial.println("Connection failed");
-        return;
+        Serial.println("Connection failed\r\n");
+        client->stop();
+        return false;
     }
 
-    client.printf("GET / HTTP/1.1\r\nHost: %s\r\n\r\n", host);
+    client->printf("GET / HTTP/1.1\r\nHost: %s\r\n\r\n", host);
 
-    while (client.connected() && !client.available())
+    while (client->connected() && !client->available())
         ;
 
-    if (client.available())
+    if (client->available())
     {
         Serial.println("Client connected");
     }
 
-    while (client.available())
+    const char findMe[] = "The document has moved";
+    int foundChar = 0;
+    bool success = false;
+
+    while (client->available())
     {
-        Serial.write(client.read());
+        char c = client->read();
+        //Serial.write(c);
+
+        if (c == findMe[foundChar])
+        {
+          foundChar++;
+          if (foundChar == strlen(findMe))
+            success = true;
+        }
+        else
+        {
+          foundChar = 0;
+        }
     }
 
-    Serial.println("\r\nClosing connection\r\n");
+    if (success)
+      Serial.println("Success");
+    else
+      Serial.println("FAIL");
 
-    client.stop();
+    Serial.println("Closing connection\r\n");
+
+    client->stop();
+
+    return (success);
 }
-
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-// WiFi
-
-#include <WiFi.h>
-#include <WiFiMulti.h>
-#include "secrets.h"
-
-WiFiMulti wifiMulti;
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -180,23 +273,12 @@ void setup()
     Serial.println("SparkFun RTK EVK - Test Sketch");
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-    // Begin WiFi
 
-    Serial.print("Connecting to local WiFi");
-  
-    wifiMulti.addAP(ssid, password);
-    if (wifiMulti.run() == WL_CONNECTED)
-    {
-      Serial.println("WiFi connected");
-      Serial.println("IP address: ");
-      Serial.println(WiFi.localIP());
-    }
-    else
-    {
-      Serial.println("WiFi NOT connected!");
-    }
-    Serial.println();
-  
+    Network.onEvent(onNetworkEvent);
+
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    
+    // Don't call wifiMulti.run() here. The loop will do it
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     // Begin SPI
@@ -206,21 +288,100 @@ void setup()
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     // Begin ETHernet
 
-    //Network.onEvent(onEvent);
+    if (ETH.begin(ETH_PHY_TYPE, ETH_PHY_ADDR, ETH_PHY_CS, ETH_PHY_IRQ, ETH_PHY_RST, SPI))
+    {
+#if (!USE_DHCP)
+      ETH.config("192.168.0.123", "192.168.0.1", "255.255.255.0", "194.168.4.100");
+#endif
+    }
 
-    ETH.begin(ETH_PHY_TYPE, ETH_PHY_ADDR, ETH_PHY_CS, ETH_PHY_IRQ, ETH_PHY_RST, SPI);
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+    networkClient = new NetworkClient;
 }
+
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 void loop()
 {
-    static unsigned long lastETHTest = 0;
+  static bool previous_wifi_connected = false;
+  static bool previous_eth_connected = false;
 
-    //if (eth_connected && (millis() > (lastETHTest + 30000)))
-    if (ETH.linkUp() && ETH.hasIP()  && (millis() > (lastETHTest + 30000)))
+  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  // Test the network every 20s by connecting to Google
+
+  static unsigned long lastTest = 0;
+
+  if (millis() > (lastTest + 20000))
+  {
+    lastTest = millis();
+
+    bool success = false;
+
+    if (networkClient)
     {
-        Serial.println("Testing ETH");
-        testETHClient("google.com", 80);
-        lastETHTest = millis();
+      success = testClient(networkClient, "google.com", 80);
     }
+  }
+
+  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  // Attempt to (re)connect to WiFi if needed every 60s
+
+  static unsigned long lastWiFiReconnect = 0;
+
+  if ((previous_wifi_connected == false) && (wifi_connected == false) && (millis() > (lastWiFiReconnect + 60000)))
+  {
+    lastWiFiReconnect = millis();
+
+    Serial.println("Attempting to (re)connect to WiFi...");
+
+    wifiMulti.addAP(ssid, password);
+    wifiMulti.run();    
+  }
+
+  // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  // Print which networks are connected every 2s. Change the default as needed
+
+  static unsigned long lastPrint = 0;
+
+  if (millis() > (lastPrint + 2000))
+  {
+    lastPrint = millis();
+
+    Serial.printf("WiFi is %sconnected. ETH is %sconnected\r\n", wifi_connected ? "" : "not ", eth_connected ? "" : "not ");
+
+    if ((previous_wifi_connected == false) && (wifi_connected == true) && (eth_connected == false) && wifi_netif)
+    {
+      // WiFi has (re)connected. Ethernet is down. Make WiFi the default.
+      Serial.println("WiFi has (re)connected. Making it the default");
+      esp_netif_set_default_netif(wifi_netif);
+    }
+    
+    if ((previous_wifi_connected == true) && (wifi_connected == false) && ethernet_netif)
+    {
+      // WiFi has gone down. Ensure ETH is the default.
+      Serial.println("WiFi has disconnected. Making ETH the default");
+      esp_netif_set_default_netif(ethernet_netif);
+
+      WiFi.mode(WIFI_OFF);
+      wifi_netif = nullptr;
+    }
+    
+    if ((previous_eth_connected == false) && (eth_connected == true) && (wifi_connected == false) && ethernet_netif)
+    {
+      // Ethernet has (re)connected. WiFi is down. Make Ethernet the default.
+      Serial.println("ETH has (re)connected. Making it the default");
+      esp_netif_set_default_netif(ethernet_netif);
+    }
+
+    if ((previous_eth_connected == true) && (eth_connected == false) && wifi_netif)
+    {
+      // Ethernet has gone down. Ensure WiFi is the default.
+      Serial.println("ETH has disconnected. Making WiFi the default");
+      esp_netif_set_default_netif(wifi_netif);
+    }
+
+    previous_wifi_connected = wifi_connected;
+    previous_eth_connected = eth_connected;
+  }
 }
