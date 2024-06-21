@@ -24,14 +24,14 @@ Repository Contents
 -------------------
 
 * **[/docs](/docs/)** - Online documentation files
-    * [assets](/docs/assets/) - Assets files
-        * [RTK_EVK_Enclosure](/docs/assets/RTK_EVK_Enclosure/)
+    * **[assets](/docs/assets/)** - Assets files
+        * **[RTK_EVK_Enclosure](/docs/assets/RTK_EVK_Enclosure/)**
             * **[/Front_Panel](/Front_Panel/)** - Eagle design files (.brd, .sch) for the prototype (PCB) enclosure panel used to validate the dimensions
             * **[/Front_Sticker](/Front_Sticker/)** - DXF and PDF files for the front sticker
             * **[/Rear_Panel](/Rear_Panel/)** - Eagle design files (.brd, .sch) for the prototype (PCB) enclosure panel used to validate the dimensions
             * **[/Rear_Sticker](/Rear_Sticker/)** - DXF and PDF files for the rear sticker
-        * [board_files](/docs/assets/board_files/) - Files for the product design
-        * [img/](/docs/assets/img/hookup_guide/) - Images for hookup guide documentation
+        * **[board_files](/docs/assets/board_files/)** - Files for the product design
+        * **[img/](/docs/assets/img/hookup_guide/)** - Images for hookup guide documentation
 * **[/Example_Sketches](/Example_Sketches/)** - Arduino IDE code examples
 * **[/Hardware](/Hardware/)** - Eagle design files (.brd, .sch)
 * **[/Production](/Production/)** - PCB panel production files
