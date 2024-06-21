@@ -1,7 +1,7 @@
 SparkFun RTK EVK
 ========================================
 
-[![SparkFun RTK EVK]()]()
+[![SparkFun RTK EVK](https://cdn.sparkfun.com/r/600-600/assets/parts/2/4/7/0/6/24342-RTK-EVK-Action-6.jpg)](https://www.sparkfun.com/products/24342)
 
 [*SparkFun RTK EVK (GPS-24342)*](https://www.sparkfun.com/products/24342)
 
@@ -12,7 +12,9 @@ Under the hood, the RTK EVK is based on the Espressif ESP32-WROVER processor wit
 Documentation
 --------------
 
-* **[Product Manual (mkdocs)](http://docs.sparkfun.com/SparkFun_RTK_EVK/)** - Product manual for the RTK EVK hosted by GitHub pages.
+* **[Hookup Guide](http://docs.sparkfun.com/SparkFun_RTK_EVK/)** - Hookup Guide for the RTK EVK hosted by GitHub pages.
+* **[RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/)** - RTK Everywhere product manual hosted by GitHub Pages.
+
 
 *Need to download or print our hookup guide?*
 
@@ -23,34 +25,41 @@ Repository Contents
 
 * **[/docs](/docs/)** - Online documentation files
     * [assets](/docs/assets/) - Assets files
+        * [RTK_EVK_Enclosure](/docs/assets/RTK_EVK_Enclosure/)
+            * **[/Front_Panel](/Front_Panel/)** - Eagle design files (.brd, .sch) for the prototype (PCB) enclosure panel used to validate the dimensions
+            * **[/Front_Sticker](/Front_Sticker/)** - DXF and PDF files for the front sticker
+            * **[/Rear_Panel](/Rear_Panel/)** - Eagle design files (.brd, .sch) for the prototype (PCB) enclosure panel used to validate the dimensions
+            * **[/Rear_Sticker](/Rear_Sticker/)** - DXF and PDF files for the rear sticker
         * [board_files](/docs/assets/board_files/) - Files for the product design
-            * [Schematic](/docs/assets/board_files/schematic.pdf) (.pdf)
-            * [Dimensions](/docs/assets/board_files/dimensions.png) (.png)
-            * [Eagle files](/docs/assets/board_files/eagle_files.zip) (.zip)
-        * [img/hookup_guide/](/docs/assets/img/hookup_guide/) - Images for hookup guide documentation
+        * [img/](/docs/assets/img/hookup_guide/) - Images for hookup guide documentation
+* **[/Example_Sketches](/Example_Sketches/)** - Arduino IDE code examples
 * **[/Hardware](/Hardware/)** - Eagle design files (.brd, .sch)
 * **[/Production](/Production/)** - PCB panel production files
-* **[/Front_Panel](/Front_Panel/)** - Eagle design files (.brd, .sch) for the prototype (PCB) enclosure panel used to validate the dimensions
-* **[/Rear_Panel](/Rear_Panel/)** - Eagle design files (.brd, .sch) for the prototype (PCB) enclosure panel used to validate the dimensions
-* **[/Front_Sticker](/Front_Sticker/)** - DXF and PDF files for the front sticker
-* **[/Rear_Sticker](/Rear_Sticker/)** - DXF and PDF files for the rear sticker
-* **[/Example_Sketches](/Example_Sketches/)** - Arduino IDE code examples
-* **[/Documents](/Documents/)** - Component datasheets etc.
+
+
 
 Firmware
 ----------------
 
-The RTK Everywhere firmware has its own [dedicated repo](https://github.com/sparkfun/SparkFun_RTK_Everywhere_Firmware).
+The RTK Everywhere firmware has its own [dedicated repo](https://github.com/sparkfun/SparkFun_RTK_Everywhere_Firmware) as listed below.
+
+* **[RTK Everywhere Firmware](https://github.com/sparkfun/SparkFun_RTK_Everywhere_Firmware)**
+* **[RTK Everywhere Firmware Binaries](https://github.com/sparkfun/SparkFun_RTK_Everywhere_Firmware_Binaries)**
+
+
 
 Product Variants
 ----------------
 
-* [GPS-24342](https://www.sparkfun.com/products/24342)- v1.0, Initial Release
+* [GPS-24342](https://www.sparkfun.com/products/24342)- v1.1, Initial Release
+
+
 
 Version History
 ---------------
 
-* [v10](https://github.com/sparkfun/SparkFun_RTK_EVK/releases/tag/v10) - Initial Release
+* v1.1- Initial Release
+
 
 
 License Information
