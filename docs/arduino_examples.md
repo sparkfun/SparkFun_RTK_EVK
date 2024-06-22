@@ -19,10 +19,12 @@ For the scope of this tutorial, we will upload one of the examples to get starte
 !!! note
     Some examples may include additional header files. You'll need to click on the example that has the same title as the folder's title. Certain examples may also require an additional Arduino Library. Make sure to check the example to see if there is a `#include` with the Arduino Library name near the top before compiling.  You may also need to update the examples to provide any secret keys, accounts, or passwords.
 
-Then select the associated board definition (in this case the **ESP32 Wrover Module**) and COM port. With a USB C cable connected to the **CONFIG ESP32** port, click on the upload button. Opening the [Arduino Serial Terminal](https://learn.sparkfun.com/tutorials/terminal-basics/arduino-serial-monitor-windows-mac-linux) at **115200** baud, the output will provide the model and SIM card information. 
+Then select the associated board definition (in this case the **ESP32 Wrover Module**) and COM port. With a USB C cable connected to the **CONFIG ESP32** port, click on the upload button. Opening the [Arduino Serial Terminal](https://learn.sparkfun.com/tutorials/terminal-basics/arduino-serial-monitor-windows-mac-linux) at **115200** baud, the output will provide the model and SIM card information.
 
 !!! note
-   At the time of writing, we used the following:
-
-       * Arduino IDE v2.3.2
-       * esp32 by Espressif v3.0.1
+    At the time of writing, we used the following:
+    <br />
+    <ul>
+      <li> Arduino IDE v2.3.2</li>
+      <li>esp32 by Espressif v3.0.1</li>
+    </ul>
