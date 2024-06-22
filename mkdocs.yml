@@ -240,6 +240,7 @@ nav:
     - Hardware Overview: hardware_overview.md
     # - Hardware Hookup: hardware_hookup.md
     - RTK Everywhere Firmware: product_manual.md
+    - Arduino Examples: arduino_examples.md
   - Resources: resources.md
   - Support:
     - Troubleshooting: troubleshooting.md

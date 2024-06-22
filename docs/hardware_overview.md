@@ -13,6 +13,21 @@ The electronics of the SparkFun RTK EVK is enclosed in a custom extruded aluminu
   </table>
 </div>
 
+The image below shows a top and bottom view of the populated PCB without the enclosure.
+
+<div style="text-align: center;">
+  <table>
+    <tr style="vertical-align:middle;">
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-PCB_Top_View.jpg"><img src="../assets/img/24342-RTK-EVK-Board-PCB_Top_View.jpg" width="600px" height="600px" alt="PCB Top View"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-PCB_Bottom_View.jpg"><img src="../assets/img/24342-RTK-EVK-Board-PCB_Bottom_View.jpg" width="600px" height="600px" alt="PCB Back View"></a></td>
+    </tr>
+    <tr style="vertical-align:middle;">
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>PCB Top View</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>PCB Bottom View</i></td>
+    </tr>
+  </table>
+</div>
+
 
 
 ### Power
@@ -20,7 +35,7 @@ The electronics of the SparkFun RTK EVK is enclosed in a custom extruded aluminu
 The SparkFun RTK EVK can be powered from the front or back of board. There is no internal battery. Schottky protection diodes and a resettable fuse are included to prevent conflicting voltages and overvoltage protection. Voltage is then regulated down to 3.3V through the three voltage regulators.
 
 * **CONFIG ESP32** &mdash; The CONFIG ESP32 includes a USB C connector to power the RTK EVK. Users can also upload code or connect to the ESP32 to a serial terminal.
-* **CONFIG UBLOX** &mdash; The CONFIG UBLOX includes a USB C connector to power the RTK EVK as well. A USB hub is connected to this port and connects to the ZED-F9P, NEO-D9S, and LARA-R6 for users interested in connecting them to u-center.
+* **CONFIG UBLOX** &mdash; The CONFIG UBLOX includes a USB C connector to power the RTK EVK as well. A USB hub is connected to this port and connects to the ZED-F9P, NEO-D9S, and LARA-R6 for users that are interested in connecting them to u-center or updating the firmware.
 
 <div style="text-align: center;">
   <table>
@@ -35,7 +50,7 @@ The SparkFun RTK EVK can be powered from the front or back of board. There is no
 
 Power can also be provided from the I/O screw terminals or PoE.
 
-* **V+** &mdash; The input voltage on this pin is between **+9V and +36V**. Voltage through this pin is brought down to 5V with the isolated DC-DC converter before regulated down to 3.3V.
+* **V+** &mdash; The input voltage on this pin is between **+9V and +36V**. Voltage through this pin is brought down to 5V with the isolated DC-DC converter before regulated down to 3.3V. This is for users that want to pull power from a car battery or anything that is between the input voltage. This is connected to a fully-isolated DC-DC converter and regulates the voltage down to 5V.
 * **V-** &mdash; For users connecting power through the V+, this is the essentially ground or 0V. Note that there is no direct connection between V- and GND.
 * **GND** &mdash; The ground or 0V for the system.
 * **Ethernet (PoE)** &mdash; The input voltage through the RJ45 connector is between **+36V and +57V**. Voltage is brought down to 5V with the isolated PoE module.

@@ -10,7 +10,7 @@ Now that you've successfully got your SparkFun RTK EVK up and running, it's time
     * [ZED-F9P](../assets/component_documentation/ZED-F9P-02B_DataSheet_UBX-21023276.pdf)
     * [NEO-D9S](../assets/component_documentation/NEO-D9S-00B_DataSheet_UBX-18012996.pdf)
     * [LARA-R6](../assets/component_documentation/LARA-R6_DataSheet_UBX-21004391.pdf)
-* Integration Manual
+* Integration Manuals
     * [ZED-F9P](../assets/component_documentation/ZED-F9P_IntegrationManual_UBX-18010802.pdf)
     * [NEO-D9S](../assets/component_documentation/NEO-D9S_IntegrationManual_UBX-19026111.pdf)
     * [LARA-R6](../assets/component_documentation/LARA-R6-L6_SysIntegrManual_UBX-21010011.pdf)
