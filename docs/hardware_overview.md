@@ -412,15 +412,17 @@ The back of the SparkFun RTK EVK includes a few connectors for cellular, GNSS, a
 
 * **Cell 1** &mdash; The SMA Connector labeled as **Cell 1** is for the u-blox LARA-R6006. This connection represents the main RF input/output for LTE/3G/2G RF signals transmission and reception. This is intended to connect the LTE Hinged External Antenna - 698MHz-2.7GHz.
 * **Cell 2** &mdash; The SMA Connector labled as **Cell 1** is for the u-blox LARA-R606. This connection represents the secondary RF input for LTE/3G Rx diversity and LTE MIMO 2x2 down-link RF signals reception. This is intended to connect the second LTE Hinged External Antenna - 698MHz-2.7GHz.
-* **GNSS** &mdash; The SMA connector labeled as **GNSS** is for the u-blox ZED-F9P and NEO-D9S. This is connected to a GNSS splitter (Power Divider) and allows you to connect a single GNSS antenna for both modules. This is intended to connect an active multiband GNSS antenna using the SMA male to TNC male interface cable that is included in the kit. The RTK EVK provides 5V on this connector for an active multiband antenna instead of the usual 3.3V. Short-circuit and open-circuit detection is built into this connection as well. The following icons will flash whenever the RTK EVK does not detect an antenna (i.e. an open circuit) or if there is a short in the cable.
+* **GNSS** &mdash; The SMA connector labeled as **GNSS** is for the u-blox ZED-F9P and NEO-D9S. This is connected to a GNSS splitter (Power Divider) and allows you to connect a single GNSS antenna for both modules. This is intended to connect an active multiband GNSS antenna using the SMA male to TNC male interface cable that is included in the kit. The RTK EVK provides 5V on this connector for an active multiband antenna instead of the usual 3.3V. Short-circuit and open-circuit detection is built into this connection as well. The following icons will flash whenever the RTK EVK does not detect an antenna (i.e. an open circuit) or if there is a short in the cable. Next to the icons will also indicate that there will be 0 satellites in view.
 
 <div style="text-align: center;">
   <table>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/"><img src="../assets/img/" width="600px" height="600px" alt="Antenna Open Circuit"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Antenna_Open_Highlighted.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Antenna_Open_Highlighted.jpg" width="600px" height="600px" alt="Antenna Open Circuit Highlighted"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Antenna_Short_Highlighted.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Antenna_Short_Highlighted.jpg" width="600px" height="600px" alt="Antenna Short Circuit Highlighted"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Open Circuit</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Open Circuit Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Short Circuit Highlighted</i></td>
     </tr>
   </table>
 </div>
