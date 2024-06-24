@@ -11,7 +11,7 @@ The SparkFun RTK EVK runs on universal firmware created by SparkFun called RTK E
   </table>
 </div>
 
-Make sure to check out the Quick Start Guide for the RTK EVK for a summary of how to get it connected over Bluetooth.
+Make sure to check out the Quick Start Guide for the RTK EVK for a summary of how to get it connected over Bluetooth. You will also find more information about navigating through the configuration menu, updating firmware, and more in the product manual!
 
 <div style="text-align: center">
   <a href="https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/" target="rtk_everywhere_product_manual" class="md-button">RTK Everywhere Product Manual</a>
