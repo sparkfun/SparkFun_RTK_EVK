@@ -3,7 +3,7 @@ The SparkFun RTK EVK runs on universal firmware created by SparkFun called RTK E
 <div style="text-align: center;">
   <table>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/"><img src="../assets/img/" width="600px" height="600px" alt="Screenshot Firmware through Serial Terminal"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/RTK_EVK_Serial_Output_Initialization.JPG"><img src="../assets/img/RTK_EVK_Serial_Output_Initialization.JPG" width="600px" height="600px" alt="Screenshot Firmware through Serial Terminal"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Screenshot Firmware through Serial Terminal</i></td>

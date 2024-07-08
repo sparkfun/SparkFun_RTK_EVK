@@ -183,6 +183,58 @@ Finally, if you're going to be logging a lot of data, you might want to stock up
 </div>
 
 
+### Tools
+
+Below are a few tools and accessories that you may need when connecting to the I/O terminal block on the back of the RTK EVK.
+
+<div class="grid cards col-4" markdown>
+
+<!-- ----------WHITE SPACE BETWEEN PRODUCTS---------- -->
+-   <a href="https://www.sparkfun.com/products/25568">
+      <figure markdown>
+        <img src="https://cdn.sparkfun.com/assets/parts/2/6/1/2/3/TOL-25568-Moray-Driver-Kit-Feature-No-Lid.jpg" style="width:140px; height:140px; object-fit:contain;" alt="iFixit Moray Driver Kit">
+      </figure>
+    </a>
+
+    ---
+
+    <a href="https://www.sparkfun.com/products/25568">
+      <b>iFixit Moray Driver Kit</b>
+      <br />
+      TOL-25568
+    </a>
+<!-- ----------WHITE SPACE BETWEEN PRODUCTS---------- -->
+-   <a href="https://www.sparkfun.com/products/12630">
+      <figure markdown>
+        <img src="https://cdn.sparkfun.com/assets/parts/9/3/1/2/12630-Hakko-Wire-Strippers-30AWG-Feature.jpg" style="width:140px; height:140px; object-fit:contain;" alt="Wire Strippers - 30AWG (Hakko)">
+      </figure>
+    </a>
+
+    ---
+
+    <a href="https://www.sparkfun.com/products/12630">
+      <b>Wire Strippers - 30AWG (Hakko)</b>
+      <br />
+      TOL-12630
+    </a>
+<!-- ----------WHITE SPACE BETWEEN PRODUCTS---------- -->
+-   <a href="https://www.sparkfun.com/products/11367">
+      <figure markdown>
+        <img src="https://cdn.sparkfun.com/assets/parts/7/1/0/8/11367-Hook-Up_Wire_-_Assortment__Solid_Core__22_AWG_-01.jpg" style="width:140px; height:140px; object-fit:contain;" alt="Hook-Up Wire - Assortment (Solid Core, 22 AWG)">
+      </figure>
+    </a>
+
+    ---
+
+    <a href="https://www.sparkfun.com/products/11367">
+      <b>Hook-Up Wire - Assortment (Solid Core, 22 AWG)</b>
+      <br />
+      PRT-11367
+    </a>
+<!-- ----------WHITE SPACE BETWEEN PRODUCTS---------- -->
+</div>
+
+
 
 ### Suggested Reading
 

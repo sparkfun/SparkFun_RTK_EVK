@@ -194,7 +194,7 @@ To take advantage of the LARA-R6, insert the nano SIM card into the nano SIM soc
 
 ### Inserting a Wire into the I/O Screw Terminal
 
-To connect to a ppin on the screw terminal block, insert a [stripped wire of any length](https://learn.sparkfun.com/tutorials/working-with-wire/how-to-strip-a-wire) into the I/O screw terminal. Of course, you could use jumper wires with pins as well. Secure the wire by tightening the screw using a precision flathead screw driver. Test the connection by gently pulling the wires to ensure that they are secure.
+To connect to a pin on the screw terminal block, insert a [stripped wire of any length](https://learn.sparkfun.com/tutorials/working-with-wire/how-to-strip-a-wire) into the I/O screw terminal. Of course, you could use jumper wires with pins as well. Secure the wire by tightening the screw using a precision 2.5mm flathead screw driver. Test the connection by gently pulling the wires to ensure that they are secure.
 
 <div style="text-align: center;">
   <table>

@@ -41,10 +41,12 @@ The SparkFun RTK EVK can be powered from the front or back of board. There is no
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_USB_C_Ports.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_USB_C_Ports.jpg" width="600px" height="600px" alt="USB Connectors Highlighted in Front"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_USB_Connectors.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_USB_Connectors.jpg" width="600px" height="600px" alt="USB Connectors Highlighted PCB Top View"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>USB Connectors Highlighted in Front</i></td>
-    </tr>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>USB Connectors Highlighted PCB Top View</i></td>
+   </tr>
   </table>
 </div>
 
@@ -59,9 +61,12 @@ Power can also be provided from the I/O screw terminals or PoE.
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_Ethernet_Power_V+_V-.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_Ethernet_Power_V+_V-.jpg" width="600px" height="600px" alt="USB Connector, Ethernet POE, and Power Input on Screw Terminals Highlighted in Back"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_Ethernet_V_Ground.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_Ethernet_V_Ground.jpg" width="600px" height="600px" alt="Ethernet POE, and Power Input on Screw Terminals Highlighted On PCB"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>USB Connector, Ethernet POE, and Power Input on Screw Terminals Highlighted in Back</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Ethernet POE, and Power Input on Screw Terminals Highlighted on PCB</i></td>
+    </tr>
     </tr>
   </table>
 </div>
@@ -74,9 +79,11 @@ There is also an output power pin for 3.3V on the I/O screw terminal.
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_3V3.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_3V3.jpg" width="600px" height="600px" alt="3.3V Input on Screw Terminals Highlighted in Back"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_3V3.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_3V3.jpg" width="600px" height="600px" alt="3.3V Input on Screw Terminals Highlighted on PCB"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>3.3V Input on Screw Terminals Highlighted in Back</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>3.3V Input on Screw Terminals Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
@@ -154,12 +161,16 @@ The screw terminal on the back includes an I<sup>2</sup>C port. This is connecte
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_I2C_SDA_SCL.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_I2C_SDA_SCL.jpg" width="600px" height="600px" alt="I2C Port Highlighted"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_Primary_I2C_Screw_Terminals.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_Primary_I2C_Screw_Terminals.jpg" width="600px" height="600px" alt="I2C Port Highlighted"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>I2C Port Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>I<sup>2</sup>C Port Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>I<sup>2</sup>C Port Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
+
+
 
 The I<sup>2</sup>C peripherals connected to the primary I<sup>2</sup>C port and their address are listed below:
 
@@ -208,22 +219,34 @@ The RTK EVK includes the SparkFun Qwiic OLED - (1.3in., 128x64). This is connect
   </table>
 </div>
 
-Below are a few examples showing some of the possible outputs from the RTK EVK. The icons are explained further in the [RTK Everywhere Product Manual > Hardware > Displays](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/displays/).
+Below show some of the possible outputs from the RTK EVK. The icons are explained further in the [RTK Everywhere Product Manual > Hardware > Displays](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/displays/).
+
+The image below shows the Bluetooth MAC address of the RTK EVK on the upper left hand corner of the screen. If there is a Bluetooth connection, the Blueooth symbol will display. To the right is the WiFi symbol. To the right of the WiFi symbol is the icon indicating the selected dynamic model, in this case it's the default portable icon. On the upper far right, is the Ethernet connection symbol. Below the Bluetooth MAC address is the RTK float solution symbol. The number to the right indicates the horizontal position accuracy. In this case, there is an RTK float since the value is between 0.400 meters to 0.200 meters. To the right is the satellites in view symbol and number of satellites. The additional antenna lines indicates that the RTK EVK that there is successful reception and decryptions of L-band corrections. Finally, the rotating semi-circle indicates the device running the RTK EVK firmware.
 
 <div style="text-align: center;">
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Output.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Output.jpg" width="600px" height="600px" alt="OLED Output"></a></td>
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Output_Receiving_Corrections_RTK_Fixed_Solution.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Output_Receiving_Corrections_RTK_Fixed_Solution.jpg" width="600px" height="600px" alt="OLED Output with RTK Fixed Solution"></a></td>
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Action-Screen_GIF_750ms.gif"><img src="../assets/img/24342-RTK-EVK-Action-Screen_GIF_750ms.gif" width="600px" height="600px" alt=OLED Cycling Through Modes"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>OLED Display Output</i></td>
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>OLED Display with RTK Fixed Solution</i></td>
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>OLED Display Cycling Through Modes</i></td>
     </tr>
   </table>
 </div>
+
+The image below is similar to the previous display output. You&apos;ll notice a few differences. The arrow pointing down indicates that there are corrections being received. The Ethernet symbol is also not displaying since there was no Ethernet connection at that moment. The horizontal positional accuracy indicates that there is a RTK fixed solution with the double cross hairs since the value is below 0.200 meters. Finally, the display is showing 29 satellites in view and no L-band corrections.
+
+<div style="text-align: center;">
+  <table>
+    <tr style="vertical-align:middle;">
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Output_Receiving_Corrections_RTK_Fixed_Solution.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Output_Receiving_Corrections_RTK_Fixed_Solution.jpg" width="600px" height="600px" alt="OLED Output with RTK Fixed Solution"></a></td>
+    </tr>
+    <tr style="vertical-align:middle;">
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>OLED Display with RTK Fixed Solution</i></td>
+    </tr>
+  </table>
+</div>
+
 
 
 ### ZED-F9P Module
@@ -264,10 +287,12 @@ The screw terminal on the back includes a UART port. This is connected to the ZE
 <div style="text-align: center;">
   <table>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_ZED-F9P_Correction_Port.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_ZED-F9P_Correction_Port.jpg" width="600px" height="600px" alt="I2C Port Highlighted"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_ZED-F9P_Correction_Port.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_ZED-F9P_Correction_Port.jpg" width="600px" height="600px" alt="ZED-F9P UART Correction Port Highlighted"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_ZED-F9P_UART_Screw_Terminals.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_ZED-F9P_UART_Screw_Terminals.jpg" width="600px" height="600px" alt="ZED-F9P UART Correction Port Highlighted on PCB"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>ZED-F9PUART Correction Port Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>ZED-F9P UART Correction Port Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>ZED-F9P UART Correction Port Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
@@ -282,9 +307,11 @@ The screw terminal on the back includes an external interrupt for the ZED-F9P. T
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_ZED-F9P_External_Interrupt.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_ZED-F9P_External_Interrupt.jpg" width="600px" height="600px" alt="ZED-F9P External Interrupt Highlighted"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_ZED-F9P_External_Interrupt_Screw_Terminals.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_ZED-F9P_External_Interrupt_Screw_Terminals.jpg" width="600px" height="600px" alt="ZED-F9P External Interrupt Highlighted on PCB"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>ZED-F9P External Interrupt Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>ZED-F9P External Interrupt Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
@@ -299,9 +326,11 @@ The screw terminal on the back labeled as **TP** includes ZED-F9Ps time pulse ou
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_ZED-F9P_Time_Pulse.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_ZED-F9P_Time_Pulse.jpg" width="600px" height="600px" alt="ZED-F9P Time Pulse Highlighted"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_ZED-F9P_Time_Pulse_Screw_Terminals.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_ZED-F9P_Time_Pulse_Screw_Terminals.jpg" width="600px" height="600px" alt="ZED-F9P Time Pulse Highlighted on PCB"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>ZED-F9P Time Pulse Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>ZED-F9P Time Pulse Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
@@ -341,9 +370,11 @@ The front of the RTK EVK includes a microSD card socket. Insert a microSD card i
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_MicroSD_Card_Slot.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_MicroSD_Card_Slot.jpg" width="600px" height="600px" alt="Back View"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_microSD_Card_Socket.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_microSD_Card_Socket.jpg" width="600px" height="600px" alt="Back View"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>MicroSD Card Slot Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>MicroSD Card Slot Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
@@ -394,9 +425,11 @@ To connect to an cellular network with the built-in u-blox LARA-R6 (specifically
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_Nano_SIM_Card_Slot.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_Nano_SIM_Card_Slot.jpg" width="600px" height="600px" alt="LED Highlighted"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_nano_SIM_Card_Socket.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_nano_SIM_Card_Socket.jpg" width="600px" height="600px" alt="LED Highlighted"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>LED Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Nano SIM Card Socket Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Nano SIM Card Socket Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
@@ -410,12 +443,12 @@ The RTK EVK includes a built-in Ethernet circuitry. You can connect an Ethernet 
 <div style="text-align: center;">
   <table>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_WIZnet_W5500_Ethernet_Jack_PoE_Module.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_WIZnet_W5500_Ethernet_Jack_PoE_Module.jpg" width="600px" height="600px" alt="WIZnet W5500 IC, Ethernet Jack, and PoE Module Highlighted"></a></td>
+
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_Ethernet_LEDs.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_Ethernet_LEDs.jpg" width="600px" height="600px" alt="Ethernet Jack"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_WIZnet_W5500_Ethernet_Jack_PoE_Module.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_WIZnet_W5500_Ethernet_Jack_PoE_Module.jpg" width="600px" height="600px" alt="WIZnet W5500 IC, Ethernet Jack, and PoE Module Highlighted"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>WIZnet W5500 IC, Ethernet Jack, and PoE Module Highlighted</i></td>
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Ethernet Jack Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Ethernet Jack Highlighted</i></td><td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>WIZnet W5500 IC, Ethernet Jack, and PoE Module Highlighted</i></td>
     </tr>
   </table>
 </div>
@@ -430,18 +463,18 @@ The back of the SparkFun RTK EVK includes a few connectors for cellular, GNSS, a
 * **Cell 2** &mdash; The SMA Connector labled as **Cell 1** is for the u-blox LARA-R606. This connection represents the secondary RF input for LTE/3G Rx diversity and LTE MIMO 2x2 down-link RF signals reception. This is intended to connect the second LTE Hinged External Antenna - 698MHz-2.7GHz.
 * **GNSS** &mdash; The SMA connector labeled as **GNSS** is for the u-blox ZED-F9P and NEO-D9S. This is connected to a GNSS splitter (Power Divider) and allows you to connect a single GNSS antenna for both modules. This is intended to connect an active multiband GNSS antenna using the SMA male to TNC male interface cable that is included in the kit. The RTK EVK provides 5V on this connector for an active multiband antenna instead of the usual 3.3V. Short-circuit and open-circuit detection is built into this connection as well. The following icons will flash whenever the RTK EVK does not detect an antenna (i.e. an open circuit) or if there is a short in the cable. Next to the icons will also indicate that there will be 0 satellites in view.
 
-<div style="text-align: center;">
-  <table>
-    <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Antenna_Open_Highlighted.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Antenna_Open_Highlighted.jpg" width="600px" height="600px" alt="Antenna Open Circuit Highlighted"></a></td>
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Antenna_Short_Highlighted.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Antenna_Short_Highlighted.jpg" width="600px" height="600px" alt="Antenna Short Circuit Highlighted"></a></td>
-    </tr>
-    <tr style="vertical-align:middle;">
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Open Circuit Highlighted</i></td>
-     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Short Circuit Highlighted</i></td>
-    </tr>
-  </table>
-</div>
+    <div style="text-align: center;">
+      <table>
+        <tr style="vertical-align:middle;">
+         <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Antenna_Open_Highlighted.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Antenna_Open_Highlighted.jpg" width="600px" height="600px" alt="Antenna Open Circuit Highlighted"></a></td>
+         <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-OLED_Antenna_Short_Highlighted.jpg"><img src="../assets/img/24342-RTK-EVK-OLED_Antenna_Short_Highlighted.jpg" width="600px" height="600px" alt="Antenna Short Circuit Highlighted"></a></td>
+        </tr>
+        <tr style="vertical-align:middle;">
+         <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Open Circuit Highlighted</i></td>
+         <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Short Circuit Highlighted</i></td>
+        </tr>
+      </table>
+    </div>
 
 * **ESP32** &mdash; The RP-SMA connector labeled as **ESP32** is for the ESP32-WROVER. This is intended to connect the 2.4GHz WiFi/BT antenna.
 
@@ -449,12 +482,16 @@ The back of the SparkFun RTK EVK includes a few connectors for cellular, GNSS, a
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_SMA_RPSMA_Antenna_Connectors.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Back_SMA_RPSMA_Antenna_Connectors.jpg" width="600px" height="600px" alt="Antenna Connectors Highlighted on Back"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_SMA_RPSMA_Connectors.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_SMA_RPSMA_Connectors.jpg" width="600px" height="600px" alt="Antenna Connectors Highlighted on PCB"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Connectors Highlighted on Back</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Antenna Connectors Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
+
+
 
 
 
@@ -464,25 +501,66 @@ There are two buttons located on the front of the SparkFun RTK EVK.
 
 * **RESET** &mdash; The reset button is available for users that need to manually reset the ESP32. The reset button sits flush against the front panel to prevent users from accidentally resetting the RTK EVK. You will need to press the button firmly or use a pen.
 * **MODE** The mode button is available for users that want to change the mode. This button is connected to pin **0** on the ESP32 and can also be used as a boot button to set the ESP32 into bootloader mode when manually uploading code with the reset button.
-    * **RTK Modes** &mdash; The available modes for the RTK EVK are listed below. A single press brings up the mode menu. Press the button twice to step through the available modes listed below. Pause on the highlighted mode to select it and change to that mode. For more information on the modes, make sure to check out the RTK Everywhere Manual.
-        * **BASE**
-        * **ROVER**
-        * **NTP**
-        * **Cfg Eth** Configure-Via-Ethernet
-        * **CfgWiFi** Configure-Via-WiFi
-        * **E-Pair** ESP NOW Pairing
-    * **Bootloader Mode** &mdash; The boot button usually allows users to force the ESP32 into bootloader mode to manually upload new code to the ESP32.
 
 <div style="text-align: center;">
   <table>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_RESET_BOOT_MODE_Button.jpg"><img src="../assets/img/24342-RTK-EVK-High-Precision-GNSS-Front_RESET_BOOT_MODE_Button.jpg" width="600px" height="600px" alt="Reset and Mode/Boot Buttons Highlighted"></a></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Board-Top_Buttons.jpg"><img src="../assets/img/24342-RTK-EVK-Board-Top_Buttons.jpg" width="600px" height="600px" alt="Reset and Mode/Boot Buttons Highlighted"></a></td>
     </tr>
     <tr style="vertical-align:middle;">
      <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Reset and Mode/Boot Buttons Highlighted</i></td>
+     <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>Reset and Mode/Boot Buttons Highlighted on PCB</i></td>
     </tr>
   </table>
 </div>
+
+* **RTK Modes** &mdash; The available modes for the RTK EVK are listed below. A single press brings up the mode menu. Press the button twice to step through the available modes listed below. Pause on the highlighted mode to select it and change to that mode. For more information on the modes, make sure to check out the [RTK Everywhere Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/).
+    * **BASE**
+        * This is the default mode as it is the mode we think most users will want to use - but you always surprise us with the novel ways you use our products!
+        * The RTK EVK will perform a short 1-2 minute "survey-in" to establish the approximate position of the antenna (~1m accuracy).
+        * It will then start generating RTCM correction data and - once configured - can send it to an NTRIP Caster over Ethernet.
+        * The RTCM data will also be output as 3.3V Serial (UART) data on the ZED-F9P TX2 I/O screw connection on the rear panel. You can connect a radio transceiver to that pin if desired.
+        * You can establish the antenna position more accurately by collecting 'raw' satellite data for ~24 hours and post-processing it. You can find full instructions in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_base/).
+    * **ROVER**
+        * The RTK EVK can of course also be used as a RTK Rover.
+        * In Rover mode, the antenna position and other data is logged to microSD card.
+        * RTCM correction data can be received over Ethernet from a NTRIP Caster - once configured - and used to achieve an accuracy of ~1.4cm under good conditions.
+        * Use Rover mode to collect the 'raw' satellite data to establish your antenna's position accurately for Base mode.
+    * **NTP**
+        * The RTK EVK can also act as a Network Time Protocol Server - servicing NTP requests over Ethernet.
+        * The firmware defaults to using DHCP to obtain an IP Address. But you can also configure it to use a fixed IP Address and can define the DNS, Gateway and Subnet Mask too.
+        * You can find full instructions in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_ntp/).
+    * **Cfg Eth** (Configure-Via-Ethernet)
+        * Abbreviated as "Cfg Eth", Configure-Via-Ethernet mode is a dedicated mode where the RTK EVK Station can be configured via a web page over Ethernet.
+        * This mode requires exclusive access to the WIZnet W5500 chip and the SPI bus and so the RTK EVK actually reboots when this mode is selected.
+        * When leaving this mode - either by exiting the web page or by pressing the Mode button - the RTK EVK will reboot again into Base, Rover or NTP mode. The new mode is selected by the small drop-down box on the System tab.
+        * You can find full instructions in the RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_ethernet/).
+    * **Cfg WiFi**
+        * Abbreviated as "CfgWiFi", Configure-Via-WiFi mode is another dedicated mode where the RTK EVK can be configured via a web page over WiFi.
+        * By default, the RTK EVK will appear as a WiFi Hot Spot / Access Point - but it can be configured to connect to your preferred WiFi network too.
+        * The RTK EVK will reboot when leaving this mode - to apply any changes made.
+        * You can find full instructions in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_wifi/)** (Configure-Via-WiFi)
+    * **Get Keys**
+        * When there is a WiFi connection, the RTK EVK can access the PointPerfect system and automatically obtain keys to allow the decryption of corrections.
+        * More details are provided in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_pointperfect/)
+    * **E-Pair** (ESP NOW Pairing)
+        * Abbreviated as "E-Pair", ESP NOW is a way of linking two ESP32 processors via WiFi so that they can communicate with each other, line of sight up to approximately 250m.
+        * The ESP NOW link allows a base to share correction data with a single rover.
+        * More details are provided in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_radios/)
+
+    <div style="text-align: center;">
+      <table>
+        <tr style="vertical-align:middle;">
+         <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><a href="../assets/img/24342-RTK-EVK-Action-Screen_GIF_750ms.gif"><img src="../assets/img/24342-RTK-EVK-Action-Screen_GIF_750ms.gif" width="600px" height="600px" alt=OLED Cycling Through Modes"></a></td>
+        </tr>
+        <tr style="vertical-align:middle;">
+         <td style="text-align: center; vertical-align: middle; border: solid 1px #cccccc;"><i>OLED Display Cycling Through Modes</i></td>
+        </tr>
+      </table>
+    </div>
+
+* **Bootloader Mode** &mdash; The boot button usually allows users to force the ESP32 into bootloader mode to manually upload new code to the ESP32.
 
 
 
