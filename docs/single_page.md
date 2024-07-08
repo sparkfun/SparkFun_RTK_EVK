@@ -14,14 +14,11 @@ icon: fontawesome/solid/scroll
 # Hardware Hookup
 --8<-- "./docs/hardware_hookup.md"
 
-# Arduino Example 1
---8<-- "./docs/arduino_example_1.md"
+# RTK Everywhere Firmware
+--8<-- "./docs/product_manual.md"
 
-# Convert Bitmap to Array
---8<-- "./docs/convert_bitmap_to_array.md"
-
-# Arduino Example 2
---8<-- "./docs/arduino_example_2.md"
+# Arduino Examples
+--8<-- "./docs/arduino_examples.md"
 
 # Troubleshooting
 --8<-- "./docs/troubleshooting.md"
