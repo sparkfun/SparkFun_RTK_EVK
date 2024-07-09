@@ -115,8 +115,8 @@ The RTK EVK comes with a custom extruded aluminum enclosure. The slotted flanges
 <!-- ----------WHITE SPACE BETWEEN GRID CARDS---------- -->
 </div>
 
-!!! note "AC Note Required!"
-    The Orbit enclosure comes with a built-in power outlet, but you don't actually need it! The Reference Station can be powered by Power-over-Ethernet (PoE), meaning all you really need to run up to the roof is a standard 8-core CAT-6 Ethernet cable. Choose a PoE Ethernet Switch that meets your needs. We have had good experiences with the [TP-Link TL-SG1005P](https://www.tp-link.com/us/business-networking/poe-switch/tl-sg1005p/) - available from many retailers including [Amazon](https://www.amazon.com/TP-Link-Compliant-Shielded-Optimization-TL-SG1005P/dp/B076HZFY3F).
+!!! note "AC Not Required!"
+    The Orbit enclosure comes with a built-in power outlet, but you don't actually need it! The EVK can be powered by Power-over-Ethernet (PoE), meaning all you really need to run up to the roof is a standard 8-core CAT-6 Ethernet cable. Choose a PoE Ethernet Switch that meets your needs. We have had good experiences with the [TP-Link TL-SG1005P](https://www.tp-link.com/us/business-networking/poe-switch/tl-sg1005p/) - available from many retailers including [Amazon](https://www.amazon.com/TP-Link-Compliant-Shielded-Optimization-TL-SG1005P/dp/B076HZFY3F).
 
 
 
@@ -161,7 +161,7 @@ The following interface cables are great if say you are mounting the SparkFun RT
 
 #### Memory Cards
 
-Finally, if you're going to be logging a lot of data, you might want to stock up on 32GB microSD cards too. The RTK EVK can log 'raw' GNSS data messages (RAWX and SFRBX) at 20Hz if desired. At that rate, you're logging about 50kB per second, 180MB per hour, or over 4GB per day! 32GB cards are the ones we recommend - as they come formatted as FAT32. The RTK EVK does not support exFAT.
+Finally, if you're going to be logging a lot of data, you might want to stock up on 32GB microSD cards too. The RTK EVK can log 'raw' GNSS data messages (RAWX and SFRBX) at 20Hz if desired. At that rate, you're logging about 50kB per second, 180MB per hour, or over 4GB per day!
 
 <div class="grid cards" style="width:500px; margin: 0 auto;" markdown>
 

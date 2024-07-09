@@ -27,4 +27,5 @@ Then select the associated board definition (in this case the **ESP32 Wrover Mod
     <ul>
       <li> Arduino IDE v2.3.2</li>
       <li>esp32 by Espressif v3.0.1</li>
+      <li>u-blox Cellular library by SparkFun v1.0.1</li>
     </ul>

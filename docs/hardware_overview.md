@@ -32,10 +32,10 @@ The image below shows a top and bottom view of the populated PCB without the enc
 
 ### Power
 
-The SparkFun RTK EVK can be powered from the front or back of board. There is no internal battery. Schottky protection diodes and a resettable fuse are included to prevent conflicting voltages and overvoltage protection. Voltage is then regulated down to 3.3V through the three voltage regulators.
+The SparkFun RTK EVK can be powered from the connectors on the front or the back of the board. There is no internal battery. Schottky protection diodes and a resettable fuse are included to prevent conflicting voltages and overvoltage protection. Voltage is then regulated down to 3.3V through the three voltage regulators.
 
 * **CONFIG ESP32** &mdash; The CONFIG ESP32 includes a USB C connector to power the RTK EVK. Users can also upload code or connect to the ESP32 to a serial terminal.
-* **CONFIG UBLOX** &mdash; The CONFIG UBLOX includes a USB C connector to power the RTK EVK as well. A USB hub is connected to this port and connects to the ZED-F9P, NEO-D9S, and LARA-R6 for users that are interested in connecting them to u-center or updating the firmware.
+* **CONFIG UBLOX** &mdash; The CONFIG UBLOX includes a USB C connector to power the RTK EVK as well. A USB hub is connected to this port and connects to the ZED-F9P, NEO-D9S, and LARA-R6 for users that are interested in connecting them to u-center, m-center or updating the firmware.
 
 <div style="text-align: center;">
   <table>
@@ -52,10 +52,10 @@ The SparkFun RTK EVK can be powered from the front or back of board. There is no
 
 Power can also be provided from the I/O screw terminals or PoE.
 
-* **V+** &mdash; The input voltage on this pin is between **+9V and +36V**. Voltage through this pin is brought down to 5V with the isolated DC-DC converter before regulated down to 3.3V. This is for users that want to pull power from a car battery or anything that is between the input voltage. This is connected to a fully-isolated DC-DC converter and regulates the voltage down to 5V.
-* **V-** &mdash; For users connecting power through the V+, this is the essentially ground or 0V. Note that there is no direct connection between V- and GND.
-* **GND** &mdash; The ground or 0V for the system.
-* **Ethernet (PoE)** &mdash; The input voltage through the RJ45 connector is between **+36V and +57V**. Voltage is brought down to 5V with the isolated PoE module.
+* **VIN+** &mdash; This terminal can be used to feed in external DC power between **+9V and +36V**. This is for users that want to power the unit from a vehicle battery or any other source in that voltage range. Connect VIN+ to the battery +ve. The voltage is first regulated to 5V by a fully-isolated DC-DC converter before being regulated again to 3.3V.
+* **VIN-** &mdash; For external DC power, connect this terminal to the chassis, battery -ve or 0V. Note that there is no direct connection between VIN- and GND as the internal DC-DC converter is fully isolated. It is possible to link VIN- to the adjacent GND terminal, but doing so will bypass the voltage isolation and could introduce a ground loop.
+* **GND** &mdash; The internal ground or 0V for the system.
+* **Ethernet (PoE)** &mdash; The input voltage through the RJ45 connector can be between **+36V and +57V**. The voltage is first regulated down to 5V by the isolated PoE module before being regulated agin to 3.3V.
 
 <div style="text-align: center;">
   <table>
@@ -73,7 +73,7 @@ Power can also be provided from the I/O screw terminals or PoE.
 
 There is also an output power pin for 3.3V on the I/O screw terminal.
 
-* **3V3** &mdash; This pin is the output of one of the 3.3V voltage regulators (specifically the AP7361C). Note that this is only connected to the secondary power. This net is connected to the microSD card socket, ZED-F9P, NEO-D9S, LARA-R6, USB Hub, MagJack RJ45 connector's LEDs, and WIZnet 5500.
+* **3V3** &mdash; This pin is the output of one of the 3.3V voltage regulators. Note that this is only connected to the secondary power. This net is also connected to the microSD card socket, ZED-F9P, NEO-D9S, USB Hub, MagJack RJ45 connector's LEDs, and WIZnet W5500.
 
 <div style="text-align: center;">
   <table>
@@ -149,7 +149,7 @@ For users that want to configure the ESP32 using a serial terminal, you will sim
 
 ### ESP32 Primary I<sup>2</sup>C Port
 
-The screw terminal on the back includes an I<sup>2</sup>C port. This is connected to the ESP32&apos;s primary I<sup>2</sup>C port.
+The screw terminal on the back includes an I<sup>2</sup>C port. This is connected to the ESP32&apos;s primary I<sup>2</sup>C port and is shared by the ZED-F9P and NEO-D9S.
 
 * **SCL** &mdash; The ESP32 I<sup>2</sup>C bus clock on pin 22. The logic level is 3.3V. Currently, there are no pull-up resistors attached to this line. To configure, you will need to add a solder blob to the I<sup>2</sup>C jumper.
 * **SDA** &mdash;ESP32 I<sup>2</sup>C bus data on pin 21. The logic level is 3.3V. Currently, there are no pull-up resistors attached to this line. To attach the 2.2k&ohm; pull-up resistors to the port, you will just need to add a solder blob to the I<sup>2</sup>C jumper.
@@ -177,15 +177,11 @@ The I<sup>2</sup>C peripherals connected to the primary I<sup>2</sup>C port and 
 * ZED-F9P &mdash; 0x42 (default)
 * NEO-D9S &mdash; 0x43 (default)
 
-Users can also connect to the USB hub over I<sup>2</sup>C by adding a solder blob to the jumper with two pads labeled as I2C. Once connected, the peripheral will be connected to the primary I<sup>2</sup>C port. The associated address is listed below.
-
-* USB Hub &mdash; 0x2C
-
 
 
 ### ESP32 Secondary I<sup>2</sup>C Port
 
-Inside of the enclosure, there is a Qwiic vertical port available. This is connected to the Qwiic OLED via a Qwiic cable. This port is connected to the ESP32's secondary I<sup>2</sup>C port with SCL connected to pin 15 and SDA1 connected to pin 12. The logic level is also 3.3V. Currently, there are no pull-up resistors attached to this line. To attach the 2.2k&ohm; pull-up resistors to the port, you will just need to add a solder blob to the I<sup>2</sup>C jumper.
+Inside of the enclosure, there is a Qwiic vertical port available. This is connected to the Qwiic OLED via a Qwiic cable. This port is connected to the ESP32's secondary I<sup>2</sup>C port with SCL connected to pin 15 and SDA connected to pin 12. The logic level is also 3.3V. Currently, there are no pull-up resistors attached to this line. To attach the 2.2k&ohm; pull-up resistors to the port, you will just need to add a solder blob to the I<sup>2</sup>C jumper.
 
 <div style="text-align: center;">
   <table>
@@ -221,7 +217,7 @@ The RTK EVK includes the SparkFun Qwiic OLED - (1.3in., 128x64). This is connect
 
 Below show some of the possible outputs from the RTK EVK. The icons are explained further in the [RTK Everywhere Product Manual > Hardware > Displays](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/displays/).
 
-The image below shows the Bluetooth MAC address of the RTK EVK on the upper left hand corner of the screen. If there is a Bluetooth connection, the Blueooth symbol will display. To the right is the WiFi symbol. To the right of the WiFi symbol is the icon indicating the selected dynamic model, in this case it's the default portable icon. On the upper far right, is the Ethernet connection symbol. Below the Bluetooth MAC address is the RTK float solution symbol. The number to the right indicates the horizontal position accuracy. In this case, there is an RTK float since the value is between 0.400 meters to 0.200 meters. To the right is the satellites in view symbol and number of satellites. The additional antenna lines indicates that the RTK EVK that there is successful reception and decryptions of L-band corrections. Finally, the rotating semi-circle indicates the device running the RTK EVK firmware.
+The image below shows the Bluetooth MAC address of the RTK EVK on the upper left hand corner of the screen. If there is a Bluetooth connection, the Blueooth symbol will display. To the right is the WiFi symbol. To the right of the WiFi symbol is the icon indicating the selected dynamic model, in this case it's the default portable icon. On the upper far right, is the Ethernet connection symbol. Below the Bluetooth MAC address is the RTK float solution symbol. The number to the right indicates the horizontal position accuracy. In this case, there is an RTK float since the value is between 0.400 meters to 0.200 meters. To the right is the satellites in view symbol and number of satellites. The additional antenna lines indicates that the RTK EVK that there is successful reception and decryptions of L-band corrections. Finally, the rotating semi-circle indicates the RTK EVK firmware is running. This changes to a logging icon when data is being logged to microSD card.
 
 <div style="text-align: center;">
   <table>
@@ -251,7 +247,7 @@ The image below is similar to the previous display output. You&apos;ll notice a 
 
 ### ZED-F9P Module
 
-The RTK EVK wouldn't be a an RTK without well... a high precision RTK. The RTK EVK includes a built-in u-blox ZED-F9P module for high precision GNSS. You will need to connect an active multiband antenna that is capable of receiving L1 and L2 signals. The ZED-F9P can be set as a base station or rover. There are several options to send or receive correction data depending on the mode: Ethernet, WiFi network, LTE cellular network, or the NEO-D9S. As stated earlier, the ZED-F9P is connected to the primary I<sup>2</sup>C port and uses the default address of 0x42.
+The RTK EVK wouldn't be a an RTK without well... a high precision RTK. The RTK EVK includes a built-in u-blox ZED-F9P module for high precision GNSS. You will need to connect an active multiband antenna that is capable of receiving L1 and L2 signals. The ZED-F9P can be set as a base station or rover. There are several options to send or receive correction data depending on the mode: Ethernet, WiFi network, LTE cellular network, or the NEO-D9S. Note that the RTK Eberywhere firmware does not currently support cellular, but there are separate code examples showing how to receive localized corrections from PointPerfect via cellular. As stated earlier, the ZED-F9P is connected to the primary I<sup>2</sup>C port and uses the default address of 0x42.
 
 <div style="text-align: center;">
   <table>
@@ -279,10 +275,10 @@ Below are a few specifications taken from the ZED-F9P&apos;s datasheet:
 
 ### ZED-F9P Secondary UART Port
 
-The screw terminal on the back includes a UART port. This is connected to the ZED-F9P's secondary UART port for users that want to connect to other high precision GNSS modules for correction data.
+The screw terminal on the back includes a UART port. This is connected to the ZED-F9P's secondary UART port (UART2) for users that want to connect to other high precision GNSS modules for correction data.
 
 * **TX2** &mdash; The ZED-F9P's UART2 transmit pin. The logic level is 3.3V. Users can connect this pin to a radio module or directly to a high precision GNSS module's RX pin to provide correction data to other rovers.
-* **RX1** &mdash; The ZED-F9P's UART2 receive pin. The logic level is 3.3V. Users can connect this pin to a radio module or directly to a high precision GNSS module's TX pin to receive correction data provided by another base station.
+* **RX2** &mdash; The ZED-F9P's UART2 receive pin. The logic level is 3.3V. Users can connect this pin to a radio module or directly to a high precision GNSS module's TX pin to receive correction data provided by another base station.
 
 <div style="text-align: center;">
   <table>
@@ -301,7 +297,7 @@ The screw terminal on the back includes a UART port. This is connected to the ZE
 
 ### ZED-F9P External Interrupt
 
-The screw terminal on the back includes an external interrupt for the ZED-F9P. The interrupt can either be an input/output pin. This can be configured using u-center to bring the module out of deep sleep or to output an interrupt for various module states.
+The screw terminal on the back includes an external interrupt for the ZED-F9P. The interrupt can either be an input/output pin. This can be configured using u-center to bring the module out of deep sleep or to output an interrupt for various module states. In the RTK Everywhere firmware, this terminal can be used to trigger a UBX-TIM-TM2 timing message. The logic level is 3.3V.
 
 <div style="text-align: center;">
   <table>
@@ -320,7 +316,7 @@ The screw terminal on the back includes an external interrupt for the ZED-F9P. T
 
 ### ZED-F9P Time Pulse
 
-The screw terminal on the back labeled as **TP** includes ZED-F9Ps time pulse output (i.e. the pulse-per-second or PPS output). This pulses at 1Hz when the module gets basic GPS/GNSS position lock and can be configured using the u-center.
+The screw terminal on the back labeled as **TP** includes ZED-F9Ps time pulse output (i.e. the pulse-per-second or PPS output). This pulses at 1Hz when the module gets basic GPS/GNSS position lock and can be configured using the u-center. The logic level is 3.3V.
 
 <div style="text-align: center;">
   <table>
@@ -379,12 +375,6 @@ The front of the RTK EVK includes a microSD card socket. Insert a microSD card i
   </table>
 </div>
 
-!!! note
-    The RTK EVK only supports cards formatted as FAT32, which is why we recommend 32GB cards. It does not support exFAT - and most 64GB cards come pre-formatted with exFAT.
-
-    If you need to re-format your card at any time, we recommend using the official [SD Association Formatter](https://www.sdcard.org/downloads/formatter/).
-
-
 
 ### LARA-R6 Cellular Module
 
@@ -419,7 +409,7 @@ Below are a few specifications taken from the LARA-R6&apos;s datasheet:
 
 ### Nano SIM Card Socket
 
-To connect to an cellular network with the built-in u-blox LARA-R6 (specifically the LARA-R6001D), you will need a nano SIM card. The cellular module works with most major North American carriers (Verizon, T-Mobile, AT&T, etc.). Make sure to check with your network service provider for compatibility. You also may need approval with the service carrier before the service is activated. We recommend using the [Hologram SIM Card](https://www.sparkfun.com/products/17117).
+To connect to an cellular network with the built-in u-blox LARA-R6 (specifically the LARA-R6001D), you will need a nano SIM card. The cellular module works with most major North American carriers (Verizon, T-Mobile, AT&T, etc.). Make sure to check with your network service provider for compatibility. You also may need approval with the service carrier before the service is activated. We recommend using the [Hologram SIM Card](https://www.sparkfun.com/products/17117). Insert the SIM with the contacts facing down, insert the edge with the chamfered corner first.
 
 <div style="text-align: center;">
   <table>
@@ -515,17 +505,17 @@ There are two buttons located on the front of the SparkFun RTK EVK.
   </table>
 </div>
 
-* **RTK Modes** &mdash; The available modes for the RTK EVK are listed below. A single press brings up the mode menu. Press the button twice to step through the available modes listed below. Pause on the highlighted mode to select it and change to that mode. For more information on the modes, make sure to check out the [RTK Everywhere Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/).
+* **RTK Modes** &mdash; The available modes for the RTK Everywhere firmware are listed below. A single press brings up the mode menu. Press the button again to step through the available modes listed below. Pause on the highlighted mode then double-click to select it and change to that mode. For more information on the modes, make sure to check out the [RTK Everywhere Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/).
     * **BASE**
         * This is the default mode as it is the mode we think most users will want to use - but you always surprise us with the novel ways you use our products!
         * The RTK EVK will perform a short 1-2 minute "survey-in" to establish the approximate position of the antenna (~1m accuracy).
-        * It will then start generating RTCM correction data and - once configured - can send it to an NTRIP Caster over Ethernet.
+        * It will then start generating RTCM correction data and - once configured - can send it to an NTRIP Caster over Ethernet or WiFi.
         * The RTCM data will also be output as 3.3V Serial (UART) data on the ZED-F9P TX2 I/O screw connection on the rear panel. You can connect a radio transceiver to that pin if desired.
         * You can establish the antenna position more accurately by collecting 'raw' satellite data for ~24 hours and post-processing it. You can find full instructions in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_base/).
     * **ROVER**
         * The RTK EVK can of course also be used as a RTK Rover.
         * In Rover mode, the antenna position and other data is logged to microSD card.
-        * RTCM correction data can be received over Ethernet from a NTRIP Caster - once configured - and used to achieve an accuracy of ~1.4cm under good conditions.
+        * Once configured, RTCM correction data can be received over Ethernet, WiFi or Bluetooth from a NTRIP Caster and used to achieve an accuracy of ~1.4cm under good conditions.
         * Use Rover mode to collect the 'raw' satellite data to establish your antenna's position accurately for Base mode.
     * **NTP**
         * The RTK EVK can also act as a Network Time Protocol Server - servicing NTP requests over Ethernet.
@@ -533,16 +523,16 @@ There are two buttons located on the front of the SparkFun RTK EVK.
         * You can find full instructions in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_ntp/).
     * **Cfg Eth** (Configure-Via-Ethernet)
         * Abbreviated as "Cfg Eth", Configure-Via-Ethernet mode is a dedicated mode where the RTK EVK Station can be configured via a web page over Ethernet.
-        * This mode requires exclusive access to the WIZnet W5500 chip and the SPI bus and so the RTK EVK actually reboots when this mode is selected.
+        * This mode works best with exclusive access to the WIZnet W5500 chip and the SPI bus and so the RTK EVK actually reboots when this mode is selected.
         * When leaving this mode - either by exiting the web page or by pressing the Mode button - the RTK EVK will reboot again into Base, Rover or NTP mode. The new mode is selected by the small drop-down box on the System tab.
-        * You can find full instructions in the RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_ethernet/).
+        * You can find full instructions in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_ethernet/).
     * **Cfg WiFi**
         * Abbreviated as "CfgWiFi", Configure-Via-WiFi mode is another dedicated mode where the RTK EVK can be configured via a web page over WiFi.
         * By default, the RTK EVK will appear as a WiFi Hot Spot / Access Point - but it can be configured to connect to your preferred WiFi network too.
         * The RTK EVK will reboot when leaving this mode - to apply any changes made.
         * You can find full instructions in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_wifi/)** (Configure-Via-WiFi)
     * **Get Keys**
-        * When there is a WiFi connection, the RTK EVK can access the PointPerfect system and automatically obtain keys to allow the decryption of corrections.
+        * When there is an Ethernet or WiFi connection, the RTK EVK can access the PointPerfect system and automatically obtain keys to allow the decryption of corrections.
         * More details are provided in the [RTK Everywhere Product Manual](https://docs.sparkfun.com/SparkFun_RTK_Everywhere_Firmware/menu_pointperfect/)
     * **E-Pair** (ESP NOW Pairing)
         * Abbreviated as "E-Pair", ESP NOW is a way of linking two ESP32 processors via WiFi so that they can communicate with each other, line of sight up to approximately 250m.

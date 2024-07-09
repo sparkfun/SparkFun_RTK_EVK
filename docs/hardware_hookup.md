@@ -21,7 +21,7 @@ To take advantage of the LTE cellular network with the LARA-R6, you will need to
 
 ### Multi-Band GNSS Antenna
 
-Of course, you will need to connect an active multi-band GNSS antenna to the RTK EVK. We recommend using the L1/L2/L5 Surveying Antenna (SPK6618H) that is included with the kit. This covers the L1 and L2 band for the ZED-F9P. This also includes a built-in ground plane to provide the best performance for GNSS. This antenna will also provide broad coverage of the L-Band for the correction signals. Insert the SMA connector from the interface cable to the SMA connector labeled as **GNSS**. Tighten the hex nut until it is finger tight. Connect the BNC connector side from the interface cable to the to the SPK6618H antenna. Tighten the threaded connector until it is finger tight.
+Of course, you will need to connect an active multi-band GNSS antenna to the RTK EVK. We recommend using the L1/L2/L5 Surveying Antenna (SPK6618H) that is included with the kit. This covers the L1 and L2 band for the ZED-F9P. This also includes a built-in ground plane to provide the best performance for GNSS. This antenna will also provide broad coverage of the L-Band for the correction signals. Insert the SMA connector from the interface cable to the SMA connector labeled as **GNSS**. Tighten the hex nut until it is finger tight. Connect the TNC connector side from the interface cable to the to the SPK6618H antenna. Tighten the threaded connector until it is finger tight.
 
 
 
@@ -118,7 +118,7 @@ You can connect to the ESP32 by inserting the USB-C connector into the port labe
 
 ### Connecting to the u-blox Modules
 
-You can connect to the ZED-F9P, NEO-D9S, or LARA-R6 by inserting the USB-C connector into the port labeled as **CONFIG UBLOX** and inserting the other end to your computer's USB port.  This will power the RTK EVK and allow you to connect the modules to u-center.
+You can connect to the ZED-F9P, NEO-D9S, or LARA-R6 by inserting the USB-C connector into the port labeled as **CONFIG UBLOX** and inserting the other end to your computer's USB port.  This will power the RTK EVK and allow you to connect the modules to u-center or m-center (for the LARA-R6).
 
 <div style="text-align: center;">
   <table>
@@ -171,7 +171,7 @@ To insert a microSD card, slide the microSD card into the microSD socket until i
     </ol>
     <p>For more help activating your Hologram SIM card, check out their <a  href="https://hologram.io/docs/guide/connect/connect-device/">Connect Your Device</a> documentation.</p>
 
-To take advantage of the LARA-R6, insert the nano SIM card into the nano SIM socket until it clicks. In this case, we used a [Hologram card](https://www.sparkfun.com/products/17117).
+To take advantage of the LARA-R6, insert the nano SIM card into the nano SIM socket until it clicks. In this case, we used a [Hologram card](https://www.sparkfun.com/products/17117). Insert the SIM with the contacts facing down, insert the edge with the chamfered corner first.
 
 <div style="text-align: center;">
   <table>
