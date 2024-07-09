@@ -10,4 +10,4 @@
 
     If you don't find what you need there, the <a href="https://forum.sparkfun.com/">SparkFun Forums</a> are a great place to find and ask for help. If this is your first visit, you'll need to <a href="https://forum.sparkfun.com/ucp.php?mode=register">create a Forum Account</a> to search product forums and post questions.<br /><br />
 
-    <div style="text-align: center"><a href="https://forum.sparkfun.com/ucp.php?mode=register" class="md-button">Create New Forum Account</a>&nbsp;&nbsp;&nbsp;<a href="https://forum.sparkfun.com/viewforum.php?f=180" class="md-button md-button--primary">Log Into SparkFun Forums</a></div>
+    <div style="text-align: center"><a href="https://forum.sparkfun.com/ucp.php?mode=register" class="md-button">Create New Forum Account</a>&nbsp;&nbsp;&nbsp;<a href="https://forum.sparkfun.com/viewforum.php?f=116" class="md-button md-button--primary">Log Into SparkFun Forums</a></div>

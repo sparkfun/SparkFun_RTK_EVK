@@ -297,7 +297,7 @@ The screw terminal on the back includes a UART port. This is connected to the ZE
 
 ### ZED-F9P External Interrupt
 
-The screw terminal on the back includes an external interrupt for the ZED-F9P. The interrupt can either be an input/output pin. This can be configured using u-center to bring the module out of deep sleep or to output an interrupt for various module states. In the RTK Everywhere firmware, this terminal can be used to trigger a UBX-TIM-TM2 timing message. The logic level is 3.3V.
+The screw terminal on the back includes an external interrupt for the ZED-F9P. The interrupt can either be an input/output pin. This can be configured using u-center to bring the module out of deep sleep or to output an interrupt for various module states. In the RTK Everywhere firmware, this terminal can be used to trigger and log a UBX-TIM-TM2 timing message. The logic level is 3.3V.
 
 <div style="text-align: center;">
   <table>
