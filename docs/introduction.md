@@ -1,7 +1,7 @@
 
 
 
-The SparkFun RTK EVK (Evaluation Kit) is the perfect development platform for your fixed or mobile high-precision positioning and navigation needs. In terms of connectivity, the SparkFun RTK EVK has the lot: WiFi / BT, Ethernet and LTE cellular! We called it the EVK (Evaluation Kit) as it truly covers all the options: L1 + L2 RTK GNSS, with L-Band correction built-in if needed, running on an agile processor with memory to spare!
+The [SparkFun RTK EVK (Evaluation Kit)](https://www.sparkfun.com/products/24342) is the perfect development platform for your fixed or mobile high-precision positioning and navigation needs. In terms of connectivity, the SparkFun RTK EVK has the lot: WiFi / BT, Ethernet and LTE cellular! We called it the EVK (Evaluation Kit) as it truly covers all the options: L1 + L2 RTK GNSS, with L-Band correction built-in if needed, running on an agile processor with memory to spare!
 
 <center>
 <div class="grid cards" style="width:500px;" markdown>
