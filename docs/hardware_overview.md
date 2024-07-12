@@ -247,7 +247,7 @@ The image below is similar to the previous display output. You&apos;ll notice a 
 
 ### ZED-F9P Module
 
-The RTK EVK wouldn't be a an RTK without well... a high precision RTK. The RTK EVK includes a built-in u-blox ZED-F9P module for high precision GNSS. You will need to connect an active multiband antenna that is capable of receiving L1 and L2 signals. The ZED-F9P can be set as a base station or rover. There are several options to send or receive correction data depending on the mode: Ethernet, WiFi network, LTE cellular network, or the NEO-D9S. Note that the RTK Eberywhere firmware does not currently support cellular, but there are separate code examples showing how to receive localized corrections from PointPerfect via cellular. As stated earlier, the ZED-F9P is connected to the primary I<sup>2</sup>C port and uses the default address of 0x42.
+The RTK EVK wouldn't be a an RTK without well... a high precision RTK. The RTK EVK includes a built-in u-blox ZED-F9P module for high precision GNSS. You will need to connect an active multiband antenna that is capable of receiving L1 and L2 signals. The ZED-F9P can be set as a base station or rover. There are several options to send or receive correction data depending on the mode: Ethernet, WiFi network, LTE cellular network, or the NEO-D9S. Note that the RTK Everywhere firmware does not currently support cellular, but there are separate code examples showing how to receive localized corrections from PointPerfect via cellular. As stated earlier, the ZED-F9P is connected to the primary I<sup>2</sup>C port and uses the default address of 0x42.
 
 <div style="text-align: center;">
   <table>
