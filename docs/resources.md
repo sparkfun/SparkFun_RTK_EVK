@@ -23,3 +23,7 @@ Now that you've successfully got your SparkFun RTK EVK up and running, it's time
 * [Additional ESP32 Code Examples](https://github.com/sparkfun/SparkFun_RTK_EVK/tree/main/Example_Sketches)
 * [GitHub Hardware Repo](https://github.com/sparkfun/SparkFun_RTK_EVK)
 * [SFE Product Showcase](https://www.youtube.com/watch?v=1y_HtYCKhMY)
+
+For user that are taking advantage of the Zero-Touch RTK for correction services, make sure to click on the link below! This link will allow you to register, reactivate, or cancel your RTK EVK's correction service.
+
+* [SparkFun RTK EVK Correction Service Registration & Renewal](https://www.sparkfun.com/rtk_evk_registration)
