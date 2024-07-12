@@ -24,6 +24,10 @@ The SparkFun RTK EVK (Evaluation Kit) is the perfect development platform for yo
 </div>
 </center>
 
+<div style="text-align: center;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/1y_HtYCKhMY?si=tVzyihl2rgQKZFzz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 !!! note
     Currently, the RTK Everywhere firmware does not support cellular with the LARA-R6. However, we have written and tested extra code examples which will allow you to stream MQTT correction data from a u-blox PointPerfect Localized Distribution topic via the LARA-R6 cellular chip. This example demonstrates how easy it is to subscribe to PointPerfect and only receive the IP correction data you need for your location, minimizing your cellular data costs.
 
@@ -116,7 +120,7 @@ The RTK EVK comes with a custom extruded aluminum enclosure. The slotted flanges
 </div>
 
 !!! note "AC Not Required!"
-    The Orbit enclosure comes with a built-in power outlet, but you don't actually need it! The EVK can be powered by Power-over-Ethernet (PoE), meaning all you really need to run up to the roof is a standard 8-core CAT-6 Ethernet cable. Choose a PoE Ethernet Switch that meets your needs. We have had good experiences with the [TP-Link TL-SG1005P](https://www.tp-link.com/us/business-networking/poe-switch/tl-sg1005p/) - available from many retailers including [Amazon](https://www.amazon.com/TP-Link-Compliant-Shielded-Optimization-TL-SG1005P/dp/B076HZFY3F).
+    The Orbit enclosure comes with a built-in power outlet, but you don't actually need it! The RTK EVK can be powered by Power-over-Ethernet (PoE), meaning all you really need to run up to the roof is a standard 8-core CAT-6 Ethernet cable. Choose a PoE Ethernet Switch that meets your needs. We have had good experiences with the [TP-Link TL-SG1005P](https://www.tp-link.com/us/business-networking/poe-switch/tl-sg1005p/) - available from many retailers including [Amazon](https://www.amazon.com/TP-Link-Compliant-Shielded-Optimization-TL-SG1005P/dp/B076HZFY3F).
 
 
 

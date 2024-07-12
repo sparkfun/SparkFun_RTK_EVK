@@ -22,3 +22,4 @@ Now that you've successfully got your SparkFun RTK EVK up and running, it's time
 * [RTK Everywhere Firmware Binaries](https://github.com/sparkfun/SparkFun_RTK_Everywhere_Firmware_Binaries)
 * [Additional ESP32 Code Examples](https://github.com/sparkfun/SparkFun_RTK_EVK/tree/main/Example_Sketches)
 * [GitHub Hardware Repo](https://github.com/sparkfun/SparkFun_RTK_EVK)
+* [SFE Product Showcase](https://www.youtube.com/watch?v=1y_HtYCKhMY)
