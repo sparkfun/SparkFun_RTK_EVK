@@ -161,7 +161,7 @@ The following interface cables are great if say you are mounting the SparkFun RT
 
 #### Memory Cards
 
-Finally, if you're going to be logging a lot of data, you might want to stock up on 32GB microSD cards too. The RTK EVK can log 'raw' GNSS data messages (RAWX and SFRBX) at 20Hz if desired. At that rate, you're logging about 50kB per second, 180MB per hour, or over 4GB per day!
+Finally, if you're going to be logging a lot of data, you might want to stock up on 32GB microSD cards too. The RTK EVK can log 'raw' GNSS data messages (RAWX and SFRBX) at 4Hz if desired. At that rate, you're logging about 10kB per second, close to 40MB per hour or 1GB per day!
 
 <div class="grid cards" style="width:500px; margin: 0 auto;" markdown>
 
