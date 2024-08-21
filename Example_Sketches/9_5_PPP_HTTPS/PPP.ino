@@ -4,7 +4,7 @@
 #define PWREN             32
 
 // LARA pins
-#define LARA_RST          26    // Using the power pin as reset
+#define LARA_PWR          26
 #define LARA_TX           13
 #define LARA_RX           14
 #define LARA_RTS          -1
@@ -48,6 +48,8 @@ bool pppIsInternetAvailable()
 // Perform PPP polling
 void pppUpdate()
 {
+    processEventQueue();
+
     switch (pppState)
     {
     case PPP_STATE_MOBILE_NETWORK:
@@ -95,19 +97,77 @@ void pppEvent(arduino_event_id_t event)
         if (event == ARDUINO_EVENT_LARA_ON)
         {
             // Configure the modem
+            // Note: the modem AT commands are defined in:
+            // https://github.com/espressif/esp-protocols/blob/master/components/esp_modem/src/esp_modem_command_library.cpp
+
             PPP.setApn(PPP_MODEM_APN);
             PPP.setPin(PPP_MODEM_PIN);
-            PPP.setResetPin(LARA_RST, PPP_MODEM_RST_LOW);
             PPP.setPins(LARA_TX, LARA_RX, LARA_RTS, LARA_CTS, PPP_MODEM_FC);
+
+            // Set LARA_PWR low. High 'pushes' the LARA PWR_ON pin, toggling the power.
+            pinMode(LARA_PWR, OUTPUT);
+            digitalWrite(LARA_PWR, LOW);
 
             // Now enable the 3.3V regulators for the GNSS and LARA
             pinMode(PWREN, OUTPUT);
             digitalWrite(PWREN, HIGH);
 
+            delay(100); // Wait for the power to stabilize
+
+            // From power-on, the LARA will be off. LARA_PWR needs to be toggled HIGH-LOW to turn it on.
+            // BUT, if the LARA is already on, toggling LARA_PWR will turn it off.
+            // If the LARA is already on and in a data state, an escape sequence (+++) may be needed to deactivate.
+            // Also, the LARA takes 8 seconds to start up after power on....
+
             Serial.println("Starting the modem. It might take a while!");
-            pppState = PPP_STATE_LARA_ON;
-            pppOnline = false;
-            PPP.begin(PPP_MODEM_MODEL);
+            eventQueue.clear();
+            if (PPP.begin(PPP_MODEM_MODEL))
+            {
+                pppState = PPP_STATE_LARA_ON;
+                pppOnline = false;
+            }
+            else
+            {
+                PPP.end();
+                PPP.setApn(PPP_MODEM_APN);
+                PPP.setPin(PPP_MODEM_PIN);
+                PPP.setPins(LARA_TX, LARA_RX, LARA_RTS, LARA_CTS, PPP_MODEM_FC);
+                Serial.println("Toggling power and restarting the modem. It might take a while!");
+                digitalWrite(LARA_PWR, HIGH);
+                delay(3200); // Give LARA_PWR a long press - to turn it off or on
+                digitalWrite(LARA_PWR, LOW);
+                delay(8000);
+                eventQueue.clear();
+                if (PPP.begin(PPP_MODEM_MODEL)) // LARA _could_ now be off!
+                {
+                    pppState = PPP_STATE_LARA_ON;
+                    pppOnline = false;
+                }
+                else
+                {
+                    PPP.end();
+                    PPP.setApn(PPP_MODEM_APN);
+                    PPP.setPin(PPP_MODEM_PIN);
+                    PPP.setPins(LARA_TX, LARA_RX, LARA_RTS, LARA_CTS, PPP_MODEM_FC);
+                    Serial.println("Toggling power and restarting the modem. It might take a while!");
+                    digitalWrite(LARA_PWR, HIGH);
+                    delay(100); // Give LARA_PWR a short press - to turn it on
+                    digitalWrite(LARA_PWR, LOW);
+                    delay(8000);
+                    eventQueue.clear();
+                    if (PPP.begin(PPP_MODEM_MODEL)) // Last chance...
+                    {
+                        pppState = PPP_STATE_LARA_ON;
+                        pppOnline = false;
+                    }
+                    else
+                    {
+                        PPP.end();
+                        Serial.println("LARA is not responding!");
+                        // What to do? Stay in this state? Or go to PPP_STATE_LARA_ON anyway?
+                    }
+                }
+            }
         }
         break;
 

@@ -45,7 +45,11 @@ HTTPS_CLIENT_CONNECTION SparkFun;
 // System initialization
 void setup()
 {
+    delay(1000);
+
     Serial.begin(115200);
+
+    Serial.println("SparkFun EVK Example");
 
     // Initialize the network
     Network.onEvent(networkOnEvent);

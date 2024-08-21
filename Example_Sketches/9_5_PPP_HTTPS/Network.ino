@@ -1,5 +1,8 @@
 //----------------------------------------
 // Process network events
+
+std::vector<arduino_event_id_t> eventQueue; // vector of network events
+
 void networkOnEvent(arduino_event_id_t event, arduino_event_info_t info)
 {
     IPAddress ipv4;
@@ -17,7 +20,17 @@ void networkOnEvent(arduino_event_id_t event, arduino_event_info_t info)
     case ARDUINO_EVENT_PPP_LOST_IP:
     case ARDUINO_EVENT_PPP_DISCONNECTED:
     case ARDUINO_EVENT_PPP_STOP:
-        pppEvent(event);
+        eventQueue.push_back(event);
         break;
+    }
+}
+
+void processEventQueue()
+{
+    auto it = eventQueue.begin();
+    if (it != eventQueue.end())
+    {
+        pppEvent(*it);
+        eventQueue.erase(it);
     }
 }
