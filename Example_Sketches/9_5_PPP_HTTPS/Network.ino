@@ -20,17 +20,23 @@ void networkOnEvent(arduino_event_id_t event, arduino_event_info_t info)
     case ARDUINO_EVENT_PPP_LOST_IP:
     case ARDUINO_EVENT_PPP_DISCONNECTED:
     case ARDUINO_EVENT_PPP_STOP:
-        eventQueue.push_back(event);
+        if (USE_EVENT_QUEUE)
+            eventQueue.push_back(event);
+        else
+            pppEvent(event);
         break;
     }
 }
 
 void processEventQueue()
 {
-    auto it = eventQueue.begin();
-    if (it != eventQueue.end())
+    if (USE_EVENT_QUEUE)
     {
-        pppEvent(*it);
-        eventQueue.erase(it);
+        auto it = eventQueue.begin();
+        if (it != eventQueue.end())
+        {
+            pppEvent(*it);
+            eventQueue.erase(it);
+        }
     }
 }

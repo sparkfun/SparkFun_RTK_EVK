@@ -11,6 +11,8 @@ bool RTK_CONFIG_MBEDTLS_EXTERNAL_MEM_ALLOC = false;
 
 #define ARDUINO_EVENT_LARA_ON   ((arduino_event_id_t)-1)
 
+#define USE_EVENT_QUEUE 0 // Change to 1 to enable the event queue
+
 //----------------------------------------
 
 typedef bool (* IS_CONNECTED)();
