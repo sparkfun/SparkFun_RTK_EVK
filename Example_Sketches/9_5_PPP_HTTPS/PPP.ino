@@ -121,7 +121,7 @@ void pppEvent(arduino_event_id_t event)
             // From initial power-on, the LARA will be off
             // If the LARA is already on, toggling LARA_PWR could turn it off...
             // If the LARA is already on and in a data state, an escape sequence (+++) (set_command_mode)
-            // is needed to deactivate. PPP.begin tries this, but it fails on the LARA. Not sure why.
+            // is needed to deactivate. PPP.begin tries this, but it fails if the modem is in CMUX mode.
             // Also, the LARA takes ~8 seconds to start up after power on....
 
             // If the modem is off, a 2s push will turn it on
