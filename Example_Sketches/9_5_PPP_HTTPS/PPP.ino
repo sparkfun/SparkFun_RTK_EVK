@@ -4,7 +4,7 @@
 #define PWREN             32
 
 // LARA pins
-#define LARA_RST          26    // Using the power pin as reset
+#define LARA_PWR          26
 #define LARA_TX           13
 #define LARA_RX           14
 #define LARA_RTS          -1
@@ -48,6 +48,8 @@ bool pppIsInternetAvailable()
 // Perform PPP polling
 void pppUpdate()
 {
+    processEventQueue();
+
     switch (pppState)
     {
     case PPP_STATE_MOBILE_NETWORK:
@@ -95,17 +97,49 @@ void pppEvent(arduino_event_id_t event)
         if (event == ARDUINO_EVENT_LARA_ON)
         {
             // Configure the modem
-            PPP.setApn(PPP_MODEM_APN);
-            PPP.setPin(PPP_MODEM_PIN);
-            PPP.setResetPin(LARA_RST, PPP_MODEM_RST_LOW);
-            PPP.setPins(LARA_TX, LARA_RX, LARA_RTS, LARA_CTS, PPP_MODEM_FC);
+            // Note: the modem AT commands are defined in:
+            // https://github.com/espressif/esp-protocols/blob/master/components/esp_modem/src/esp_modem_command_library.cpp
+
+            // Set LARA_PWR low
+            // LARA_PWR is inverted by the RTK EVK level-shifter
+            // High 'pushes' the LARA PWR_ON pin, toggling the power
+            // Configure the pin here as PPP doesn't configure _pin_rst until .begin is called
+            pinMode(LARA_PWR, OUTPUT);
+            digitalWrite(LARA_PWR, LOW);
 
             // Now enable the 3.3V regulators for the GNSS and LARA
             pinMode(PWREN, OUTPUT);
             digitalWrite(PWREN, HIGH);
 
+            delay(2000); // Wait for the power to stabilize
+
+            // We don't know if the module is on or off
+            // From the datasheet:
+            //   Hold LARA_PWR pin low for 0.15 - 3.20s to switch module on
+            //   Hold LARA_PWR pin low for 1.50s minimum to switch module off
+            // (Remember that LARA_PWR is inverted by the RTK EVK level-shifter)
+            // From initial power-on, the LARA will be off
+            // If the LARA is already on, toggling LARA_PWR could turn it off...
+            // If the LARA is already on and in a data state, an escape sequence (+++) (set_command_mode)
+            // is needed to deactivate. PPP.begin tries this, but it fails if the modem is in CMUX mode.
+            // Also, the LARA takes ~8 seconds to start up after power on....
+
+            // If the modem is off, a 2s push will turn it on
+            // If the modem is on, a 2s push will turn it off
+            Serial.println("Toggling the modem power");
+            digitalWrite(LARA_PWR, HIGH);
+            delay(2000);
+            digitalWrite(LARA_PWR, LOW);
+            delay(2000); // 1000 is too short
+
+            // Now let the PPP turn the modem back on again if needed - with a 200ms reset
+            // If the modem is on, this is too short to turn it off again
             Serial.println("Starting the modem. It might take a while!");
-            pppState = PPP_STATE_LARA_ON;
+            PPP.setApn(PPP_MODEM_APN);
+            PPP.setPin(PPP_MODEM_PIN);
+            PPP.setResetPin(LARA_PWR, PPP_MODEM_RST_LOW); // v3.0.2 allows you to set the reset delay, but we don't need it
+            PPP.setPins(LARA_TX, LARA_RX, LARA_RTS, LARA_CTS, PPP_MODEM_FC);
+            pppState = PPP_STATE_LARA_ON; // Change pppState now. PPP_START / PPP_STOP will occur in the new state
             pppOnline = false;
             PPP.begin(PPP_MODEM_MODEL);
         }
@@ -124,7 +158,7 @@ void pppEvent(arduino_event_id_t event)
             pppOnline = false;
             pppState = PPP_STATE_MOBILE_NETWORK;
         }
-        else if (event == ARDUINO_EVENT_PPP_STOP)
+        else if (event == ARDUINO_EVENT_PPP_STOP) // This happens when the PPP.begin fails
         {
             Serial.println("PPP Stopped");
             pppOnline = false;
