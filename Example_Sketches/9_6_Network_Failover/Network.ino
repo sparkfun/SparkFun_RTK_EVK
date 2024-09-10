@@ -353,14 +353,17 @@ void networkSequenceBoot(uint8_t priority)
 
     // Display the description
     sequence = networkPriorityTable[priority].boot;
-    description = sequence->description;
-    if (debug && description)
-        Serial.printf("%s: %s\r\n", networkGetName(priority), description);
+    if (sequence)
+    {
+        description = sequence->description;
+        if (debug && description)
+            Serial.printf("%s: %s\r\n", networkGetName(priority), description);
 
-    // Start the boot sequence
-    networkSequence[priority] = sequence;
-    networkSeqStarting &= ~bitMask;
-    networkSeqStopping &= ~bitMask;
+        // Start the boot sequence
+        networkSequence[priority] = sequence;
+        networkSeqStarting &= ~bitMask;
+        networkSeqStopping &= ~bitMask;
+    }
 }
 
 //----------------------------------------
@@ -492,14 +495,17 @@ void networkSequenceStart(uint8_t priority, bool debug)
 
         // Display the description
         sequence = networkPriorityTable[priority].start;
-        description = sequence->description;
-        if (debug && description)
-            Serial.printf("%s: %s\r\n", networkGetName(priority), description);
+        if (sequence)
+        {
+            description = sequence->description;
+            if (debug && description)
+                Serial.printf("%s: %s\r\n", networkGetName(priority), description);
 
-        // Start the sequence
-        networkSequence[priority] = sequence;
-        networkSeqStarting |= bitMask;
-        networkStarted |= bitMask;
+            // Start the sequence
+            networkSequence[priority] = sequence;
+            networkSeqStarting |= bitMask;
+            networkStarted |= bitMask;
+        }
     }
 }
 
@@ -565,14 +571,17 @@ void networkSequenceStop(uint8_t priority, bool debug)
 
         // Display the description
         sequence = networkPriorityTable[priority].stop;
-        description = sequence->description;
-        if (debug && description)
-            Serial.printf("%s: %s\r\n", networkGetName(priority), description);
+        if (sequence)
+        {
+            description = sequence->description;
+            if (debug && description)
+                Serial.printf("%s: %s\r\n", networkGetName(priority), description);
 
-        // Start the sequence
-        networkSeqStopping |= bitMask;
-        networkStarted &= ~bitMask;
-        networkSequence[priority] = sequence;
+            // Start the sequence
+            networkSeqStopping |= bitMask;
+            networkStarted &= ~bitMask;
+            networkSequence[priority] = sequence;
+        }
     }
 }
 

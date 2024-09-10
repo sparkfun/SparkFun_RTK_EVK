@@ -111,7 +111,6 @@ void laraPowerLow(uint8_t priority, uintptr_t parameter, bool debug)
 NETWORK_POLL_SEQUENCE laraBootSequence[] =
 {   //  State               Parameter               Description
     {laraSetPins,           LARA_SETTLE_TIME,       "Initialize the pins"},
-    {cellularSetup,         0,                      "Initialize the cellular layer"},
     {networkDelay,          (uintptr_t)&laraTimer,  "Delay for initializtion"},
 
     // Power on LARA, may already be on during software reload
@@ -151,6 +150,7 @@ NETWORK_POLL_SEQUENCE laraOnSequence[] =
 // (Remember that LARA_PWR is inverted by the RTK EVK level-shifter)
 NETWORK_POLL_SEQUENCE laraOffSequence[] =
 {   //  State               Parameter               Description
+    {cellularStop,          0,                      "Stop the cellular modem"},
     {laraPowerLow,          LARA_OFF_TIME,          "Notify LARA of power state change"},
     {networkDelay,          (uintptr_t)&laraTimer,  "Tell LARA to power off"},
     {laraPowerHigh,         LARA_SETTLE_TIME,       "Finish power off sequence"},

@@ -192,6 +192,7 @@ void setup()
     Serial.println("SparkFun EVK Example");
 
     // Listen for modem events
+    Serial.printf("Registering callback handler: %p\r\n", (void *)networkOnEvent);
     Network.onEvent(networkOnEvent);
 
     // Set LARA_PWR low
