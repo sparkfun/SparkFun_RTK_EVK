@@ -36,7 +36,7 @@ void cellularAttached(uint8_t priority, uintptr_t parameter, bool debug)
         {
             // Attached to a mobile network, continue 
             // Display the network information
-            Serial.printf("Cellular attached to %s\r\n", CELLULAR.operatorName());
+            Serial.printf("Cellular attached to %s\r\n", CELLULAR.operatorName().c_str());
             if (debug)
             {
                 Serial.print("    State: ");
@@ -65,7 +65,7 @@ void cellularAttached(uint8_t priority, uintptr_t parameter, bool debug)
 }
 
 //----------------------------------------
-// Handle the cellular evnets
+// Handle the cellular events
 void cellularEvent(arduino_event_id_t event)
 {
     IPAddress ipAddress;
@@ -112,7 +112,7 @@ void cellularEvent(arduino_event_id_t event)
         module = CELLULAR.moduleName();
         Serial.printf("Cellular (%s %s) Started\r\n", manufacturer.c_str(), module.c_str());
         if (NETWORK_DEBUG_SEQUENCE)
-            Serial.printf("    IMEI: %s\r\n", CELLULAR.IMEI());
+            Serial.printf("    IMEI: %s\r\n", CELLULAR.IMEI().c_str());
         break;
 
     case ARDUINO_EVENT_PPP_STOP:
@@ -122,14 +122,10 @@ void cellularEvent(arduino_event_id_t event)
 }
 
 //----------------------------------------
-void cellularSetup(uint8_t priority, uintptr_t parameter, bool debug)
+void cellularStart(uint8_t priority, uintptr_t parameter, bool debug)
 {
     // Validate the priority
     networkPriorityValidation(priority);
-
-    // Now let the PPP turn the modem back on again if needed - with a 200ms reset
-    // If the modem is on, this is too short to turn it off again
-    Serial.println("Setting up the cellular modem.");
 
     // Configure the cellular modem
     CELLULAR.setApn(CELLULAR_MODEM_APN);
@@ -137,22 +133,27 @@ void cellularSetup(uint8_t priority, uintptr_t parameter, bool debug)
     CELLULAR.setResetPin(CELLULAR_RST, CELLULAR_MODEM_RST_LOW); // v3.0.2 allows you to set the reset delay, but we don't need it
     CELLULAR.setPins(CELLULAR_TX, CELLULAR_RX, CELLULAR_RTS, CELLULAR_CTS, CELLULAR_MODEM_FC);
 
-    // Get the next sequence entry
-    networkSequenceNextEntry(priority, debug);
-}
-
-//----------------------------------------
-void cellularStart(uint8_t priority, uintptr_t parameter, bool debug)
-{
-    // Validate the priority
-    networkPriorityValidation(priority);
-
     // Now let the PPP turn the modem back on again if needed - with a 200ms reset
     // If the modem is on, this is too short to turn it off again
     Serial.println("Starting the modem. It might take a while!");
 
     // Starting the cellular modem
     CELLULAR.begin(CELLULAR_MODEM_MODEL);
+
+    // Get the next sequence entry
+    networkSequenceNextEntry(priority, debug);
+}
+
+//----------------------------------------
+void cellularStop(uint8_t priority, uintptr_t parameter, bool debug)
+{
+    // Validate the priority
+    networkPriorityValidation(priority);
+
+    // Stopping the cellular modem
+    Serial.println("Stopping the modem!");
+    CELLULAR.mode(ESP_MODEM_MODE_COMMAND);
+    CELLULAR.end();
 
     // Get the next sequence entry
     networkSequenceNextEntry(priority, debug);

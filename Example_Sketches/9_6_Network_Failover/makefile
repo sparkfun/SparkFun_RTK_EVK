@@ -91,6 +91,7 @@ example:	build/esp32.esp32.esp32/$(EXAMPLE_SKETCH).ino.bin
 
 DEBUG_LEVEL=none
 #DEBUG_LEVEL=debug
+#DEBUG_LEVEL=verbose
 
 build/esp32.esp32.esp32/$(EXAMPLE_SKETCH).ino.bin:	$(EXAMPLE_SKETCH).ino   *.ino   *.h   makefile
 	$(CLEAR)
