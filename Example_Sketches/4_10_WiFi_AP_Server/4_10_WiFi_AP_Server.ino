@@ -35,6 +35,8 @@ ported for sparkfun esp32
 
 #define SERVER_PORT         80
 
+bool RTK_CONFIG_MBEDTLS_EXTERNAL_MEM_ALLOC = false;
+
 void setup()
 {
     IPAddress ipAddress;

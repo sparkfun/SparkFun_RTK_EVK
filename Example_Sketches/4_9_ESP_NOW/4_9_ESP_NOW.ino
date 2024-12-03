@@ -34,6 +34,8 @@ const MacAddress macDev2({0xE0, 0x5A, 0x1B, 0xD8, 0x8F, 0x14});
 const char * wifiApSsid = "SoftAP";
 const char * wifiApPassword = "Password";
 
+bool RTK_CONFIG_MBEDTLS_EXTERNAL_MEM_ALLOC = false;
+
 ESP_NOW_Serial_Class * nowSerial;
 
 void setup()
