@@ -14,7 +14,10 @@
 #include <Network.h>    // Built-in
 #include <WiFi.h>       // Built-in
 
-#include <esp_wifi.h>   // IDF built-in
+#include "esp_now.h"        // IDF built-in
+#include "esp_mac.h"        // IDF built-in
+#include <esp_wifi.h>       // IDF built-in
+#include "esp_wifi_types.h" // IDF built-in
 
 #include <secrets.h>    // Host name, SSIDs and passwords
 
@@ -22,6 +25,39 @@ bool RTK_CONFIG_MBEDTLS_EXTERNAL_MEM_ALLOC = false;
 
 #define systemPrintf    Serial.printf
 #define systemPrintln   Serial.println
+
+//****************************************
+// ESP-NOW
+//****************************************
+
+bool espNowDebug;
+bool espNowDisplay;
+bool espNowVerbose;
+
+typedef enum
+{
+    ESPNOW_OFF = 0,
+    ESPNOW_BROADCASTING,
+    ESPNOW_PAIRING,
+    ESPNOW_MAC_RECEIVED,
+    ESPNOW_PAIRED,
+    ESPNOW_MAX
+} ESP_NOW_STATE;
+
+// Create a struct for ESP NOW pairing
+typedef struct PairMessage
+{
+    uint8_t macAddress[6];
+    bool encrypt;
+    uint8_t channel;
+    uint8_t crc; // Simple check - add MAC together and limit to 8 bit
+} PairMessage;
+
+//****************************************
+// Web Server
+//****************************************
+
+bool webServerDebug;
 
 //****************************************
 // WiFi class
@@ -44,6 +80,7 @@ class RTK_WIFI
   private:
 
     WIFI_CHANNEL_t _apChannel;  // Channel required for soft AP, zero (0) use _channel
+    int16_t _apCount;           // The number or remote APs detected in the WiFi network
     IPAddress _apDnsAddress;    // DNS IP address to use while translating names into IP addresses
     IPAddress _apFirstDhcpAddress;  // First IP address to use for DHCP
     IPAddress _apGatewayAddress;// IP address of the gateway to the larger network (internet?)
@@ -65,11 +102,17 @@ class RTK_WIFI
     uint8_t _staMacAddress[6];  // MAC address of the station
     const char * _staRemoteApSsid;      // SSID of remote AP
     const char * _staRemoteApPassword;  // Password of remote AP
-    WIFI_ACTION_t _started;         // Components that are started and running
+    volatile WIFI_ACTION_t _started;    // Components that are started and running
     WIFI_CHANNEL_t _stationChannel; // Channel required for station, zero (0) use _channel
     bool _stationRunning;       // True while station is starting or running
     uint32_t _timer;            // Reconnection timer
     bool _verbose;              // True causes more debug output to be displayed
+
+    // Display components begin started or stopped
+    // Inputs:
+    //   text: Text describing the component list
+    //   components: A bit mask of the components
+    void displayComponents(const char * text, WIFI_ACTION_t components);
 
     // Start the WiFi event handler
     void eventHandlerStart();
@@ -187,8 +230,8 @@ class RTK_WIFI
     // Inputs:
     //   channel: Channel number for the scan, zero (0) scan all channels
     // Outputs:
-    //   Returns true if successful and false upon failure
-    bool stationScanStart(WIFI_CHANNEL_t channel);
+    //   Returns the number of access points
+    int16_t stationScanForAPs(WIFI_CHANNEL_t channel);
 
     // Select the AP and channel to use for WiFi station
     // Inputs:
@@ -197,6 +240,14 @@ class RTK_WIFI
     // Outputs:
     //   Returns the channel number of the AP
     WIFI_CHANNEL_t stationSelectAP(uint8_t apCount, bool list);
+
+    // Stop and start WiFi components
+    // Inputs:
+    //   stopping: WiFi components that need to be stopped
+    //   starting: WiFi components that neet to be started
+    // Outputs:
+    //   Returns true if the modes were successfully configured
+    bool stopStart(WIFI_ACTION_t stopping, WIFI_ACTION_t starting);
 
     // Handle the WiFi event
     // Inputs:
@@ -295,7 +346,9 @@ class RTK_WIFI
     bool stationRunning();
 
     // Test the WiFi modes
-    void test();
+    // Inputs:
+    //   testDurationMsec: Milliseconds to run each test
+    void test(uint32_t testDurationMsec);
 
     // Enable or disable verbose debug output
     // Inputs:
@@ -310,6 +363,52 @@ class RTK_WIFI
 
 RTK_WIFI wifi(false, false);
 
+//****************************************
+// HTTP client connection class
+//****************************************
+
+class HTTP_CLIENT_CONNECTION
+{
+  private:
+    const char * _hostName;
+    const char * _url;
+
+    NetworkClient * _client;
+    int _headerLength;
+    int _pageLength;
+    uint16_t _portNumber;
+    uint8_t _hccState;
+    bool _tagEndFound;
+    int _tagEndOffset;
+    bool _tagStartFound;
+    int _tagStartOffset;
+    uint32_t _timer;
+    uint8_t _buffer[2048];
+
+  public:
+
+    bool _suppressFirstPageOutput;
+
+    // Constructor
+    // Inputs:
+    //   hostName: Name of the remote host
+    //   portNumber: Port number on the remote host for HTTP connection
+    //   url: Web page address
+    HTTP_CLIENT_CONNECTION(const char * hostName,
+                           uint16_t portNumber,
+                           const char * url);
+
+    // Destructor
+    ~HTTP_CLIENT_CONNECTION();
+
+    // Read the HTTP page
+    // Inputs:
+    //   networkConnected: True while the network is connected
+    void update(bool networkConnected);
+};
+
+HTTP_CLIENT_CONNECTION SparkFun("www.SparkFun.com", 80, "/");
+
 //*********************************************************************
 // Entry point for the application
 void setup()
@@ -322,19 +421,36 @@ void setup()
     // Verity the WiFi tables
     wifi.verifyTables();
 
-    // Enable WiFi debugging
-//    wifi.verbose(true);
-//    wifi.debug(true);
+    // Enable verbose debugging
+/*
+    espNowVerbose = true;
+    wifi.verbose(true);
+
+    // Enable debugging
+    espNowDebug = true;
+    wifi.debug(true);
+*/
+
+    // Enable network display
+    espNowDisplay = true;
     wifi.display(true);
 
     // Set the mDNS host name
     wifi.hostNameSet(mdnsHostName);
+
+    // Set the HTTP parameters
+    SparkFun._suppressFirstPageOutput = true;
 }
 
 //*********************************************************************
 // Idle loop for core 1 of the application
 void loop()
 {
+    bool wifiOnline;
+
     wifi.stationReconnectionRequest();
-    wifi.test();
+    wifi.test(15 * 1000);
+    wifiOnline = wifi.stationOnline();
+    httpUpdate(&SparkFun, wifiOnline);
+    webServerUpdate(wifiOnline);
 }
