@@ -1,3 +1,9 @@
+// List the fixed ESP-NOW peers
+const uint8_t espNowPeer[][6] =
+{
+};
+const int espNowPeerCount = sizeof(espNowPeer) / sizeof(espNowPeer[0][6]);
+
 const char * mdnsHostName = "Your_Host_Name";
 
 const char * wifiSSID1 = "Your_WiFi_SSID";
