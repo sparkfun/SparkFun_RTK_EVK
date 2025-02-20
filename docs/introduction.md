@@ -172,7 +172,7 @@ Finally, if you're going to be logging a lot of data, you might want to stock up
 <!-- ----------WHITE SPACE BETWEEN PRODUCTS---------- -->
 -   <a href="https://www.sparkfun.com/products/19041">
       <figure markdown>
-        <img src="https://cdn.sparkfun.com/assets/parts/1/8/6/5/3/19041-microSD_Card_-_32GB__Class_10_-02.jpg" style="width:140px; height:140px; object-fit:contain;" alt="microSD Card - 32GB (Class 10)">
+        <img src="https://cdn.sparkfun.com/assets/parts/1/8/6/5/3/19041-Micro-SD-Card-Feature.jpg" style="width:140px; height:140px; object-fit:contain;" alt="microSD Card - 32GB (Class 10)">
       </figure>
     </a>
 
