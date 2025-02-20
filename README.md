@@ -1,7 +1,7 @@
 SparkFun RTK EVK
 ========================================
 
-[![SparkFun RTK EVK](https://cdn.sparkfun.com/r/600-600/assets/parts/2/4/7/0/6/24342-RTK-EVK-Action-6.jpg)](https://www.sparkfun.com/products/24342)
+[![SparkFun RTK EVK](https://cdn.sparkfun.com/r/600-600/assets/parts/2/4/7/0/6/24342-RTK-EVK-Action-6-1.png)](https://www.sparkfun.com/products/24342)
 
 [*SparkFun RTK EVK (GPS-24342)*](https://www.sparkfun.com/products/24342)
 
