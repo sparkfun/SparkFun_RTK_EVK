@@ -1,9 +1,9 @@
 SparkFun RTK EVK
 ========================================
 
-[![SparkFun RTK EVK](https://cdn.sparkfun.com/r/600-600/assets/parts/2/4/7/0/6/24342-RTK-EVK-Action-6-1.png)](https://www.sparkfun.com/products/24342)
+[![SparkFun RTK EVK](https://cdn.sparkfun.com/r/600-600/assets/parts/2/4/7/0/6/24342-RTK-EVK-Action-6-1.png)](https://www.sparkfun.com/sparkfun-rtk-evk.html)
 
-[*SparkFun RTK EVK (GPS-24342)*](https://www.sparkfun.com/products/24342)
+[*SparkFun RTK EVK (GPS-24342)*](https://www.sparkfun.com/sparkfun-rtk-evk.html)
 
 Designed and manufactured in Boulder, Colorado, USA, the SparkFun RTK Evaluation Kit is the perfect development platform for your fixed or mobile high-precision positioning and navigation needs. In terms of connectivity, the SparkFun RTK EVK has the lot: WiFi / BT, Ethernet and cellular!
 
@@ -51,7 +51,7 @@ The RTK Everywhere firmware has its own [dedicated repo](https://github.com/spar
 Product Variants
 ----------------
 
-* [GPS-24342](https://www.sparkfun.com/products/24342)- v1.1, Initial Release
+* [GPS-24342](https://www.sparkfun.com/sparkfun-rtk-evk.html)- v1.1, Initial Release
 
 
 

@@ -1,12 +1,12 @@
 
 
 
-The [SparkFun RTK EVK (Evaluation Kit)](https://www.sparkfun.com/products/24342) is the perfect development platform for your fixed or mobile high-precision positioning and navigation needs. In terms of connectivity, the SparkFun RTK EVK has the lot: WiFi / BT, Ethernet and LTE cellular! We called it the EVK (Evaluation Kit) as it truly covers all the options: L1 + L2 RTK GNSS, with L-Band correction built-in if needed, running on an agile processor with memory to spare!
+The [SparkFun RTK EVK (Evaluation Kit)](https://www.sparkfun.com/sparkfun-rtk-evk.html) is the perfect development platform for your fixed or mobile high-precision positioning and navigation needs. In terms of connectivity, the SparkFun RTK EVK has the lot: WiFi / BT, Ethernet and LTE cellular! We called it the EVK (Evaluation Kit) as it truly covers all the options: L1 + L2 RTK GNSS, with L-Band correction built-in if needed, running on an agile processor with memory to spare!
 
 <center>
 <div class="grid cards" style="width:500px;" markdown>
 
--   <a href="https://www.sparkfun.com/products/24342">
+-   <a href="https://www.sparkfun.com/sparkfun-rtk-evk.html">
       <figure markdown>
         <img src="../assets/img/24342-RTK-EVK-RTK_Fixed_Solution.jpg" style="width:140px; height:140px; object-fit:contain;" alt="SparkFun RTK EVK">
       </figure>
@@ -14,12 +14,12 @@ The [SparkFun RTK EVK (Evaluation Kit)](https://www.sparkfun.com/products/24342)
 
     ---
 
-    <a href="https://www.sparkfun.com/products/24342">
+    <a href="https://www.sparkfun.com/sparkfun-rtk-evk.html">
       <b>SparkFun RTK EVK</b>
       <br />
       GPS-24342
       <br />
-      <center>[Purchase from SparkFun :fontawesome-solid-cart-plus:](https://www.sparkfun.com/products/24342){ .md-button .md-button--primary }</center>
+      [Purchase from SparkFun :fontawesome-solid-cart-plus:{ .heart }](https://www.sparkfun.com/sparkfun-rtk-evk.html){ .md-button .md-button--primary }
     </a>
 </div>
 </center>
