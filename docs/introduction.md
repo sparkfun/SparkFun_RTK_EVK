@@ -13,10 +13,8 @@ The [SparkFun RTK EVK (Evaluation Kit)](https://www.sparkfun.com/sparkfun-rtk-ev
     [Purchase from SparkFun :fontawesome-solid-cart-plus:{ .heart }](https://www.sparkfun.com/sparkfun-rtk-evk.html){ .md-button .md-button--primary }
     </center>
 
-</div>
+- <iframe width="560" height="315" src="https://www.youtube.com/embed/1y_HtYCKhMY?si=tVzyihl2rgQKZFzz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<div style="text-align: center;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/1y_HtYCKhMY?si=tVzyihl2rgQKZFzz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 In this tutorial we'll go over the hardware, assembly, and how get started with the SparkFun RTK.
