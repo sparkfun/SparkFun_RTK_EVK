@@ -28,9 +28,6 @@ The [SparkFun RTK EVK (Evaluation Kit)](https://www.sparkfun.com/products/24342)
   <iframe width="560" height="315" src="https://www.youtube.com/embed/1y_HtYCKhMY?si=tVzyihl2rgQKZFzz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-!!! note
-    Currently, the RTK Everywhere firmware does not support cellular with the LARA-R6. However, we have written and tested extra code examples which will allow you to stream MQTT correction data from a u-blox PointPerfect Localized Distribution topic via the LARA-R6 cellular chip. This example demonstrates how easy it is to subscribe to PointPerfect and only receive the IP correction data you need for your location, minimizing your cellular data costs.
-
 In this tutorial we'll go over the hardware, assembly, and how get started with the SparkFun RTK.
 
 

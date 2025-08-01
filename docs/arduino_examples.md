@@ -10,7 +10,7 @@
 
     - [How to Install CH340 Drivers](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
 
-At the time of writing this tutorial, the RTK Everywhere Firmware currently does not support the u-blox LARA-R6 module. For users that are interested in taking advantage of cellular when Ethernet or WiFi is not available, you can check out the individual Arduino Example Sketches located in the SparkFun RTK EVK **Example Sketches** folder. Besides the 6x examples for the LARA-R6, you will also notice several other examples such as using the ZED-F9P, NEO-D9S, Qwiic OLED, LEDs, antenna open/short circuit detection, Ethernet, WiFi, and datalogging using the microSD card. Head to the [SparkFun RTK EVK GitHub Repo](https://github.com/sparkfun/SparkFun_RTK_EVK/tree/main/Example_Sketches) to grab the files or download the .ZIP by clicking the button below.
+Besides the 6x examples for the LARA-R6 cellular module, you will also notice several other examples such as using the ZED-F9P, NEO-D9S, Qwiic OLED, LEDs, antenna open/short circuit detection, Ethernet, WiFi, and datalogging using the microSD card. Head to the [SparkFun RTK EVK GitHub Repo](https://github.com/sparkfun/SparkFun_RTK_EVK/tree/main/Example_Sketches) to grab the files or download the .ZIP by clicking the button below.
 
 <div style="text-align: center"><a href="https://github.com/sparkfun/SparkFun_RTK_EVK/archive/refs/heads/main.zip" target="rtk_evk_arduino_example_sketches" class="md-button">GitHub SparkFun RTK EVK Repo: Arduino Example Sketches</a></div>
 
