@@ -146,8 +146,6 @@ plugins:
   - git-committers:
       repository: sparkfun/SparkFun_RTK_EVK
       branch: main
-  # Add git authors at bottom of the page
-  - git-authors
   # Enables use of Git submodules and larger code base
   - monorepo
   # For PDF rendering
